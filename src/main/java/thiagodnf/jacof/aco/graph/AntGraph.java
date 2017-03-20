@@ -1,7 +1,8 @@
 package thiagodnf.jacof.aco.graph;
 
 import java.util.Arrays;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.google.common.base.Preconditions;
 
@@ -15,8 +16,8 @@ public class AntGraph {
 
 	protected Problem problem;
 
-	private static final Logger logger = Logger.getLogger(AntGraph.class.getName());
-
+	final static Logger LOGGER = Logger.getLogger(AntGraph.class);
+	
 	/**
 	 * Constructor
 	 * 
@@ -27,14 +28,16 @@ public class AntGraph {
 
 		Preconditions.checkNotNull(problem, "The problem cannot be null");
 
+		LOGGER.info("Creating a AntGraph instance by using a matrix");
+
 		this.problem = problem;
 	}
 
 	public void initialize(TrailInitialization trailInitialization) {
 
-		logger.fine("Initializing the graph");
-
 		int numberOfNodes = problem.getNumberOfNodes();
+
+		LOGGER.info("Initializing the graph with " + numberOfNodes + " nodes");
 
 		this.tau = new double[numberOfNodes][numberOfNodes];
 

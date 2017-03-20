@@ -8,7 +8,7 @@ import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
 public class ASRunner {
 
 	public static void main(String[] args) throws IOException {
-
+		
 		String instance = "src/main/resources/problems/nrp/delsagrado20.nrp";
 
 		Problem problem = new NextReleaseProblem(instance);
