@@ -1,7 +1,7 @@
-package thiagodnf.jacof.aco.ant.globalupdate.subset.single;
+package thiagodnf.jacof.aco.subset.single;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.ant.globalupdate.subset.SubSet;
+import thiagodnf.jacof.aco.subset.SubSet;
 
 public abstract class SingleAnt extends SubSet{
 

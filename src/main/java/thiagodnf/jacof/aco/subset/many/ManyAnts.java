@@ -1,7 +1,7 @@
-package thiagodnf.jacof.aco.ant.globalupdate.subset.many;
+package thiagodnf.jacof.aco.subset.many;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.ant.globalupdate.subset.SubSet;
+import thiagodnf.jacof.aco.subset.SubSet;
 
 public abstract class ManyAnts extends SubSet{
 

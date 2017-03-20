@@ -1,4 +1,4 @@
-package thiagodnf.jacof.aco.ant.globalupdate.subset;
+package thiagodnf.jacof.aco.subset;
 
 import java.util.List;
 

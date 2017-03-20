@@ -1,4 +1,4 @@
-package thiagodnf.jacof.aco.ant.globalupdate.subset.single;
+package thiagodnf.jacof.aco.subset.single;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 
-public class CurrentBest extends SingleAnt {
+public class GlobalBest extends SingleAnt {
 
-	public CurrentBest(ACO aco) {
+	public GlobalBest(ACO aco) {
 		super(aco);
 	}
 
@@ -16,7 +16,7 @@ public class CurrentBest extends SingleAnt {
 	public List<Ant> getSubSet() {
 		List<Ant> list = new ArrayList<Ant>();
 
-		list.add(aco.getCurrentBest().clone());
+		list.add(aco.getGlobalBest().clone());
 
 		return list;
 	}

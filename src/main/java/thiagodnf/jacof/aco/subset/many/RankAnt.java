@@ -1,4 +1,4 @@
-package thiagodnf.jacof.aco.ant.globalupdate.subset.many;
+package thiagodnf.jacof.aco.subset.many;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,19 +1,17 @@
-package thiagodnf.jacof.aco.ant.localupdate;
+package thiagodnf.jacof.aco.rule;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 
-public abstract class AntLocalUpdate {
+public abstract class AbstractRule {
 	
 	protected ACO aco;
 	
-	public AntLocalUpdate(ACO aco) {
+	public AbstractRule(ACO aco) {
 		
 		checkNotNull(aco, "The aco cannot be null");
 		
 		this.aco = aco;
 	}
-
-	public abstract void update(int currentNode, int nextNode);
 }

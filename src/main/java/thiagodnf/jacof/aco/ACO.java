@@ -6,20 +6,16 @@ import java.util.Observer;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.daemonactions.AntDaemonActions;
 import thiagodnf.jacof.aco.ant.exploration.AntExploration;
-import thiagodnf.jacof.aco.ant.globalupdate.AntGlobalUpdate;
-import thiagodnf.jacof.aco.ant.globalupdate.evaporation.AbstractEvaporation;
-import thiagodnf.jacof.aco.ant.globalupdate.reinforce.AbstractReinforce;
 import thiagodnf.jacof.aco.ant.initialization.AntInitialization;
-import thiagodnf.jacof.aco.ant.localupdate.AntLocalUpdate;
 import thiagodnf.jacof.aco.ant.selection.AntSelection;
 import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.TrailInitialization;
+import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
+import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
+import thiagodnf.jacof.aco.rule.localupdate.AntLocalUpdate;
 import thiagodnf.jacof.problem.Problem;
 
 public abstract class ACO implements Observer{
-	
-	/** Parameter for evaporation */
-	public double rho = 0.1;
 	
 	/** Importance of pheromone*/
 	protected double alpha;
@@ -64,13 +60,11 @@ public abstract class ACO implements Observer{
 	
 	protected AntLocalUpdate antLocalUpdate;
 	
-	protected AntGlobalUpdate antGlobalUpdate;
-	
 	protected AntDaemonActions antDaemonActions;
 	
 	protected AbstractEvaporation evaporation;
 	
-	protected AbstractReinforce reinforce;
+	protected AbstractDeposit deposit;
 	
 	public ACO(Problem problem) {
 		this.problem = problem;
@@ -114,20 +108,7 @@ public abstract class ACO implements Observer{
 	
 	private void updatePheromones() {
 		evaporation.doEvaporation();
-		reinforce.doReinforce();
-		
-//		for (int i = 0; i < problem.getNumberOfNodes(); i++) {
-//			for (int j = i; j < problem.getNumberOfNodes(); j++) {
-//				if (i != j) {
-//
-//					double evaporation = (1.0 - rho) * graph.getTau(i, j);
-//					double deposition = antGlobalUpdate.getValue(ants, globalBest, i, j);
-//
-//					graph.setTau(i, j, evaporation + deposition);
-//					graph.setTau(j, i, graph.getTau(i, j));
-//				}
-//			}
-//		}
+		deposit.doDeposit();		
 	}
 	
 	private synchronized void constructAntsSolutions() {
@@ -190,14 +171,6 @@ public abstract class ACO implements Observer{
 
 	public void setBeta(double beta) {
 		this.beta = beta;
-	}
-	
-	public double getRho() {
-		return rho;
-	}
-
-	public void setRho(double rho) {
-		this.rho = rho;
 	}
 	
 	public AntGraph getGraph() {
@@ -295,14 +268,6 @@ public abstract class ACO implements Observer{
 	public void setAntLocalUpdate(AntLocalUpdate antLocalUpdate) {
 		this.antLocalUpdate = antLocalUpdate;
 	}
-		
-	public AntGlobalUpdate getAntGlobalUpdate() {
-		return antGlobalUpdate;
-	}
-
-	public void setAntGlobalUpdate(AntGlobalUpdate antGlobalUpdate) {
-		this.antGlobalUpdate = antGlobalUpdate;
-	}
 	
 	public AntDaemonActions getAntDaemonActions() {
 		return antDaemonActions;
@@ -320,12 +285,12 @@ public abstract class ACO implements Observer{
 		this.evaporation = evaporation;
 	}
 	
-	public AbstractReinforce getReinforce() {
-		return reinforce;
+	public AbstractDeposit getDeposit() {
+		return deposit;
 	}
 
-	public void setReinforce(AbstractReinforce reinforce) {
-		this.reinforce = reinforce;
+	public void setDeposit(AbstractDeposit deposit) {
+		this.deposit = deposit;
 	}
 
 	public abstract void build();

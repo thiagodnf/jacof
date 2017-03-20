@@ -1,13 +1,13 @@
 import java.io.IOException;
 import java.util.Arrays;
 
-import thiagodnf.jacof.aco.AntSystem;
+import thiagodnf.jacof.aco.AntColonySystem;
 import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
 import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
 
-public class ASRunner {
+public class ACSRunner {
 	
 	public static void main(String[] args) throws IOException{
 		
@@ -15,13 +15,14 @@ public class ASRunner {
 
 		Problem problem = new NextReleaseProblem(instance);
 
-		AntSystem aco = new AntSystem(problem);
+		AntColonySystem aco = new AntColonySystem(problem);
 
 		aco.setNumberOfAnts(10);
 		aco.setNumberOfIterations(10);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
+		aco.setQ0(0.9);
 		aco.setAntInitialization(new AnAntAtEachVertex(aco));
 		aco.setAntSelection(new RouletteWheel());
 		

@@ -1,4 +1,4 @@
-package thiagodnf.jacof.aco.ant.localupdate;
+package thiagodnf.jacof.aco.rule.localupdate;
 
 import thiagodnf.jacof.aco.ACO;
 
