@@ -1,6 +1,8 @@
 package thiagodnf.jacof.aco;
 
 import thiagodnf.jacof.aco.ant.exploration.TASExploration;
+import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
+import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.aco.graph.initialization.TASInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.FullDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
@@ -26,7 +28,9 @@ public class AntSystem extends ACO {
 	@Override
 	public void build() {
 		setTrailInitialization(new TASInitialization(this));
-
+		setAntInitialization(new AnAntAtEachVertex(this));
+		
+		setAntSelection(new RouletteWheel());
 		setAntExploration(new TASExploration(this));
 
 		// Global Update Pheronome

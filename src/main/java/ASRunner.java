@@ -2,15 +2,13 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import thiagodnf.jacof.aco.AntSystem;
-import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
-import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
 
 public class ASRunner {
-	
-	public static void main(String[] args) throws IOException{
-		
+
+	public static void main(String[] args) throws IOException {
+
 		String instance = "src/main/resources/problems/nrp/delsagrado20.nrp";
 
 		Problem problem = new NextReleaseProblem(instance);
@@ -22,8 +20,6 @@ public class ASRunner {
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
-		aco.setAntInitialization(new AnAntAtEachVertex(aco));
-		aco.setAntSelection(new RouletteWheel());
 		
 		int[] bestSolution = aco.solve();
 

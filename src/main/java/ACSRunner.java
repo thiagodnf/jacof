@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import thiagodnf.jacof.aco.AntColonySystem;
-import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
-import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
 
@@ -23,8 +21,6 @@ public class ACSRunner {
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
 		aco.setQ0(0.9);
-		aco.setAntInitialization(new AnAntAtEachVertex(aco));
-		aco.setAntSelection(new RouletteWheel());
 		
 		int[] bestSolution = aco.solve();
 
