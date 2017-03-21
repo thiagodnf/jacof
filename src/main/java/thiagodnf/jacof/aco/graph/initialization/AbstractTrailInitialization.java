@@ -4,11 +4,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 
-public abstract class TrailInitialization{
+public abstract class AbstractTrailInitialization{
 
 	protected ACO aco;
 	
-	public TrailInitialization(ACO aco) {
+	public AbstractTrailInitialization(ACO aco) {
 		
 		checkNotNull(aco, "The aco cannot be null");
 		

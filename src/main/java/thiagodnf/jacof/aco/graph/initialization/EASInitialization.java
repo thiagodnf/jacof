@@ -8,11 +8,11 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class TEASInitialization extends TrailInitialization {
+public class EASInitialization extends AbstractTrailInitialization {
 
 	protected double rate;
 
-	public TEASInitialization(ACO aco, double rate) {
+	public EASInitialization(ACO aco, double rate) {
 		super(aco);
 
 		this.rate = rate;
@@ -29,6 +29,6 @@ public class TEASInitialization extends TrailInitialization {
 	
 	@Override
 	public String toString() {
-		return TEASInitialization.class.getSimpleName() + ": " + this.rate;
+		return EASInitialization.class.getSimpleName() + ": " + this.rate;
 	}
 }

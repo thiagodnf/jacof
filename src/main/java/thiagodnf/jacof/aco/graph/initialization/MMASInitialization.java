@@ -8,11 +8,11 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class TMMASInitialization extends TrailInitialization {
+public class MMASInitialization extends AbstractTrailInitialization {
 
 	protected double rate;
 
-	public TMMASInitialization(ACO aco, double rate) {
+	public MMASInitialization(ACO aco, double rate) {
 		super(aco);
 
 		this.rate = rate;
@@ -22,11 +22,11 @@ public class TMMASInitialization extends TrailInitialization {
 	public double getT0() {
 		double cnn = aco.getProblem().getCnn();
 
-		return 1 / rate * cnn;
+		return 1.0 / rate * cnn;
 	}
 
 	@Override
 	public String toString() {
-		return TMMASInitialization.class.getSimpleName() + ": " + this.rate;
+		return MMASInitialization.class.getSimpleName() + ": " + this.rate;
 	}
 }

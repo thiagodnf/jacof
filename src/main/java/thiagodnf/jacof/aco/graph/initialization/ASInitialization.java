@@ -8,9 +8,9 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class TASInitialization extends TrailInitialization {
+public class ASInitialization extends AbstractTrailInitialization {
 
-	public TASInitialization(ACO aco) {
+	public ASInitialization(ACO aco) {
 		super(aco);
 	}
 
@@ -24,6 +24,6 @@ public class TASInitialization extends TrailInitialization {
 
 	@Override
 	public String toString() {
-		return TASInitialization.class.getSimpleName();
+		return ASInitialization.class.getSimpleName();
 	}
 }

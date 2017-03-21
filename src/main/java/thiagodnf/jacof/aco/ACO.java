@@ -9,7 +9,7 @@ import thiagodnf.jacof.aco.ant.exploration.AntExploration;
 import thiagodnf.jacof.aco.ant.initialization.AntInitialization;
 import thiagodnf.jacof.aco.ant.selection.AntSelection;
 import thiagodnf.jacof.aco.graph.AntGraph;
-import thiagodnf.jacof.aco.graph.initialization.TrailInitialization;
+import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AntLocalUpdate;
@@ -50,7 +50,7 @@ public abstract class ACO implements Observer{
 	/** The addressed problem */
 	protected Problem problem;
 	
-	protected TrailInitialization trailInitialization;
+	protected AbstractTrailInitialization trailInitialization;
 	
 	protected AntInitialization antInitialization;
 	
@@ -237,11 +237,11 @@ public abstract class ACO implements Observer{
 		this.antInitialization = antInitialization;
 	}
 	
-	public void setTrailInitialization(TrailInitialization trailInitialization) {
+	public void setTrailInitialization(AbstractTrailInitialization trailInitialization) {
 		this.trailInitialization = trailInitialization;
 	}
 	
-	public TrailInitialization getTrailInitialization() {
+	public AbstractTrailInitialization getTrailInitialization() {
 		return trailInitialization;
 	}	
 

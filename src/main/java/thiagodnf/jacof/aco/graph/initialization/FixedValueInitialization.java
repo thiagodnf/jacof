@@ -2,11 +2,11 @@ package thiagodnf.jacof.aco.graph.initialization;
 
 import thiagodnf.jacof.aco.ACO;
 
-public class TFixedValueInitialization extends TrailInitialization{
+public class FixedValueInitialization extends AbstractTrailInitialization{
 	
 	protected double value;
 	
-	public TFixedValueInitialization(ACO aco, double value) {
+	public FixedValueInitialization(ACO aco, double value) {
 		super(aco);
 		
 		this.value = value;

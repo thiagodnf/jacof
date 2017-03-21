@@ -3,7 +3,7 @@ package thiagodnf.jacof.aco;
 import thiagodnf.jacof.aco.ant.exploration.TACSExploration;
 import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
 import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
-import thiagodnf.jacof.aco.graph.initialization.TACSInitialization;
+import thiagodnf.jacof.aco.graph.initialization.ACSInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.FullDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.TACSLocalUpdatingRule;
@@ -29,7 +29,7 @@ public class AntColonySystem extends AntSystem {
 	@Override
 	public void build() {
 		setAntInitialization(new AnAntAtEachVertex(this));
-		setTrailInitialization(new TACSInitialization(this));
+		setTrailInitialization(new ACSInitialization(this));
 
 		setAntExploration(new TACSExploration(this, q0));
 		setAntSelection(new RouletteWheel());
