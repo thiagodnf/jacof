@@ -3,13 +3,23 @@ package thiagodnf.jacof.aco.graph.initialization;
 import thiagodnf.jacof.aco.ACO;
 
 /**
- * Pheronome Initialization for Ant Colony System Algorithm
+ * Pheromone initialization for Ant Colony System (ACS) algorithm. This value
+ * is based on Travelling Salesman Problem and it was extracted from:
+ * <br><br>
+ * Dorigo, M., and Gambardella, L. M. (1997b). Ant Colony System: A 
+ * cooperative learning approach to the traveling salesman problem. 
+ * IEEE Transactions on Evolutionary Computation, 1(1), 53–66.
  * 
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
 public class ACSInitialization extends AbstractTrailInitialization {
 
+	/**
+	 * Constructor
+	 * 
+	 * @param aco The Ant Colony Optimization used
+	 */
 	public ACSInitialization(ACO aco) {
 		super(aco);
 	}
@@ -19,7 +29,7 @@ public class ACSInitialization extends AbstractTrailInitialization {
 		double n = aco.getProblem().getNumberOfNodes();
 		double cnn = aco.getProblem().getCnn();
 
-		return 1.0 / n * cnn;
+		return 1.0 / (n * cnn);
 	}
 
 	@Override

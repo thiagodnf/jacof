@@ -4,10 +4,23 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 
+/**
+ * This class represents the trail initialization. All kind
+ * of trail initialization should implement this class.
+ * 
+ * @author Thiago N. Ferreira
+ * @version 1.0.0
+ */
 public abstract class AbstractTrailInitialization{
 
+	/** The Ant Colony Optimization used */
 	protected ACO aco;
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param aco The Ant Colony Optimization used
+	 */
 	public AbstractTrailInitialization(ACO aco) {
 		
 		checkNotNull(aco, "The aco cannot be null");
@@ -15,5 +28,16 @@ public abstract class AbstractTrailInitialization{
 		this.aco = aco;
 	}
 
+	/**
+	 * Get the initial pheromone value. This value depends
+	 * on the trail initialization chosen
+	 * 
+	 * @return the initial pheromone value
+	 */
 	public abstract double getT0();
+	
+	/**
+	 * Returns a string representation of the object. 
+	 */
+	public abstract String toString();
 }
