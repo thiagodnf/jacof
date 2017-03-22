@@ -38,33 +38,50 @@ public class RankAnt extends AbstractManyAnts {
 		
 		this.rank = rank;
 	}
+	
+	/**
+	 * Constructor. The default value for rank is the numberOfAnts/2
+	 * 
+	 * @param aco The ant colony optimization used
+	 */
+	public RankAnt(ACO aco) {
+		this(aco, aco.getNumberOfAnts()/2);
+	}
 
 	@Override
 	public List<Ant> getSubSet() {
 
+			System.out.println("================");
 		Ant[] ants = aco.getAnts();
+		
+		Ant[] copy = Arrays.copyOf(ants, ants.length);
 
-		Arrays.sort(ants, new Comparator<Ant>() {
+		System.out.println(Arrays.toString(ants));
+		
+		Arrays.sort(copy, new Comparator<Ant>() {
 
 			@Override
 			public int compare(Ant ant1, Ant ant2) {
 				if (ant1.tourLength > ant2.tourLength) {
-					return 1;
-				} else if (ant1.tourLength < ant2.tourLength) {
 					return -1;
+				} else if (ant1.tourLength < ant2.tourLength) {
+					return 1;
 				} else {
 					return 0;
 				}
 			}
 		});
+		
+		System.out.println(Arrays.toString(copy));
 
 		List<Ant> list = new ArrayList<Ant>();
 
 		for (int i = 0; i < rank; i++) {
-			list.add(ants[i].clone());
+			list.add(copy[i].clone());
 		}
+		System.out.println(list);
 
-		return null;
+		return list;
 	}
 
 }

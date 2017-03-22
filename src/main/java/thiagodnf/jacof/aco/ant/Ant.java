@@ -34,6 +34,7 @@ public class Ant extends Observable implements Runnable{
 		this.id = ANT_ID++;		
 		this.nodesToVisit = new ArrayList<>();
 		this.tour = new ArrayList<>();
+		this.path = new int[aco.getProblem().getNumberOfNodes()][aco.getProblem().getNumberOfNodes()];
 	}
 	
 	public void reset(){

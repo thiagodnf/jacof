@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
+import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
 import thiagodnf.jacof.problem.Problem;
 
