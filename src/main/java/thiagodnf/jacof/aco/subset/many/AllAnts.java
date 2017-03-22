@@ -6,8 +6,20 @@ import java.util.List;
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 
-public class AllAnts extends ManyAnts {
+/**
+ * This class represents the subset with all ants used 
+ * in the algorithm
+ * 
+ * @author Thiago N. Ferreira
+ * @version 1.0.0
+ */
+public class AllAnts extends AbstractManyAnts {
 
+	/**
+	 * Constructor
+	 * 
+	 * @param aco The ant colony optimization used
+	 */
 	public AllAnts(ACO aco) {
 		super(aco);
 	}

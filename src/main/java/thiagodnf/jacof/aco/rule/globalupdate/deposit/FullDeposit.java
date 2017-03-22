@@ -2,13 +2,13 @@ package thiagodnf.jacof.aco.rule.globalupdate.deposit;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.aco.subset.SubSet;
+import thiagodnf.jacof.aco.subset.AbstractSubSet;
 
 public class FullDeposit extends AbstractDeposit {
 
-	protected SubSet subSet;
+	protected AbstractSubSet subSet;
 
-	public FullDeposit(ACO aco, double rate, SubSet subSet) {
+	public FullDeposit(ACO aco, double rate, AbstractSubSet subSet) {
 		super(aco, rate);
 
 		this.subSet = subSet;
