@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkArgument;
 
 import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
 import thiagodnf.jacof.problem.Problem;
@@ -36,8 +37,9 @@ public class AntGraph {
 	public AntGraph(Problem problem) {
 
 		checkNotNull(problem, "The problem cannot be null");
+		checkArgument(problem.getNumberOfNodes() >= 2, "The number of nodes should be >= 2. Passed: %s", problem.getNumberOfNodes());
 
-		LOGGER.info("Creating a AntGraph instance by using a double matrix");
+		LOGGER.info("Creating an AntGraph instance with " + problem.getNumberOfNodes() + " nodes");
 
 		this.problem = problem;
 	}
@@ -49,12 +51,12 @@ public class AntGraph {
 	 */
 	public void initialize(AbstractTrailInitialization trailInitialization) {
 
-		checkNotNull(trailInitialization, "The trailInitialization cannot be null");
+		checkNotNull(trailInitialization, "The trail initialization should not be null");
 
 		LOGGER.info("The trail initilization is " + trailInitialization);
 
 		int numberOfNodes = problem.getNumberOfNodes();
-
+		
 		LOGGER.info("Creating a graph with " + numberOfNodes + " nodes");
 
 		this.tau = new double[numberOfNodes][numberOfNodes];

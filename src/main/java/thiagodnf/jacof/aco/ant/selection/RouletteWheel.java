@@ -1,7 +1,5 @@
 package thiagodnf.jacof.aco.ant.selection;
 
-import thiagodnf.jacof.random.PseudoRandom;
-
 public class RouletteWheel extends AntSelection {
 
 	public int select(double[] probability, double sumProbability) {
@@ -10,7 +8,7 @@ public class RouletteWheel extends AntSelection {
 
 		double p = probability[j];
 
-		double r = PseudoRandom.randDouble(0.0, sumProbability);
+		double r = rand.nextDouble(0.0, sumProbability);
 
 		while (p < r) {
 			j = j + 1;

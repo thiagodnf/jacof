@@ -1,7 +1,6 @@
 package thiagodnf.jacof.aco.ant.initialization;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.random.PseudoRandom;
 
 public class AlwaysRandomPositions extends AntInitialization {
 
@@ -11,6 +10,6 @@ public class AlwaysRandomPositions extends AntInitialization {
 
 	@Override
 	public int getPosition(int antId) {
-		return PseudoRandom.randInt(0, aco.getProblem().getNumberOfNodes() - 1);
+		return rand.nextInt(0, aco.getProblem().getNumberOfNodes() - 1);
 	}
 }

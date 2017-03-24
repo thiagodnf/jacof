@@ -4,10 +4,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
+import thiagodnf.jacof.random.JMetalRandom;
 
 public abstract class AntExploration {
 
 	protected ACO aco;
+	
+	protected JMetalRandom rand = JMetalRandom.getInstance();
 	
 	public AntExploration(ACO aco){
 		

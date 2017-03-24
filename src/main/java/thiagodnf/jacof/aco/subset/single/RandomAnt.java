@@ -5,7 +5,6 @@ import java.util.List;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.random.PseudoRandom;
 
 /**
  * This class represents the subset with a randomly-selected solution.
@@ -30,7 +29,7 @@ public class RandomAnt extends AbstractSingleAnt {
 
 		Ant[] ants = aco.getAnts();
 
-		int index = PseudoRandom.randInt(0, ants.length - 1);
+		int index = rand.nextInt(0, ants.length - 1);
 
 		List<Ant> list = new ArrayList<Ant>();
 

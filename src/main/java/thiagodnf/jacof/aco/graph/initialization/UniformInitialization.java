@@ -3,7 +3,7 @@ package thiagodnf.jacof.aco.graph.initialization;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.random.PseudoRandom;
+import thiagodnf.jacof.random.JMetalRandom;
 
 /**
  * Pheromone initialization for a range [minValue:maxValue]. 
@@ -19,6 +19,8 @@ public class UniformInitialization extends AbstractTrailInitialization {
 
 	/** The maximum value */
 	protected double maxValue;
+	
+	protected JMetalRandom rand = JMetalRandom.getInstance();
 
 	/**
 	 * Constructor
@@ -47,7 +49,7 @@ public class UniformInitialization extends AbstractTrailInitialization {
 
 	@Override
 	public double getT0() {
-		return PseudoRandom.randDouble(minValue, maxValue);
+		return rand.nextDouble(minValue, maxValue);
 	}
 
 	@Override

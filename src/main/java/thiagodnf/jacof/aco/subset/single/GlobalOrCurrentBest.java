@@ -6,7 +6,6 @@ import java.util.List;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.random.PseudoRandom;
 
 /**
  * This class represents the subset with only one ant selected randomly 
@@ -46,7 +45,7 @@ public class GlobalOrCurrentBest extends AbstractSingleAnt {
 
 	@Override
 	public List<Ant> getSubSet() {
-		if (PseudoRandom.randDouble() <= probability) {
+		if (rand.nextDouble() <= probability) {
 			return new GlobalBest(aco).getSubSet();
 		} else {
 			return new CurrentBest(aco).getSubSet();

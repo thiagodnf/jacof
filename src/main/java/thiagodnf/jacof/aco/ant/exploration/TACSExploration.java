@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkState;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.random.PseudoRandom;
 
 public class TACSExploration extends TASExploration {
 
@@ -18,7 +17,7 @@ public class TACSExploration extends TASExploration {
 
 	@Override
 	public int getNextNode(Ant ant, int i) {
-		if (PseudoRandom.randDouble(0.0, 1.0) <= q0) {
+		if (rand.nextDouble(0.0, 1.0) <= q0) {
 			return doExploitation(ant, i);
 		} else {
 			return doExploration(ant, i);

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
+import thiagodnf.jacof.random.JMetalRandom;
 
 /**
  * This class represents the subset of ants used to evaporate or deposit
@@ -20,6 +21,8 @@ public abstract class AbstractSubSet {
 
 	/** The ant colony optimization used */
 	protected ACO aco;
+	
+	protected JMetalRandom rand = JMetalRandom.getInstance();
 	
 	/** The class logger*/
 	final static Logger LOGGER = Logger.getLogger(AbstractSubSet.class);

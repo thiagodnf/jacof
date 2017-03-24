@@ -3,8 +3,6 @@ package thiagodnf.jacof.aco.ant.selection;
 import java.util.ArrayList;
 import java.util.List;
 
-import thiagodnf.jacof.random.PseudoRandom;
-
 public class RandomSelection extends AntSelection {
 
 	public int select(double[] probability, double sumProbability) {
@@ -17,7 +15,7 @@ public class RandomSelection extends AntSelection {
 			}
 		}
 
-		int index = PseudoRandom.randInt(0, possibleValues.size() - 1);
+		int index = rand.nextInt(0, possibleValues.size() - 1);
 
 		return possibleValues.get(index);
 	}
