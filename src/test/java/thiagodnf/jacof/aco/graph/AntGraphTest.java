@@ -37,7 +37,6 @@ public class AntGraphTest {{
 	describe("When initialize the pheronome matrix", () -> {
 				
 		AntGraph graph = new AntGraph(problem);
-		graph.initialize(trailInitialization);
 		
 		it("should throw an exception when null is passed", () -> {
 			expect(() -> {
@@ -45,7 +44,9 @@ public class AntGraphTest {{
 			}).toThrow(NullPointerException.class);
 		});
 		
-		describe("and a valid trail initialization is passed", () -> {			
+		describe("and a valid trail initialization is passed", () -> {	
+			
+			graph.initialize(trailInitialization);
 		
 			it("should return a 5x5 pheromone matrix", () -> {
 				double[][] matrix = graph.getTau();
@@ -62,15 +63,22 @@ public class AntGraphTest {{
 				expect(Arrays.equals(new double[]{1.0, 1.0, 1.0, 1.0, 1.0}, matrix[3])).toBeTrue();
 				expect(Arrays.equals(new double[]{1.0, 1.0, 1.0, 1.0, 1.0}, matrix[4])).toBeTrue();
 			});
-			
-			it("should return 3.5 for arch(1,2) when set a pheronome value 3.5 for this one", () -> {
-				
-				graph.setTau(1, 2, 3.5);
-				
-				expect(graph.getTau(1, 2)).toEqual(3.5);
-			});		
 		});
 	});	
+	
+	describe("When set the pheromone value to 3.5 in arch(1,2)", () -> {
+		
+		AntGraph graph = new AntGraph(problem);
+		
+		it("should return 3.5 for arch(1,2)", () -> {
+			
+			graph.initialize(trailInitialization);
+			
+			graph.setTau(1, 2, 3.5);
+			
+			expect(graph.getTau(1, 2)).toEqual(3.5);
+		});	
+	});
 	
 	describe("When return toString method", () -> {
 		

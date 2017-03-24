@@ -1,6 +1,7 @@
 package thiagodnf.jacof.aco.ant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
@@ -116,12 +117,7 @@ public class Ant extends Observable implements Runnable{
 	public void setNodesToVisit(List<Integer> nodesToVisit) {
 		this.nodesToVisit = nodesToVisit;
 	}
-
-	@Override
-	public String toString() {
-		return "Ant " + id + " " + tour+" "+tourLength;
-	}
-
+	
 	public AntInitialization getAntInitialization() {
 		return antInitialization;
 	}
@@ -129,4 +125,26 @@ public class Ant extends Observable implements Runnable{
 	public void setAntInitialization(AntInitialization antInitialization) {
 		this.antInitialization = antInitialization;
 	}
+
+	@Override
+	public String toString() {
+		return "Ant " + id + " " + tour+" "+tourLength;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aco == null) ? 0 : aco.hashCode());
+		result = prime * result + ((antInitialization == null) ? 0 : antInitialization.hashCode());
+		result = prime * result + currentNode;
+		result = prime * result + id;
+		result = prime * result + ((nodesToVisit == null) ? 0 : nodesToVisit.hashCode());
+		result = prime * result + Arrays.deepHashCode(path);
+		result = prime * result + ((tour == null) ? 0 : tour.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(tourLength);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}	
 }

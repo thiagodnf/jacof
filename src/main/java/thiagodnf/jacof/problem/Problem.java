@@ -5,7 +5,11 @@ import java.util.List;
 public abstract class Problem {
 
 	public boolean better(int[] s1, int[] s2) {
-		return evaluate(s1) > evaluate(s2);
+		return better(evaluate(s1), evaluate(s2));
+	}
+
+	public boolean better(double s1, double s2) {
+		return s1 < s2;
 	}
 
 	public abstract double evaluate(int[] solution);

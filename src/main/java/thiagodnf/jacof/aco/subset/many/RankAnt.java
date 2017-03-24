@@ -51,36 +51,30 @@ public class RankAnt extends AbstractManyAnts {
 	@Override
 	public List<Ant> getSubSet() {
 
-			System.out.println("================");
 		Ant[] ants = aco.getAnts();
 		
 		Ant[] copy = Arrays.copyOf(ants, ants.length);
 
-		System.out.println(Arrays.toString(ants));
-		
 		Arrays.sort(copy, new Comparator<Ant>() {
 
 			@Override
 			public int compare(Ant ant1, Ant ant2) {
 				if (ant1.tourLength > ant2.tourLength) {
-					return -1;
-				} else if (ant1.tourLength < ant2.tourLength) {
 					return 1;
+				} else if (ant1.tourLength < ant2.tourLength) {
+					return -1;
 				} else {
 					return 0;
 				}
 			}
 		});
 		
-		System.out.println(Arrays.toString(copy));
-
 		List<Ant> list = new ArrayList<Ant>();
-
+		
 		for (int i = 0; i < rank; i++) {
 			list.add(copy[i].clone());
 		}
-		System.out.println(list);
-
+		
 		return list;
 	}
 

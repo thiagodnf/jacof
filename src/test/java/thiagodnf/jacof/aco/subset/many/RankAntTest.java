@@ -17,10 +17,19 @@ import thiagodnf.jacof.problem.Problem;
 @RunWith(OleasterRunner.class)
 public class RankAntTest {{
 
-
+	ACO aco = Mockito.mock(ACO.class);
+	Problem p = Mockito.mock(Problem.class);
+	
+	when(aco.getNumberOfAnts()).thenReturn(4);
+	when(aco.getProblem()).thenReturn(p);
+	when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
+	
+	Ant a1 = new Ant(aco);
+	Ant a2 = new Ant(aco);
+	Ant a3 = new Ant(aco);
+	Ant a4 = new Ant(aco);
+	
 	describe("When initialize an RankAnt", () -> {
-
-		ACO aco = Mockito.mock(ACO.class);
 		
 		it("should throw an exception when null problem is passed", () -> {
 			expect(() -> {
@@ -45,23 +54,13 @@ public class RankAntTest {{
 	});
 	
 	describe("When get the list of ants", () -> {
-
-		ACO aco = Mockito.mock(ACO.class);
-		Problem p = Mockito.mock(Problem.class);
 		
 		when(aco.getNumberOfAnts()).thenReturn(4);
-		when(aco.getProblem()).thenReturn(p);
-		when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
 		
-		Ant a1 = new Ant(aco);
-		Ant a2 = new Ant(aco);
-		Ant a3 = new Ant(aco);
-		Ant a4 = new Ant(aco);
-		
-		a1.tourLength = 10;
+		a1.tourLength = 30;
 		a2.tourLength = 20;
-		a3.tourLength = 30;
-		a4.tourLength = 40;
+		a3.tourLength = 10;
+		a4.tourLength = 30;
 		
 		it("should return a empty list with rank equals to 0", () -> {
 			when(aco.getAnts()).thenReturn(new Ant[]{});
@@ -72,38 +71,40 @@ public class RankAntTest {{
 		describe("and the default parameter is used", () -> {
 			
 			it("should return a list with half size ", () -> {
-				AbstractManyAnts manyAnts = new RankAnt(aco);
-				
 				when(aco.getAnts()).thenReturn(new Ant[]{a1, a2, a3, a4});
+				when(aco.getNumberOfAnts()).thenReturn(4);
+				
+				AbstractManyAnts manyAnts = new RankAnt(aco);				
+				
 				expect(manyAnts.getSubSet().size()).toEqual(2);
-				expect(manyAnts.getSubSet().get(0).tourLength).toEqual(40);
-				expect(manyAnts.getSubSet().get(1).tourLength).toEqual(30);
+				expect(manyAnts.getSubSet().get(0).tourLength).toEqual(10);
+				expect(manyAnts.getSubSet().get(1).tourLength).toEqual(20);
 			});
 		});
 		
 		describe("ant rank is equals to 3", () -> {
 		
-			it("should return a clone of two ants", () -> {
+			it("should return a clone of the best three ants", () -> {
+				
+				a1.tourLength = 30;
+				a2.tourLength = 20;
+				a3.tourLength = 10;
+				a4.tourLength = 30;
+				
 				AbstractManyAnts manyAnts = new RankAnt(aco, 3);
 				
 				when(aco.getAnts()).thenReturn(new Ant[]{a1, a2, a3, a4});
 				
 				expect(manyAnts.getSubSet().size()).toEqual(3);
-				expect(manyAnts.getSubSet().get(0).tourLength).toEqual(40);
-				expect(manyAnts.getSubSet().get(1).tourLength).toEqual(30);
-				expect(manyAnts.getSubSet().get(2).tourLength).toEqual(20);
+				expect(manyAnts.getSubSet().get(0).tourLength).toEqual(10);
+				expect(manyAnts.getSubSet().get(1).tourLength).toEqual(20);
+				expect(manyAnts.getSubSet().get(2).tourLength).toEqual(30);
 				
-				Ant c4 = manyAnts.getSubSet().get(0);
-				Ant c3 = manyAnts.getSubSet().get(1);
-				Ant c2 = manyAnts.getSubSet().get(2);
+				// Test the clones
 				
-				c4.tourLength = 1;
-				c3.tourLength = 2;
-				c2.tourLength = 3;
-				
-				expect(a4.tourLength != c4.tourLength).toBeTrue();
-				expect(a3.tourLength != c3.tourLength).toBeTrue();
-				expect(a2.tourLength != c2.tourLength).toBeTrue();
+				expect(a3 != manyAnts.getSubSet().get(0)).toBeTrue();
+				expect(a2 != manyAnts.getSubSet().get(1)).toBeTrue();
+				expect(a1 != manyAnts.getSubSet().get(2)).toBeTrue();
 			});
 		});
 	});
