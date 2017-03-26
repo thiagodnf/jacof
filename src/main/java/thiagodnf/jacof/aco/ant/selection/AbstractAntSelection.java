@@ -1,8 +1,8 @@
 package thiagodnf.jacof.aco.ant.selection;
 
-import thiagodnf.jacof.random.JMetalRandom;
+import thiagodnf.jacof.util.random.JMetalRandom;
 
-public abstract class AntSelection {
+public abstract class AbstractAntSelection {
 	
 	protected JMetalRandom rand = JMetalRandom.getInstance();
 

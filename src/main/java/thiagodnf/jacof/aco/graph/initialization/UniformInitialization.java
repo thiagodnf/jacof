@@ -3,7 +3,7 @@ package thiagodnf.jacof.aco.graph.initialization;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.random.JMetalRandom;
+import thiagodnf.jacof.util.random.JMetalRandom;
 
 /**
  * Pheromone initialization for a range [minValue:maxValue]. 

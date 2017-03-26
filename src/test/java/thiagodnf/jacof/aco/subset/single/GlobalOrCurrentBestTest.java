@@ -14,8 +14,8 @@ import com.mscharhag.oleaster.runner.OleasterRunner;
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.random.JMetalRandom;
-import thiagodnf.jacof.random.JavaRandomGenerator;
+import thiagodnf.jacof.util.random.JMetalRandom;
+import thiagodnf.jacof.util.random.JavaRandomGenerator;
 
 @RunWith(OleasterRunner.class)
 public class GlobalOrCurrentBestTest {{

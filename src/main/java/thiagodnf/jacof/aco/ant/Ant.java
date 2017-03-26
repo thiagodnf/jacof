@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Observable;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.ant.initialization.AntInitialization;
+import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
 
 public class Ant extends Observable implements Runnable{
 
@@ -28,7 +28,7 @@ public class Ant extends Observable implements Runnable{
 
 	protected double tourLength;
 	
-	protected AntInitialization antInitialization;
+	protected AbstractAntInitialization antInitialization;
 	
 	public Ant(ACO aco) {
 		this.aco = aco;
@@ -126,11 +126,11 @@ public class Ant extends Observable implements Runnable{
 		this.nodesToVisit = nodesToVisit;
 	}
 	
-	public AntInitialization getAntInitialization() {
+	public AbstractAntInitialization getAntInitialization() {
 		return antInitialization;
 	}
 
-	public void setAntInitialization(AntInitialization antInitialization) {
+	public void setAntInitialization(AbstractAntInitialization antInitialization) {
 		this.antInitialization = antInitialization;
 	}
 

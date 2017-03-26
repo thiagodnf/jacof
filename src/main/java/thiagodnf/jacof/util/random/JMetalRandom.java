@@ -1,4 +1,4 @@
-package thiagodnf.jacof.random;
+package thiagodnf.jacof.util.random;
 
 public class JMetalRandom {
 

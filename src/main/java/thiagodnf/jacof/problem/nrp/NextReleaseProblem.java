@@ -8,8 +8,8 @@ import java.util.List;
 
 import com.google.common.base.Preconditions;
 
-import thiagodnf.jacof.io.InstanceReader;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.io.InstanceReader;
 
 /**
  * Class to create an instance of the Next Release Problem with no dependencies

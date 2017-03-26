@@ -1,11 +1,15 @@
 package thiagodnf.jacof.aco.ant.selection;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomSelection extends AntSelection {
+public class RandomSelection extends AbstractAntSelection {
 
 	public int select(double[] probability, double sumProbability) {
+		
+		checkNotNull(probability, "The probability should not be null");
 
 		List<Integer> possibleValues = new ArrayList<>();
 

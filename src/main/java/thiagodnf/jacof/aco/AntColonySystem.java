@@ -1,6 +1,6 @@
 package thiagodnf.jacof.aco;
 
-import thiagodnf.jacof.aco.ant.exploration.TACSExploration;
+import thiagodnf.jacof.aco.ant.exploration.ACSExploration;
 import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
 import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.aco.graph.initialization.ACSInitialization;
@@ -31,9 +31,8 @@ public class AntColonySystem extends AntSystem {
 		setAntInitialization(new AnAntAtEachVertex(this));
 		setTrailInitialization(new ACSInitialization(this));
 
-		setAntExploration(new TACSExploration(this, q0));
-		setAntSelection(new RouletteWheel());
-
+		setAntExploration(new ACSExploration(this, new RouletteWheel(), q0));
+		
 		setAntLocalUpdate(new TACSLocalUpdatingRule(this, 0.1));
 
 		// Global Update Pheronome

@@ -4,11 +4,34 @@ import static com.google.common.base.Preconditions.checkState;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
+import thiagodnf.jacof.aco.ant.selection.AbstractAntSelection;
+import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 
-public class TASExploration extends AntExploration {
+/**
+ * This class represents how an ant in AS algorithm chooses the next node
+ * 
+ * @author Thiago N. Ferreira
+ * @version 1.0.0
+ */
+public class ASExploration extends AbstractAntExploration {
 
-	public TASExploration(ACO aco) {
-		super(aco);
+	/**
+	 * Constructor
+	 * 
+	 * @param aco The ant colony optimization used
+	 * @param antSelection The ant selection used
+	 */
+	public ASExploration(ACO aco, AbstractAntSelection antSelection) {
+		super(aco, antSelection);
+	}
+	
+	/**
+	 * Constructor by using RouletteWheel as default ant selection
+	 * 
+	 * @param aco The ant colony optimization used
+	 */
+	public ASExploration(ACO aco) {
+		this(aco, new RouletteWheel());
 	}
 	
 	@Override
@@ -28,7 +51,7 @@ public class TASExploration extends AntExploration {
 		// Update the sum
 		for (Integer j : ant.getNodesToVisit()) {
 
-			checkState(aco.getGraph().getTau(i, j) != 0.0, "The tau node should not be 0.0");
+			checkState(aco.getGraph().getTau(i, j) != 0.0, "The tau(i,j) should not be 0.0");
 
 			tij[j] = Math.pow(aco.getGraph().getTau(i, j), aco.getAlpha());
 			nij[j] = Math.pow(aco.getProblem().getNij(i, j), aco.getBeta());
@@ -50,7 +73,7 @@ public class TASExploration extends AntExploration {
 		}
 
 		// Select the next node by probability
-		nextNode = aco.getAntSelection().select(probability, sumProbability);
+		nextNode = antSelection.select(probability, sumProbability);
 
 		checkState(nextNode != -1, "The next node should not be -1");
 

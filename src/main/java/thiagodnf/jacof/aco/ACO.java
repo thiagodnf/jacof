@@ -5,9 +5,8 @@ import java.util.Observer;
 
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.daemonactions.AntDaemonActions;
-import thiagodnf.jacof.aco.ant.exploration.AntExploration;
-import thiagodnf.jacof.aco.ant.initialization.AntInitialization;
-import thiagodnf.jacof.aco.ant.selection.AntSelection;
+import thiagodnf.jacof.aco.ant.exploration.AbstractAntExploration;
+import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
 import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
@@ -52,11 +51,9 @@ public abstract class ACO implements Observer{
 	
 	protected AbstractTrailInitialization trailInitialization;
 	
-	protected AntInitialization antInitialization;
+	protected AbstractAntInitialization antInitialization;
 	
-	protected AntSelection antSelection;
-	
-	protected AntExploration antExploration;
+	protected AbstractAntExploration antExploration;
 	
 	protected AntLocalUpdate antLocalUpdate;
 	
@@ -229,11 +226,11 @@ public abstract class ACO implements Observer{
 		this.currentBest = currentBest;
 	}
 
-	public AntInitialization getAntInitialization() {
+	public AbstractAntInitialization getAntInitialization() {
 		return antInitialization;
 	}
 
-	public void setAntInitialization(AntInitialization antInitialization) {
+	public void setAntInitialization(AbstractAntInitialization antInitialization) {
 		this.antInitialization = antInitialization;
 	}
 	
@@ -244,20 +241,12 @@ public abstract class ACO implements Observer{
 	public AbstractTrailInitialization getTrailInitialization() {
 		return trailInitialization;
 	}	
-
-	public AntSelection getAntSelection() {
-		return antSelection;
-	}
-
-	public void setAntSelection(AntSelection antSelection) {
-		this.antSelection = antSelection;
-	}
 	
-	public AntExploration getAntExploration() {
+	public AbstractAntExploration getAntExploration() {
 		return antExploration;
 	}
 
-	public void setAntExploration(AntExploration antExploration) {
+	public void setAntExploration(AbstractAntExploration antExploration) {
 		this.antExploration = antExploration;
 	}	
 
