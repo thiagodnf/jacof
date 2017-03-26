@@ -26,7 +26,7 @@ public class Ant extends Observable implements Runnable{
 	
 	public List<Integer> nodesToVisit;
 
-	public double tourLength;
+	protected double tourLength;
 	
 	protected AntInitialization antInitialization;
 	
@@ -112,6 +112,14 @@ public class Ant extends Observable implements Runnable{
 	
 	public List<Integer> getNodesToVisit() {
 		return nodesToVisit;
+	}	
+
+	public double getTourLength() {
+		return tourLength;
+	}
+
+	public void setTourLength(double tourLength) {
+		this.tourLength = tourLength;
 	}
 
 	public void setNodesToVisit(List<Integer> nodesToVisit) {

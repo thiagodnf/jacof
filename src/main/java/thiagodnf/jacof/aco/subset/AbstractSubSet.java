@@ -12,7 +12,7 @@ import thiagodnf.jacof.random.JMetalRandom;
 
 /**
  * This class represents the subset of ants used to evaporate or deposit
- * pheromone in the pheromone matrix. All kind of subset should implement this class.
+ * values in the pheromone matrix. All kind of subset should implement this class.
  * 
  * @author Thiago N. Ferreira
  * @version 1.0.0

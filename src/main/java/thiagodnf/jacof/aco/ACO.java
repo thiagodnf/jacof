@@ -139,7 +139,7 @@ public abstract class ACO implements Observer{
 		
 		Ant ant = (Ant) obj;
 
-		ant.tourLength = problem.evaluate(ant.getSolution());
+		ant.setTourLength(problem.evaluate(ant.getSolution()));
 
 		if (currentBest == null || problem.better(ant.getSolution(), currentBest.getSolution())) {
 			currentBest = ant.clone();

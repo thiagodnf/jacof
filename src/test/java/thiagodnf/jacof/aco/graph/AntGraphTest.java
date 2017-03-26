@@ -2,6 +2,7 @@ package thiagodnf.jacof.aco.graph;
 
 import static com.mscharhag.oleaster.matcher.Matchers.expect;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.beforeEach;
+import static com.mscharhag.oleaster.runner.StaticRunnerSupport.before;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.describe;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.it;
 import static org.mockito.Mockito.when;
@@ -22,10 +23,7 @@ public class AntGraphTest {{
 		Problem problem = Mockito.mock(Problem.class);
 		AbstractTrailInitialization trailInitialization = Mockito.mock(AbstractTrailInitialization.class);
 		
-		when(problem.getNumberOfNodes()).thenReturn(5);
-		when(trailInitialization.getT0()).thenReturn(1.0);
-		
-		describe("When create an AntGraph", () -> {
+		describe("When create an instance of this class", () -> {
 			
 			it("should throw an exception when a null problem is passed", () -> {
 				expect(() -> {
@@ -33,9 +31,9 @@ public class AntGraphTest {{
 				}).toThrow(NullPointerException.class);
 			});
 
-			it("should throw an exception when the number of nodes < 2", () -> {
+			it("should throw an exception when the number of nodes <= 0", () -> {
 
-				when(problem.getNumberOfNodes()).thenReturn(1);
+				when(problem.getNumberOfNodes()).thenReturn(0);
 
 				expect(() -> {
 					new AntGraph(problem);
@@ -47,12 +45,11 @@ public class AntGraphTest {{
 			
 			describe("and null trail initialization is passed", () -> {
 				
-				beforeEach(() -> {
+				before(() -> {
 					when(problem.getNumberOfNodes()).thenReturn(5);
 				});
-
+				
 				it("should throw an exception", () -> {
-					
 					expect(() -> {
 						new AntGraph(problem).initialize(null);						
 					}).toThrow(NullPointerException.class);
@@ -61,20 +58,24 @@ public class AntGraphTest {{
 			
 			describe("and a valid trail initialization is passed", () -> {
 
-				AntGraph graph = new AntGraph(problem);
-
 				beforeEach(() -> {
+					when(trailInitialization.getT0()).thenReturn(1.0);
 					when(problem.getNumberOfNodes()).thenReturn(5);
-					graph.initialize(trailInitialization);
 				});
 				
-				it("should return a 5x5 pheromone matrix", () -> {
+				it("should return a matrix with the same size of the number of nodes", () -> {
+					AntGraph graph = new AntGraph(problem);
+					graph.initialize(trailInitialization);
 					expect(graph.getTau().length).toEqual(5);
 				});
-
+				
 				it("should return the correct T0 values", () -> {
+					
+					AntGraph graph = new AntGraph(problem);
+					graph.initialize(trailInitialization);
+					
 					double[][] matrix = graph.getTau();
-
+					
 					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[0])).toBeTrue();
 					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[1])).toBeTrue();
 					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[2])).toBeTrue();
@@ -84,13 +85,15 @@ public class AntGraphTest {{
 			});
 		});
 
-		describe("When set the pheromone value to 3.5 in arch(1,2)", () -> {
+		describe("When set a pheromone value", () -> {
 
-			when(problem.getNumberOfNodes()).thenReturn(5);
-			
-			AntGraph graph = new AntGraph(problem);
+			before(() -> {
+				when(problem.getNumberOfNodes()).thenReturn(5);
+			});			
 
-			it("should return 3.5 for arch(1,2)", () -> {
+			it("should return the correct value", () -> {
+				
+				AntGraph graph = new AntGraph(problem);
 
 				graph.initialize(trailInitialization);
 
@@ -100,14 +103,17 @@ public class AntGraphTest {{
 			});
 		});
 
-		describe("When return toString method", () -> {
+		describe("When call the toString method", () -> {
 
-			when(problem.getNumberOfNodes()).thenReturn(3);
-
-			AntGraph graph = new AntGraph(problem);
-			graph.initialize(trailInitialization);
-
+			before(() -> {
+				when(problem.getNumberOfNodes()).thenReturn(3);
+			});
+						
 			it("should return the correct string", () -> {
+				
+				AntGraph graph = new AntGraph(problem);
+				graph.initialize(trailInitialization);
+				
 				String expected = "[1.0, 1.0, 1.0][1.0, 1.0, 1.0][1.0, 1.0, 1.0]";
 				expect(graph.toString().replaceAll("\n", "")).toEqual(expected);
 			});

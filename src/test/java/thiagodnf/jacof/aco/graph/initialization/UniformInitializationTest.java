@@ -3,7 +3,6 @@ package thiagodnf.jacof.aco.graph.initialization;
 import static com.mscharhag.oleaster.matcher.Matchers.expect;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.describe;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.it;
-import static org.mockito.Mockito.when;
 
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -11,21 +10,13 @@ import org.mockito.Mockito;
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.graph.initialization.UniformInitialization;
-import thiagodnf.jacof.problem.Problem;
 
 @RunWith(OleasterRunner.class)
 public class UniformInitializationTest {{
 	
-	Problem problem = Mockito.mock(Problem.class);
 	ACO aco = Mockito.mock(ACO.class);
 	
-	when(aco.getNumberOfAnts()).thenReturn(2);
-	when(aco.getProblem()).thenReturn(problem);
-	when(aco.getProblem().getCnn()).thenReturn(10.0);
-	when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
-	
-	describe("When initialize an EASInitialization", () -> {
+	describe("When create an instance of this class", () -> {
 
 		it("should throw an exception when null aco is passed", () -> {
 			expect(() -> {
@@ -47,16 +38,16 @@ public class UniformInitializationTest {{
 		});
 	});
 	
-	describe("When specificed range is used", () -> {
+	describe("When a range is specified", () -> {
 		
 		it("should return a number between 2.0 and 4.0", () -> {
 			expect(new UniformInitialization(aco, 2.0, 4.0).getT0()).toBeBetween(2.0, 4.0);
 		});
 	});
 	
-	describe("When call toString method", () -> {
+	describe("When call the toString method", () -> {
 
-		it("should return the correct name", () -> {
+		it("should return the correct string", () -> {
 			expect(new UniformInitialization(aco).toString()).toEqual("UniformInitialization [0.0:1.0]");
 		});
 	});

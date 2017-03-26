@@ -1,5 +1,7 @@
 package thiagodnf.jacof.aco.graph.initialization;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import thiagodnf.jacof.aco.ACO;
 
 /**
@@ -21,7 +23,18 @@ public class FixedValueInitialization extends AbstractTrailInitialization{
 	public FixedValueInitialization(ACO aco, double value) {
 		super(aco);
 		
+		checkArgument(value >= 0.0, "The value should be greater or equal than 0.0");
+		
 		this.value = value;
+	}
+	
+	/**
+	 * Default Constructor for value=0.5, 
+	 * 
+	 * @param aco The Ant Colony Optimization used
+	 */
+	public FixedValueInitialization(ACO aco) {
+		this(aco, 0.5);
 	}
 	
 	@Override

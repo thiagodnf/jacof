@@ -37,7 +37,7 @@ public class AntGraph {
 	public AntGraph(Problem problem) {
 
 		checkNotNull(problem, "The problem cannot be null");
-		checkArgument(problem.getNumberOfNodes() >= 2, "The number of nodes should be >= 2. Passed: %s", problem.getNumberOfNodes());
+		checkArgument(problem.getNumberOfNodes() > 0, "The number of nodes should be > 0. Passed: %s", problem.getNumberOfNodes());
 
 		LOGGER.info("Creating an AntGraph instance with " + problem.getNumberOfNodes() + " nodes");
 
@@ -67,7 +67,7 @@ public class AntGraph {
 			}
 		}
 
-		LOGGER.info("Definied T0=" + trailInitialization.getT0() + " for all edges");
+		LOGGER.info("It was defined T0=" + trailInitialization.getT0() + " for all edges");
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class AntGraph {
 	 * @param j Final vertex
 	 * @param value The pheromone value
 	 */
-	public void setTau(int i, int j, double value) {
+	public synchronized void setTau(int i, int j, double value) {
 		this.tau[i][j] = value;
 	}
 

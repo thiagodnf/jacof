@@ -59,9 +59,9 @@ public class RankAnt extends AbstractManyAnts {
 
 			@Override
 			public int compare(Ant ant1, Ant ant2) {
-				if (ant1.tourLength > ant2.tourLength) {
+				if (ant1.getTourLength() > ant2.getTourLength()) {
 					return 1;
-				} else if (ant1.tourLength < ant2.tourLength) {
+				} else if (ant1.getTourLength() < ant2.getTourLength()) {
 					return -1;
 				} else {
 					return 0;

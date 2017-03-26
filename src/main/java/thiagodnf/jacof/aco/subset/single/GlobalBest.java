@@ -27,7 +27,7 @@ public class GlobalBest extends AbstractSingleAnt {
 
 	@Override
 	public List<Ant> getSubSet() {
-		List<Ant> list = new ArrayList<Ant>();
+		List<Ant> list = new ArrayList<>();
 
 		list.add(aco.getGlobalBest().clone());
 

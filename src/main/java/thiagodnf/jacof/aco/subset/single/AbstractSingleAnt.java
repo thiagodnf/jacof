@@ -4,7 +4,7 @@ import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.subset.AbstractSubSet;
 
 /**
- * This class represents the subset with only one ant
+ * This class represents the subset with only one ant.
  * All kind of single subset should implement this class.
  * 
  * @author Thiago N. Ferreira

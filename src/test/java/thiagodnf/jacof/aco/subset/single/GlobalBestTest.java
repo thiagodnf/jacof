@@ -1,6 +1,7 @@
 package thiagodnf.jacof.aco.subset.single;
 
 import static com.mscharhag.oleaster.matcher.Matchers.expect;
+import static com.mscharhag.oleaster.runner.StaticRunnerSupport.beforeEach;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.describe;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.it;
 import static org.mockito.Mockito.when;
@@ -20,10 +21,7 @@ public class GlobalBestTest {{
 	ACO aco = Mockito.mock(ACO.class);
 	Problem p = Mockito.mock(Problem.class);			
 	
-	when(aco.getProblem()).thenReturn(p);
-	when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
-
-	describe("When initialize an GlobalBest", () -> {
+	describe("When create an instance of this class", () -> {
 
 		it("should throw an exception when null problem is passed", () -> {
 			expect(() -> {
@@ -33,21 +31,35 @@ public class GlobalBestTest {{
 	});
 	
 	describe("When get the list of ants", () -> {
+		
+		beforeEach(() -> {			
+			when(aco.getProblem()).thenReturn(p);
+			when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
+		});
 				
-		Ant a1 = new Ant(aco);
-		a1.tourLength = 10;
-		
-		when(aco.getGlobalBest()).thenReturn(a1);
-		
-		it("should return the global best", () -> {
+		it("should return the correct ant", () -> {
+			
+			Ant ant = new Ant(aco);
+			ant.setTourLength(10.0);
+			
+			when(aco.getGlobalBest()).thenReturn(ant);
 			
 			AbstractSingleAnt singleAnts = new GlobalBest(aco);
 			
 			expect(singleAnts.getSubSet().size()).toEqual(1);
-			expect(singleAnts.getSubSet().get(0).tourLength).toEqual(10);
+			expect(singleAnts.getSubSet().get(0).getTourLength()).toEqual(10);	
+		});
+		
+		it("should return a cloned ant", () -> {
 			
-			// Verify if the returned ants are a clone
-			expect(a1 != singleAnts.getSubSet().get(0)).toBeTrue();			
+			Ant ant = new Ant(aco);
+			ant.setTourLength(10.0);
+			
+			when(aco.getGlobalBest()).thenReturn(ant);
+			
+			AbstractSingleAnt singleAnts = new GlobalBest(aco);
+			
+			expect(ant != singleAnts.getSubSet().get(0)).toBeTrue();	
 		});
 	});
 }}

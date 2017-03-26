@@ -25,7 +25,7 @@ public class FullDeposit extends AbstractDeposit {
 
 		for (Ant ant : subSet.getSubSet()) {
 			if (ant.path[i][j] == 1) {
-				deltaTau += aco.getProblem().getDeltaTau(ant.tourLength, i, j);
+				deltaTau += aco.getProblem().getDeltaTau(ant.getTourLength(), i, j);
 			}
 		}
 
