@@ -33,7 +33,7 @@ public class AntSystem extends ACO {
 		setAntExploration(new ASExploration(this, new RouletteWheel()));
 
 		// Global Update Pheromone
-		setEvaporation(new FullEvaporation(this, rho));
-		setDeposit(new FullDeposit(this, 1.0, new AllAnts(this)));
+		//setEvaporation(new FullEvaporation(this, rho));
+		//setDeposit(new FullDeposit(this, 1.0, new AllAnts(this)));
 	}
 }

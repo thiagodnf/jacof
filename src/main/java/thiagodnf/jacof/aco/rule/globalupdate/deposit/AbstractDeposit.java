@@ -9,19 +9,5 @@ public abstract class AbstractDeposit extends AbstractGlobalRule{
 		super(aco, rate);		
 	}
 
-	public void doDeposit(){
-		for (int i = 0; i < aco.getProblem().getNumberOfNodes(); i++) {
-			
-			for (int j = i; j < aco.getProblem().getNumberOfNodes(); j++) {
-			
-				if (i != j) {
-
-					aco.getGraph().setTau(i, j, getTheNewValue(i,j));
-					aco.getGraph().setTau(j, i, aco.getGraph().getTau(i, j));
-				}
-			}
-		}
-	}
-	
-	protected abstract double getTheNewValue(int i, int j);
+	public abstract double getTheNewValue(int i, int j);
 }

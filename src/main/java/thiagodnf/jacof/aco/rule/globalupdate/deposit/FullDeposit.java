@@ -1,34 +1,11 @@
 package thiagodnf.jacof.aco.rule.globalupdate.deposit;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.aco.subset.AbstractSubSet;
+import thiagodnf.jacof.aco.subset.many.AllAnts;
 
-public class FullDeposit extends AbstractDeposit {
+public class FullDeposit extends PartialDeposit {
 
-	protected AbstractSubSet subSet;
-
-	public FullDeposit(ACO aco, double rate, AbstractSubSet subSet) {
-		super(aco, rate);
-
-		this.subSet = subSet;
-	}
-
-	@Override
-	protected double getTheNewValue(int i, int j) {
-		return aco.getGraph().getTau(i, j) + rate * getDeltaTau(i, j);
-	}
-
-	public double getDeltaTau(int i, int j) {
-
-		double deltaTau = 0.0;
-
-		for (Ant ant : subSet.getSubSet()) {
-			if (ant.path[i][j] == 1) {
-				deltaTau += aco.getProblem().getDeltaTau(ant.getTourLength(), i, j);
-			}
-		}
-
-		return deltaTau;
+	public FullDeposit(ACO aco) {
+		super(aco, 1.0, new AllAnts(aco));
 	}
 }

@@ -9,7 +9,7 @@ public class FullEvaporation extends AbstractEvaporation {
 	}
 
 	@Override
-	protected double getTheNewValue(int i, int j) {
+	public double getTheNewValue(int i, int j) {
 		return (1.0 - rate) * aco.getGraph().getTau(i, j);
 	}
 }

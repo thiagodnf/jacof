@@ -1,5 +1,6 @@
 package thiagodnf.jacof.aco;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,7 +12,7 @@ import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
-import thiagodnf.jacof.aco.rule.localupdate.AntLocalUpdate;
+import thiagodnf.jacof.aco.rule.localupdate.AbstractAntLocalUpdate;
 import thiagodnf.jacof.problem.Problem;
 
 public abstract class ACO implements Observer{
@@ -55,13 +56,13 @@ public abstract class ACO implements Observer{
 	
 	protected AbstractAntExploration antExploration;
 	
-	protected AntLocalUpdate antLocalUpdate;
+	protected AbstractAntLocalUpdate antLocalUpdate;
 	
 	protected AntDaemonActions antDaemonActions;
 	
-	protected AbstractEvaporation evaporation;
+	protected List<AbstractEvaporation> evaporations;
 	
-	protected AbstractDeposit deposit;
+	protected List<AbstractDeposit> deposits;
 	
 	public ACO(Problem problem) {
 		this.problem = problem;
@@ -103,11 +104,28 @@ public abstract class ACO implements Observer{
 		return ++it > numberOfIterations;
 	}
 	
-	private void updatePheromones() {
-		evaporation.doEvaporation();
-		deposit.doDeposit();		
+	protected void updatePheromones() {
+		
+		for (int i = 0; i < problem.getNumberOfNodes(); i++) {
+
+			for (int j = i; j < problem.getNumberOfNodes(); j++) {
+
+				if (i != j) {
+					// Do Evaporation
+					for (AbstractEvaporation evaporation : evaporations) {
+						graph.setTau(i, j, evaporation.getTheNewValue(i, j));
+						graph.setTau(j, i, graph.getTau(i, j));
+					}
+					// Do Deposit
+					for (AbstractDeposit deposit : deposits) {
+						graph.setTau(i, j, deposit.getTheNewValue(i, j));
+						graph.setTau(j, i, graph.getTau(i, j));
+					}
+				}
+			}
+		}
 	}
-	
+		
 	private synchronized void constructAntsSolutions() {
 		
 		currentBest = null;
@@ -250,11 +268,11 @@ public abstract class ACO implements Observer{
 		this.antExploration = antExploration;
 	}	
 
-	public AntLocalUpdate getAntLocalUpdate() {
+	public AbstractAntLocalUpdate getAntLocalUpdate() {
 		return antLocalUpdate;
 	}
 
-	public void setAntLocalUpdate(AntLocalUpdate antLocalUpdate) {
+	public void setAntLocalUpdate(AbstractAntLocalUpdate antLocalUpdate) {
 		this.antLocalUpdate = antLocalUpdate;
 	}
 	
@@ -266,22 +284,6 @@ public abstract class ACO implements Observer{
 		this.antDaemonActions = antDaemonActions;
 	}
 		
-	public AbstractEvaporation getEvaporation() {
-		return evaporation;
-	}
-
-	public void setEvaporation(AbstractEvaporation evaporation) {
-		this.evaporation = evaporation;
-	}
-	
-	public AbstractDeposit getDeposit() {
-		return deposit;
-	}
-
-	public void setDeposit(AbstractDeposit deposit) {
-		this.deposit = deposit;
-	}
-
 	public abstract void build();
 	
 }
