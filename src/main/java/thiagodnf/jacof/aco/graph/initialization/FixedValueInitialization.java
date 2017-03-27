@@ -10,7 +10,7 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class FixedValueInitialization extends AbstractTrailInitialization{
+public class FixedValueInitialization extends AbstractGraphInitialization{
 	
 	protected double value;
 	

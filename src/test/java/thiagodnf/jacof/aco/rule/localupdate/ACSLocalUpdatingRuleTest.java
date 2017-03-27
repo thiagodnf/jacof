@@ -16,7 +16,7 @@ import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
 import thiagodnf.jacof.aco.graph.AntGraph;
-import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
+import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
 import thiagodnf.jacof.aco.subset.many.AllAnts;
 import thiagodnf.jacof.problem.Problem;
 
@@ -25,7 +25,7 @@ public class ACSLocalUpdatingRuleTest {{
 
 	ACO aco = Mockito.mock(ACO.class);
 	Problem problem = Mockito.mock(Problem.class);
-	AbstractTrailInitialization initialization = Mockito.mock(AbstractTrailInitialization.class);
+	AbstractGraphInitialization initialization = Mockito.mock(AbstractGraphInitialization.class);
 	
 	describe("When create an instance of this class", () -> {
 

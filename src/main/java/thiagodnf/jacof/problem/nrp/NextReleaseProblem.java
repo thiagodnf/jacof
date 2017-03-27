@@ -82,6 +82,11 @@ public class NextReleaseProblem extends Problem {
 		return sum;
 	}
 	
+	@Override
+	public boolean better(double s1, double best) {
+		return s1 > best;
+	}
+	
 	public double effort(int[] solution) {
 	
 		Preconditions.checkNotNull(solution, "The solution cannot be null");

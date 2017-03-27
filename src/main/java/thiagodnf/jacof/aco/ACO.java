@@ -1,15 +1,16 @@
 package thiagodnf.jacof.aco;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.aco.ant.daemonactions.AntDaemonActions;
 import thiagodnf.jacof.aco.ant.exploration.AbstractAntExploration;
 import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
+import thiagodnf.jacof.aco.daemonactions.AbstractDaemonActions;
 import thiagodnf.jacof.aco.graph.AntGraph;
-import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
+import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AbstractAntLocalUpdate;
@@ -50,7 +51,7 @@ public abstract class ACO implements Observer{
 	/** The addressed problem */
 	protected Problem problem;
 	
-	protected AbstractTrailInitialization trailInitialization;
+	protected AbstractGraphInitialization trailInitialization;
 	
 	protected AbstractAntInitialization antInitialization;
 	
@@ -58,11 +59,11 @@ public abstract class ACO implements Observer{
 	
 	protected AbstractAntLocalUpdate antLocalUpdate;
 	
-	protected AntDaemonActions antDaemonActions;
+	protected List<AbstractDaemonActions> daemonActions = new ArrayList<>();
 	
-	protected List<AbstractEvaporation> evaporations;
+	protected List<AbstractEvaporation> evaporations = new ArrayList<>();
 	
-	protected List<AbstractDeposit> deposits;
+	protected List<AbstractDeposit> deposits = new ArrayList<>();
 	
 	public ACO(Problem problem) {
 		this.problem = problem;
@@ -145,8 +146,8 @@ public abstract class ACO implements Observer{
 	}
 	
 	public void daemonActions() {
-		if (antDaemonActions != null) {
-			antDaemonActions.doAction();
+		for (AbstractDaemonActions daemonAction : daemonActions) {
+			daemonAction.doAction();
 		}
 	}
 
@@ -252,11 +253,11 @@ public abstract class ACO implements Observer{
 		this.antInitialization = antInitialization;
 	}
 	
-	public void setTrailInitialization(AbstractTrailInitialization trailInitialization) {
+	public void setTrailInitialization(AbstractGraphInitialization trailInitialization) {
 		this.trailInitialization = trailInitialization;
 	}
 	
-	public AbstractTrailInitialization getTrailInitialization() {
+	public AbstractGraphInitialization getTrailInitialization() {
 		return trailInitialization;
 	}	
 	
@@ -275,15 +276,31 @@ public abstract class ACO implements Observer{
 	public void setAntLocalUpdate(AbstractAntLocalUpdate antLocalUpdate) {
 		this.antLocalUpdate = antLocalUpdate;
 	}
-	
-	public AntDaemonActions getAntDaemonActions() {
-		return antDaemonActions;
+			
+	public List<AbstractDeposit> getDeposits() {
+		return deposits;
 	}
 
-	public void setAntDaemonActions(AntDaemonActions antDaemonActions) {
-		this.antDaemonActions = antDaemonActions;
+	public void setDeposits(List<AbstractDeposit> deposits) {
+		this.deposits = deposits;
 	}
-		
+
+	public List<AbstractEvaporation> getEvaporations() {
+		return evaporations;
+	}
+
+	public void setEvaporations(List<AbstractEvaporation> evaporations) {
+		this.evaporations = evaporations;
+	}
+
+	public List<AbstractDaemonActions> getDaemonActions() {
+		return daemonActions;
+	}
+
+	public void setDaemonActions(List<AbstractDaemonActions> daemonActions) {
+		this.daemonActions = daemonActions;
+	}
+
 	public abstract void build();
 	
 }

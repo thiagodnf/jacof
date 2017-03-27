@@ -1,14 +1,14 @@
-package thiagodnf.jacof.aco.ant.daemonactions;
+package thiagodnf.jacof.aco.daemonactions;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 
-public abstract class AntDaemonActions {
+public abstract class AbstractDaemonActions {
 
 	protected ACO aco;
 	
-	public AntDaemonActions(ACO aco){
+	public AbstractDaemonActions(ACO aco){
 		
 		checkNotNull(aco, "The aco cannot be null");
 		

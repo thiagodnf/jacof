@@ -14,14 +14,14 @@ import org.mockito.Mockito;
 
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
-import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
+import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
 import thiagodnf.jacof.problem.Problem;
 
 @RunWith(OleasterRunner.class)
 public class AntGraphTest {{
 	
 		Problem problem = Mockito.mock(Problem.class);
-		AbstractTrailInitialization trailInitialization = Mockito.mock(AbstractTrailInitialization.class);
+		AbstractGraphInitialization trailInitialization = Mockito.mock(AbstractGraphInitialization.class);
 		
 		describe("When create an instance of this class", () -> {
 			

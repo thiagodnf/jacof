@@ -12,7 +12,7 @@ import thiagodnf.jacof.util.random.JMetalRandom;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class UniformInitialization extends AbstractTrailInitialization {
+public class UniformInitialization extends AbstractGraphInitialization {
 
 	/** The minimum value */
 	protected double minValue;

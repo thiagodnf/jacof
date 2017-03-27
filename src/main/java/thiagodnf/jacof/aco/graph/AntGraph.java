@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
 
-import thiagodnf.jacof.aco.graph.initialization.AbstractTrailInitialization;
+import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
 import thiagodnf.jacof.problem.Problem;
 
 /**
@@ -39,8 +39,6 @@ public class AntGraph {
 		checkNotNull(problem, "The problem cannot be null");
 		checkArgument(problem.getNumberOfNodes() > 0, "The number of nodes should be > 0. Passed: %s", problem.getNumberOfNodes());
 
-		LOGGER.info("Creating an AntGraph instance with " + problem.getNumberOfNodes() + " nodes");
-
 		this.problem = problem;
 	}
 
@@ -49,7 +47,7 @@ public class AntGraph {
 	 * 
 	 * @param trailInitialization The method used to initialize the arc(i,j)
 	 */
-	public void initialize(AbstractTrailInitialization trailInitialization) {
+	public void initialize(AbstractGraphInitialization trailInitialization) {
 
 		checkNotNull(trailInitialization, "The trail initialization should not be null");
 
@@ -67,7 +65,7 @@ public class AntGraph {
 			}
 		}
 
-		LOGGER.info("It was defined T0=" + trailInitialization.getT0() + " for all edges");
+		LOGGER.info("It was defined T0=" + trailInitialization.getT0());
 	}
 
 	/**

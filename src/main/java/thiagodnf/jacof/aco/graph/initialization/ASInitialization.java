@@ -13,7 +13,7 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class ASInitialization extends AbstractTrailInitialization {
+public class ASInitialization extends AbstractGraphInitialization {
 
 	/**
 	 * Constructor

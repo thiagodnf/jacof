@@ -15,7 +15,7 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class EASInitialization extends AbstractTrailInitialization {
+public class EASInitialization extends AbstractGraphInitialization {
 
 	/** The evaporation rate */
 	protected double rate;

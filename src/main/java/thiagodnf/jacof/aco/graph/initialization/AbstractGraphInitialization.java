@@ -11,7 +11,7 @@ import thiagodnf.jacof.aco.ACO;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public abstract class AbstractTrailInitialization{
+public abstract class AbstractGraphInitialization{
 
 	/** The Ant Colony Optimization used */
 	protected ACO aco;
@@ -21,7 +21,7 @@ public abstract class AbstractTrailInitialization{
 	 * 
 	 * @param aco The Ant Colony Optimization used
 	 */
-	public AbstractTrailInitialization(ACO aco) {
+	public AbstractGraphInitialization(ACO aco) {
 		
 		checkNotNull(aco, "The aco cannot be null");
 		
