@@ -17,7 +17,7 @@ import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
-import thiagodnf.jacof.aco.rule.localupdate.AbstractAntLocalUpdate;
+import thiagodnf.jacof.aco.rule.localupdate.AbstractLocalUpdateRule;
 import thiagodnf.jacof.problem.Problem;
 
 /**
@@ -74,7 +74,7 @@ public abstract class ACO implements Observer {
 	protected AbstractAntExploration antExploration;
 	
 	/** The ant local update rule */
-	protected AbstractAntLocalUpdate antLocalUpdate;
+	protected AbstractLocalUpdateRule antLocalUpdate;
 	
 	/** The daemon actions */
 	protected List<AbstractDaemonActions> daemonActions = new ArrayList<>();
@@ -366,11 +366,11 @@ public abstract class ACO implements Observer {
 		this.antExploration = antExploration;
 	}	
 
-	public AbstractAntLocalUpdate getAntLocalUpdate() {
+	public AbstractLocalUpdateRule getAntLocalUpdate() {
 		return antLocalUpdate;
 	}
 
-	public void setAntLocalUpdate(AbstractAntLocalUpdate antLocalUpdate) {
+	public void setAntLocalUpdate(AbstractLocalUpdateRule antLocalUpdate) {
 		this.antLocalUpdate = antLocalUpdate;
 	}
 			

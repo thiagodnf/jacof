@@ -6,11 +6,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.rule.AbstractRule;
 
-public abstract class AbstractGlobalRule extends AbstractRule{
+public abstract class AbstractGlobalUpdateRule extends AbstractRule{
 	
 	protected double rate;
 	
-	public AbstractGlobalRule(ACO aco, double rate) {
+	public AbstractGlobalUpdateRule(ACO aco, double rate) {
 		super(aco);
 		
 		checkNotNull(aco, "The aco cannot be null");		

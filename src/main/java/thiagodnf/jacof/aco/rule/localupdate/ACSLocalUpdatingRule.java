@@ -4,7 +4,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import thiagodnf.jacof.aco.ACO;
 
-public class ACSLocalUpdatingRule extends AbstractAntLocalUpdate {
+public class ACSLocalUpdatingRule extends AbstractLocalUpdateRule {
 
 	protected double rate;
 

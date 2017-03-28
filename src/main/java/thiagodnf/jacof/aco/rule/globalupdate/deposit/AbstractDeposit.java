@@ -1,9 +1,9 @@
 package thiagodnf.jacof.aco.rule.globalupdate.deposit;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.rule.globalupdate.AbstractGlobalRule;
+import thiagodnf.jacof.aco.rule.globalupdate.AbstractGlobalUpdateRule;
 
-public abstract class AbstractDeposit extends AbstractGlobalRule{
+public abstract class AbstractDeposit extends AbstractGlobalUpdateRule{
 
 	public AbstractDeposit(ACO aco, double rate) {
 		super(aco, rate);		

@@ -4,11 +4,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import thiagodnf.jacof.aco.ACO;
 
-public abstract class AbstractAntLocalUpdate {
+public abstract class AbstractLocalUpdateRule {
 	
 	protected ACO aco;
 	
-	public AbstractAntLocalUpdate(ACO aco) {
+	public AbstractLocalUpdateRule(ACO aco) {
 		
 		checkNotNull(aco, "The aco cannot be null");
 		
