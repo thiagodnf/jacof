@@ -104,4 +104,11 @@ public class RankDepositTest {{
 			expect(new RankDeposit(aco, 2, new AllAnts(aco)).getTheNewValue(0, 1)).toEqual(7.0);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new RankDeposit(aco).toString()).toBeNotNull();
+		});
+	});
 }}

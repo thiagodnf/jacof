@@ -38,4 +38,11 @@ public class AlwaysRandomPositionsTest {{
 			expect(new AlwaysRandomPositions(aco).getPosition(0)).toBeBetween(0, aco.getProblem().getNumberOfNodes());
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new AlwaysRandomPositions(aco).toString()).toBeNotNull();
+		});
+	});
 }}

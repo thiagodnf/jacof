@@ -75,4 +75,11 @@ public class AnAntAtARandomVertexTest {{
 			}).toThrow(IllegalArgumentException.class);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new AnAntAtARandomVertex(aco).toString()).toBeNotNull();
+		});
+	});
 }}

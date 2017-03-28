@@ -76,4 +76,11 @@ public class AllAntsTest {{
 			expect(a2 != manyAnts.getSubSet().get(1)).toBeTrue();
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new AllAnts(aco).toString()).toBeNotNull();
+		});
+	});
 }}

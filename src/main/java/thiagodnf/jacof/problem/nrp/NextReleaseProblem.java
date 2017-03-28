@@ -195,7 +195,7 @@ public class NextReleaseProblem extends Problem {
 				nodesToRemove.add(i);
 			}
 		}
-
+		
 		for (Integer i : nodesToRemove) {
 			nodesToVisit.remove(i);
 		}

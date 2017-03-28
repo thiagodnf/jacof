@@ -65,4 +65,11 @@ public class ACSLocalUpdatingRuleTest {{
 			expect(aco.getGraph().getTau(0, 1)).toEqual(2.0);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new ACSLocalUpdatingRule(aco, 0.1).toString()).toBeNotNull();
+		});
+	});
 }}

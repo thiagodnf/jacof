@@ -94,4 +94,11 @@ public class PartialDepositTest {{
 			expect(new PartialDeposit(aco, 1.0, new AllAnts(aco)).getTheNewValue(0, 1)).toEqual(5.0);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new PartialDeposit(aco, 1.0, new AllAnts(aco)).toString()).toBeNotNull();
+		});
+	});
 }}

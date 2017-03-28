@@ -97,4 +97,11 @@ public class ElitistDepositTest {{
 			expect(new ElitistDeposit(aco).getTheNewValue(0, 1)).toEqual(15.0);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new ElitistDeposit(aco).toString()).toBeNotNull();
+		});
+	});
 }}

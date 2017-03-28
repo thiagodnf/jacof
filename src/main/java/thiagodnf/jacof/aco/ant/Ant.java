@@ -1,6 +1,7 @@
 package thiagodnf.jacof.aco.ant;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class Ant extends Observable implements Runnable{
 	 */
 	public Ant(ACO aco, int id) {
 		
+		checkNotNull(aco, "The aco should not be null");
 		checkArgument(id >= 0, "The id should be > 0. Passed: %s", id);
 		
 		this.aco = aco;

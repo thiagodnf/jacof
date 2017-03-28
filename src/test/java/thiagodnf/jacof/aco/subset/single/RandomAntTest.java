@@ -61,4 +61,11 @@ public class RandomAntTest {{
 			expect(singleAnts.getSubSet().get(0) != a2).toBeTrue();			
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new RandomAnt(aco).toString()).toBeNotNull();
+		});
+	});
 }}

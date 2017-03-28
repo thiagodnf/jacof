@@ -62,4 +62,11 @@ public class CurrentBestTest {{
 			expect(ant != singleAnts.getSubSet().get(0)).toBeTrue();	
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new CurrentBest(aco).toString()).toBeNotNull();
+		});
+	});
 }}

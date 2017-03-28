@@ -2,6 +2,8 @@ package thiagodnf.jacof.aco.ant.exploration;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.apache.log4j.Logger;
+
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.selection.AbstractAntSelection;
@@ -27,6 +29,9 @@ public abstract class AbstractAntExploration {
 	
 	/** The ant selection used */
 	protected AbstractAntSelection antSelection;
+	
+	/** The class logger*/
+	final static Logger LOGGER = Logger.getLogger("ANT");
 	
 	/**
 	 * Constructor

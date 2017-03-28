@@ -107,4 +107,11 @@ public class GlobalOrCurrentBestTest {{
 			expect(singleAnts.getSubSet().get(0) != cAnt).toBeTrue();			
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new GlobalOrCurrentBest(aco).toString()).toBeNotNull();
+		});
+	});
 }}

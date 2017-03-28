@@ -27,4 +27,11 @@ public class RouletteWheelTest {{
 			expect(new RouletteWheel().select(new double[]{0.0, 1.0}, 1.0)).toEqual(1);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new RouletteWheel().toString()).toBeNotNull();
+		});
+	});
 }}

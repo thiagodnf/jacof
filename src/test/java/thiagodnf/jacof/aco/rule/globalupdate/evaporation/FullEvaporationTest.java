@@ -1,9 +1,9 @@
 package thiagodnf.jacof.aco.rule.globalupdate.evaporation;
 
 import static com.mscharhag.oleaster.matcher.Matchers.expect;
+import static com.mscharhag.oleaster.runner.StaticRunnerSupport.beforeEach;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.describe;
 import static com.mscharhag.oleaster.runner.StaticRunnerSupport.it;
-import static com.mscharhag.oleaster.runner.StaticRunnerSupport.beforeEach;
 import static org.mockito.Mockito.when;
 
 import org.junit.runner.RunWith;
@@ -55,6 +55,13 @@ public class FullEvaporationTest {{
 	
 		it("should return a position between zero and the number of nodes", () -> {
 			expect(new FullEvaporation(aco, 0.1).getTheNewValue(0, 1)).toEqual(0.9);
+		});
+	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new FullEvaporation(aco, 0.1).toString()).toBeNotNull();
 		});
 	});
 }}

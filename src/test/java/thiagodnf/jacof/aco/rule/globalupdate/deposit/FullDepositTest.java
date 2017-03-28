@@ -28,4 +28,11 @@ public class FullDepositTest {{
 			expect(new FullDeposit(aco)).toBeNotNull();
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new FullDeposit(aco).toString()).toBeNotNull();
+		});
+	});
 }}

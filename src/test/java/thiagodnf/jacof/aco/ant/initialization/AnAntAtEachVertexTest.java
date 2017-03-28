@@ -84,4 +84,11 @@ public class AnAntAtEachVertexTest {{
 			}).toThrow(IllegalArgumentException.class);
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new AnAntAtEachVertex(aco).toString()).toBeNotNull();
+		});
+	});
 }}

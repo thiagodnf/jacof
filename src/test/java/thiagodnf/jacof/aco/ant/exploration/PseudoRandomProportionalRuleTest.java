@@ -20,7 +20,7 @@ import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.problem.Problem;
 
 @RunWith(OleasterRunner.class)
-public class ACSExplorationTest {{
+public class PseudoRandomProportionalRuleTest {{
 	
 		Problem p = Mockito.mock(Problem.class);
 		ACO aco = Mockito.mock(ACO.class);
@@ -31,30 +31,22 @@ public class ACSExplorationTest {{
 			
 			it("should throw an exception when a null aco is passed", () -> {
 				expect(() -> {
-					new QSelection(null, 0.9);
+					new PseudoRandomProportionalRule(null);
 				}).toThrow(NullPointerException.class);
 			});
 			
 			it("should throw an exception when a null ant selection is passed", () -> {
 				expect(() -> {
-					new QSelection(aco, null, 0.9);
+					new PseudoRandomProportionalRule(aco, null);
 				}).toThrow(NullPointerException.class);
 			});
 			
-			it("should throw an exception when a null q0 >= 1 is passed", () -> {
-				expect(() -> {
-					new QSelection(aco, 1.1);
-				}).toThrow(IllegalArgumentException.class);
-			});
-			
-			it("should throw an exception when a null q0 <= 0 is passed", () -> {
-				expect(() -> {
-					new QSelection(aco, -0.3);
-				}).toThrow(IllegalArgumentException.class);
+			it("should return the default ant selection", () -> {
+				expect(new PseudoRandomProportionalRule(aco).getAntSelection()).toBeNotNull();
 			});
 		});		
 
-		describe("When get the next node by using exploitation", () -> {
+		describe("When get the next node", () -> {
 			
 			beforeEach(() -> {			
 				when(aco.getProblem()).thenReturn(p);
@@ -71,7 +63,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(2.0);
 				
 				expect(() -> {
-					new QSelection(aco, 1.0).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -81,58 +73,46 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(0.0);
 				
 				expect(() -> {
-					new QSelection(aco, 1.0).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
 			it("should throw an exception when the next node is -1", () -> {
+				AbstractAntSelection antSelection = Mockito.mock(AbstractAntSelection.class);
 				
+				when(antSelection.select(new double[]{0.0, 0.0, 0.5, 0.5, 0.0}, 1.0)).thenReturn(-1);				
 				when(ant.getNodesToVisit()).thenReturn(Arrays.asList(new Integer[] { 2, 3}));
 				when(graph.getTau(1, 2)).thenReturn(1.0);
 				when(graph.getTau(1, 3)).thenReturn(1.0);
-				when(p.getNij(1, 2)).thenReturn(Double.MIN_VALUE);
-				when(p.getNij(1, 3)).thenReturn(Double.MIN_VALUE);
+				when(p.getNij(1, 2)).thenReturn(1.0);
+				when(p.getNij(1, 3)).thenReturn(1.0);
 				
 				expect(() -> {
-					new QSelection(aco, 1.0).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco, antSelection).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
 			it("should return the correct next node", () -> {
 				
+				AbstractAntSelection antSelection = Mockito.mock(AbstractAntSelection.class);
+				
+				when(antSelection.select(new double[]{0.0, 0.0, 0.5, 0.5, 0.0}, 1.0)).thenReturn(2);				
 				when(ant.getNodesToVisit()).thenReturn(Arrays.asList(new Integer[] { 2, 3}));
 				when(graph.getTau(1, 2)).thenReturn(1.0);
 				when(graph.getTau(1, 3)).thenReturn(1.0);
 				when(p.getNij(1, 2)).thenReturn(1.0);
-				when(p.getNij(1, 3)).thenReturn(5.0);
+				when(p.getNij(1, 3)).thenReturn(1.0);
 				
-				expect(new QSelection(aco, 1.0).getNextNode(ant, 1)).toEqual(3);
+				expect(new PseudoRandomProportionalRule(aco, antSelection).getNextNode(ant, 1)).toEqual(2);
 			});
 		});
 		
-		describe("When get the next node by using exploration", () -> {
+		describe("When call the toString method", () -> {
+
+			AbstractAntSelection antSelection = Mockito.mock(AbstractAntSelection.class);
 			
-			beforeEach(() -> {			
-				when(aco.getProblem()).thenReturn(p);
-				when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
-				when(aco.getGraph()).thenReturn(graph);
-				when(aco.getAlpha()).thenReturn(1.0);
-				when(aco.getBeta()).thenReturn(2.0);	
-				when(ant.getNodesToVisit()).thenReturn(Arrays.asList(new Integer[] { 2 }));				
-			});	
-						
-			it("should return the correct next node", () -> {
-				
-				AbstractAntSelection antSelection = Mockito.mock(AbstractAntSelection.class);
-				
-				when(antSelection.select(new double[]{0.0, 0.0, 0.2, 0.8, 0.0}, 1.0)).thenReturn(2);				
-				when(ant.getNodesToVisit()).thenReturn(Arrays.asList(new Integer[] { 2, 3}));
-				when(graph.getTau(1, 2)).thenReturn(1.0);
-				when(graph.getTau(1, 3)).thenReturn(1.0);
-				when(p.getNij(1, 2)).thenReturn(1.0);
-				when(p.getNij(1, 3)).thenReturn(2.0);
-				
-				expect(new QSelection(aco, antSelection, 0.0).getNextNode(ant, 1)).toEqual(2);
+			it("should return a valid string", () -> {
+				expect(new PseudoRandomProportionalRule(aco, antSelection).toString()).toBeNotNull();
 			});
 		});
 	}

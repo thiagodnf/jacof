@@ -135,4 +135,11 @@ public class RankAntTest {{
 			});
 		});
 	});
+	
+	describe("When call the toString method", () -> {
+
+		it("should return a valid string", () -> {
+			expect(new RankAnt(aco).toString()).toBeNotNull();
+		});
+	});
 }}
