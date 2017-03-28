@@ -45,8 +45,8 @@ public class AllAntsTest {{
 		
 		it("should return the correct ants", () -> {
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
 			
 			a1.setTourLength(20.0);
 			a2.setTourLength(10.0);
@@ -62,8 +62,8 @@ public class AllAntsTest {{
 		
 		it("should return cloned ants", () -> {
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
 			
 			a1.setTourLength(20.0);
 			a2.setTourLength(10.0);

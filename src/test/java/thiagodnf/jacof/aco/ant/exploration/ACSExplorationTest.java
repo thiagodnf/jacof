@@ -31,25 +31,25 @@ public class ACSExplorationTest {{
 			
 			it("should throw an exception when a null aco is passed", () -> {
 				expect(() -> {
-					new ACSExploration(null, 0.9);
+					new QSelection(null, 0.9);
 				}).toThrow(NullPointerException.class);
 			});
 			
 			it("should throw an exception when a null ant selection is passed", () -> {
 				expect(() -> {
-					new ACSExploration(aco, null, 0.9);
+					new QSelection(aco, null, 0.9);
 				}).toThrow(NullPointerException.class);
 			});
 			
 			it("should throw an exception when a null q0 >= 1 is passed", () -> {
 				expect(() -> {
-					new ACSExploration(aco, 1.1);
+					new QSelection(aco, 1.1);
 				}).toThrow(IllegalArgumentException.class);
 			});
 			
 			it("should throw an exception when a null q0 <= 0 is passed", () -> {
 				expect(() -> {
-					new ACSExploration(aco, -0.3);
+					new QSelection(aco, -0.3);
 				}).toThrow(IllegalArgumentException.class);
 			});
 		});		
@@ -71,7 +71,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(2.0);
 				
 				expect(() -> {
-					new ACSExploration(aco, 1.0).getNextNode(ant, 1);
+					new QSelection(aco, 1.0).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -81,7 +81,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(0.0);
 				
 				expect(() -> {
-					new ACSExploration(aco, 1.0).getNextNode(ant, 1);
+					new QSelection(aco, 1.0).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -94,7 +94,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 3)).thenReturn(Double.MIN_VALUE);
 				
 				expect(() -> {
-					new ACSExploration(aco, 1.0).getNextNode(ant, 1);
+					new QSelection(aco, 1.0).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -106,7 +106,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(1.0);
 				when(p.getNij(1, 3)).thenReturn(5.0);
 				
-				expect(new ACSExploration(aco, 1.0).getNextNode(ant, 1)).toEqual(3);
+				expect(new QSelection(aco, 1.0).getNextNode(ant, 1)).toEqual(3);
 			});
 		});
 		
@@ -132,7 +132,7 @@ public class ACSExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(1.0);
 				when(p.getNij(1, 3)).thenReturn(2.0);
 				
-				expect(new ACSExploration(aco, antSelection, 0.0).getNextNode(ant, 1)).toEqual(2);
+				expect(new QSelection(aco, antSelection, 0.0).getNextNode(ant, 1)).toEqual(2);
 			});
 		});
 	}

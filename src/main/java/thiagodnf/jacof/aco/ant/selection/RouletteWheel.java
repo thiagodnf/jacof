@@ -21,4 +21,9 @@ public class RouletteWheel extends AbstractAntSelection {
 
 		return j;
 	}
+	
+	@Override
+	public String toString() {
+		return RouletteWheel.class.getSimpleName();
+	}
 }

@@ -39,7 +39,7 @@ public class GlobalBestTest {{
 				
 		it("should return the correct ant", () -> {
 			
-			Ant ant = new Ant(aco);
+			Ant ant = new Ant(aco, 1);
 			ant.setTourLength(10.0);
 			
 			when(aco.getGlobalBest()).thenReturn(ant);
@@ -52,7 +52,7 @@ public class GlobalBestTest {{
 		
 		it("should return a cloned ant", () -> {
 			
-			Ant ant = new Ant(aco);
+			Ant ant = new Ant(aco, 1);
 			ant.setTourLength(10.0);
 			
 			when(aco.getGlobalBest()).thenReturn(ant);

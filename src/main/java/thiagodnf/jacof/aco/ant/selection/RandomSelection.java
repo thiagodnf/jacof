@@ -23,4 +23,9 @@ public class RandomSelection extends AbstractAntSelection {
 
 		return possibleValues.get(index);
 	}
+	
+	@Override
+	public String toString() {
+		return RandomSelection.class.getSimpleName();
+	}
 }

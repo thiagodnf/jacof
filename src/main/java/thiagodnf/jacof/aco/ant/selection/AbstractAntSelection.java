@@ -7,4 +7,6 @@ public abstract class AbstractAntSelection {
 	protected JMetalRandom rand = JMetalRandom.getInstance();
 
 	public abstract int select(double[] probability, double sumProbability);
+	
+	public abstract String toString();
 }

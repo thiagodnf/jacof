@@ -44,4 +44,9 @@ public class AnAntAtARandomVertex extends AbstractAntInitialization {
 		
 		return this.positions[antId];
 	}
+	
+	@Override
+	public String toString() {
+		return AnAntAtARandomVertex.class.getSimpleName();
+	}
 }

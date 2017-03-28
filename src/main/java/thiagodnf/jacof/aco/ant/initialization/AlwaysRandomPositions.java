@@ -27,4 +27,9 @@ public class AlwaysRandomPositions extends AbstractAntInitialization {
 	public int getPosition(int antId) {
 		return rand.nextInt(0, aco.getProblem().getNumberOfNodes() - 1);
 	}
+	
+	@Override
+	public String toString() {
+		return AlwaysRandomPositions.class.getSimpleName();
+	}
 }

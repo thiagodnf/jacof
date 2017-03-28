@@ -13,7 +13,7 @@ import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class ASExploration extends AbstractAntExploration {
+public class PseudoRandomProportionalRule extends AbstractAntExploration {
 
 	/**
 	 * Constructor
@@ -21,7 +21,7 @@ public class ASExploration extends AbstractAntExploration {
 	 * @param aco The ant colony optimization used
 	 * @param antSelection The ant selection used
 	 */
-	public ASExploration(ACO aco, AbstractAntSelection antSelection) {
+	public PseudoRandomProportionalRule(ACO aco, AbstractAntSelection antSelection) {
 		super(aco, antSelection);
 	}
 	
@@ -30,7 +30,7 @@ public class ASExploration extends AbstractAntExploration {
 	 * 
 	 * @param aco The ant colony optimization used
 	 */
-	public ASExploration(ACO aco) {
+	public PseudoRandomProportionalRule(ACO aco) {
 		this(aco, new RouletteWheel());
 	}
 	
@@ -78,5 +78,10 @@ public class ASExploration extends AbstractAntExploration {
 		checkState(nextNode != -1, "The next node should not be -1");
 
 		return nextNode;
+	}
+	
+	@Override
+	public String toString() {
+		return PseudoRandomProportionalRule.class.getSimpleName() + " with " + antSelection;
 	}
 }

@@ -47,4 +47,6 @@ public abstract class AbstractSubSet {
 	 * @return a list of ants
 	 */
 	public abstract List<Ant> getSubSet();
+	
+	public abstract String toString();
 }

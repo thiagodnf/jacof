@@ -14,7 +14,7 @@ import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
  * @author Thiago N. Ferreira
  * @version 1.0.0
  */
-public class ACSExploration extends ASExploration {
+public class QSelection extends PseudoRandomProportionalRule {
 
 	/** The probability of exploration or exploitation*/
 	protected double q0;
@@ -26,7 +26,7 @@ public class ACSExploration extends ASExploration {
 	 * @param antSelection The ant selection used
 	 * @param q0 the probability of exploration or exploitation
 	 */
-	public ACSExploration(ACO aco, AbstractAntSelection antSelection, double q0) {
+	public QSelection(ACO aco, AbstractAntSelection antSelection, double q0) {
 		super(aco, antSelection);
 
 		checkArgument(q0 >= 0.0, "The q0 should be greater or equal than 0.0");
@@ -40,7 +40,7 @@ public class ACSExploration extends ASExploration {
 	 * 
 	 * @param aco The ant colony optimization used
 	 */
-	public ACSExploration(ACO aco, double q0) {
+	public QSelection(ACO aco, double q0) {
 		this(aco, new RouletteWheel(), q0);
 	}
 
@@ -76,5 +76,10 @@ public class ACSExploration extends ASExploration {
 		checkState(nextNode != -1, "The next node should not be -1");
 
 		return nextNode;
+	}
+	
+	@Override
+	public String toString() {
+		return QSelection.class.getSimpleName();
 	}
 }

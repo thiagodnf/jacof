@@ -1,9 +1,13 @@
 package thiagodnf.jacof.aco;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import org.apache.log4j.Logger;
 
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.exploration.AbstractAntExploration;
@@ -16,12 +20,21 @@ import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AbstractAntLocalUpdate;
 import thiagodnf.jacof.problem.Problem;
 
-public abstract class ACO implements Observer{
+/**
+ * This is the base class. This one has the main components
+ * of all ACO's implementations. So, All ACO's implementations should be extended from this class.
+ * <p>
+ * In this framework, all ants build their solutions by using java's threads
+ * 
+ * @author Thiago N. Ferreira
+ * @version 1.0.0
+ */
+public abstract class ACO implements Observer {
 	
-	/** Importance of pheromone*/
+	/** Importance of the pheromones values*/
 	protected double alpha;
 	
-	/** Importance of heuristic information*/
+	/** Importance of the heuristic information*/
 	protected double beta;
 	
 	/** The number of ants */
@@ -33,7 +46,7 @@ public abstract class ACO implements Observer{
 	/** Ants **/
 	protected Ant[] ants;
 	
-	/** The pheronome matrix */
+	/** The graph */
 	protected AntGraph graph;
 
 	/** The current iteration */
@@ -51,27 +64,54 @@ public abstract class ACO implements Observer{
 	/** The addressed problem */
 	protected Problem problem;
 	
-	protected AbstractGraphInitialization trailInitialization;
+	/** The graph initialization */
+	protected AbstractGraphInitialization graphInitialization;
 	
+	/** The ant initialization */
 	protected AbstractAntInitialization antInitialization;
 	
+	/** The ant exploration*/
 	protected AbstractAntExploration antExploration;
 	
+	/** The ant local update rule */
 	protected AbstractAntLocalUpdate antLocalUpdate;
 	
+	/** The daemon actions */
 	protected List<AbstractDaemonActions> daemonActions = new ArrayList<>();
 	
+	/** The pheromone evaporation's rules */
 	protected List<AbstractEvaporation> evaporations = new ArrayList<>();
 	
+	/** The pheromone deposit's rules */
 	protected List<AbstractDeposit> deposits = new ArrayList<>();
 	
+	/** The class logger*/
+	final static Logger LOGGER = Logger.getLogger(ACO.class);
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param problem The addressed problem
+	 */
 	public ACO(Problem problem) {
+		
+		checkNotNull(problem, "The problem cannot be null");
+		
 		this.problem = problem;
 	}
 	
+	/**
+	 * Solve the addressed problem
+	 * 
+	 * @return the best solution found by the ants
+	 */
 	public int[] solve() {
 		
+		LOGGER.debug("Starting ACO");
+		
 		build();
+		
+		printParameters();
 
 		initializePheromones();
 		initializeAnts();
@@ -81,31 +121,57 @@ public abstract class ACO implements Observer{
 			updatePheromones();
 			daemonActions(); // optional
 		}
+		
+		LOGGER.debug("Done");
 
 		return globalBest.getSolution();
 	}
 	
+	/**
+	 * Initialize the pheromone values. This method creates a 
+	 * graph and initialize it.
+	 */
 	protected void initializePheromones() {
+		
+		LOGGER.debug("Initializing the pheromones");
+		
 		this.graph = new AntGraph(problem);
-		this.graph.initialize(trailInitialization);
+		this.graph.initialize(graphInitialization);
 	}
 	
+	/**
+	 * Initialize the ants. This method creates an array of ants
+	 * and positions them in one of the graph's vertex
+	 */
 	protected void initializeAnts() {
+		
+		LOGGER.debug("Initializing the ants");
 		
 		this.ants = new Ant[numberOfAnts];
 
 		for (int k = 0; k < numberOfAnts; k++) {
-			ants[k] = new Ant(this);
+			ants[k] = new Ant(this, k);
 			ants[k].setAntInitialization(getAntInitialization());
 			ants[k].addObserver(this);
 		}
 	}
 	
+	/**
+	 * Verify if the search has finished. To reach this, the number of
+	 * iterations is verified.
+	 * 
+	 * @return true if the search has finished. Otherwise, false
+	 */
 	protected boolean terminationCondition() {
 		return ++it > numberOfIterations;
 	}
 	
+	/** 
+	 * Update the pheromone values in the graph
+	 */
 	protected void updatePheromones() {
+		
+		LOGGER.debug("Updating pheromones");
 		
 		for (int i = 0; i < problem.getNumberOfNodes(); i++) {
 
@@ -126,9 +192,16 @@ public abstract class ACO implements Observer{
 			}
 		}
 	}
-		
+	
+	/**
+	 * Construct the ant's solutions
+	 */
 	private synchronized void constructAntsSolutions() {
 		
+		LOGGER.debug("=================== Iteration " + it + " ===================");
+		LOGGER.debug("Constructing the ant's solutions");
+		
+		//Before construct the ant's solution it is necessary to remove the current best solution
 		currentBest = null;
 
 		//Construct the ant solutions by using threads
@@ -145,29 +218,53 @@ public abstract class ACO implements Observer{
 		}	
 	}
 	
+	/**
+	 * Perform the daemon actions
+	 */
 	public void daemonActions() {
+		
+		if(daemonActions.isEmpty()){
+			LOGGER.debug("There are no daemon actions for this algorithm");
+		}else{
+			LOGGER.debug("Executing daemon actions");
+		}
+				
 		for (AbstractDaemonActions daemonAction : daemonActions) {
 			daemonAction.doAction();
 		}
 	}
 
+	/**
+	 * When an ant has finished its search process, this method is called to
+	 * update the current and global best solutions.
+	 */
 	public synchronized void update(Observable obj, Object arg) {
 		
 		Ant ant = (Ant) obj;
 
+		// Calculate the fitness function for the found solution
 		ant.setTourLength(problem.evaluate(ant.getSolution()));
 
+		// Update the current best solution
 		if (currentBest == null || problem.better(ant.getSolution(), currentBest.getSolution())) {
 			currentBest = ant.clone();
 		}
 		
+		// Update the global best solution
 		if (globalBest == null || problem.better(ant.getSolution(), globalBest.getSolution())) {
 			globalBest = ant.clone();
 		}
+		
+		LOGGER.debug(ant);
 
+		// Verify if all ants have finished their search
 		if (++finishedAnts == numberOfAnts) {
 			// Restart the counter to build the solutions again
 			finishedAnts = 0;
+			
+			LOGGER.debug("The current best solution is " + currentBest);
+			LOGGER.debug("The global best solution is " + globalBest);			
+			
 			// Continue all execution
 			notify();
 		}
@@ -253,12 +350,12 @@ public abstract class ACO implements Observer{
 		this.antInitialization = antInitialization;
 	}
 	
-	public void setTrailInitialization(AbstractGraphInitialization trailInitialization) {
-		this.trailInitialization = trailInitialization;
+	public void setGraphInitialization(AbstractGraphInitialization graphInitialization) {
+		this.graphInitialization = graphInitialization;
 	}
 	
-	public AbstractGraphInitialization getTrailInitialization() {
-		return trailInitialization;
+	public AbstractGraphInitialization getGraphInitialization() {
+		return graphInitialization;
 	}	
 	
 	public AbstractAntExploration getAntExploration() {
@@ -300,7 +397,35 @@ public abstract class ACO implements Observer{
 	public void setDaemonActions(List<AbstractDaemonActions> daemonActions) {
 		this.daemonActions = daemonActions;
 	}
-
-	public abstract void build();
 	
+	/**
+	 * Print the parameters
+	 */
+	protected void printParameters(){
+		LOGGER.debug("=================== Parameters ===================");
+		LOGGER.debug("Derivation: " + this.toString());
+		LOGGER.debug("Problem: " + this.problem);
+		LOGGER.debug("Number of Ants: " + this.numberOfAnts);
+		LOGGER.debug("Number of Iterations: " + this.numberOfIterations);
+		LOGGER.debug("Alpha: " + this.alpha);
+		LOGGER.debug("Beta: " + this.beta);		
+		LOGGER.debug("Graph Initialization: " + this.graphInitialization);
+		LOGGER.debug("Ant Initialization: " + this.antInitialization);
+		LOGGER.debug("Ant Exploration: " + this.antExploration);
+		LOGGER.debug("Ant Local Update Rule: " + this.antLocalUpdate);
+		LOGGER.debug("Evaporations: " + this.evaporations);
+		LOGGER.debug("Deposits: " + this.deposits);
+		LOGGER.debug("Daemon Actions: " + this.daemonActions);
+		LOGGER.debug("==================================================");
+	}
+
+	/**
+	 * Build an ant's implementation
+	 */
+	public abstract void build();
+
+	/**
+	 * Returns a string representation of the object.
+	 */
+	public abstract String toString();	
 }

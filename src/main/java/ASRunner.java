@@ -16,7 +16,7 @@ public class ASRunner {
 		AntSystem aco = new AntSystem(problem);
 
 		aco.setNumberOfAnts(10);
-		aco.setNumberOfIterations(10);
+		aco.setNumberOfIterations(50);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);

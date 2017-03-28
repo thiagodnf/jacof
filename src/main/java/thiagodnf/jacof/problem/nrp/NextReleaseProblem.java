@@ -202,4 +202,9 @@ public class NextReleaseProblem extends Problem {
 
 		return nodesToVisit;
 	}
+
+	@Override
+	public String toString() {
+		return NextReleaseProblem.class.getSimpleName();
+	}
 }

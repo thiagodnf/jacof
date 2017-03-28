@@ -11,13 +11,9 @@ import org.mockito.Mockito;
 
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
-import net.bytebuddy.dynamic.NexusAccessor.InitializationAppender;
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.aco.ant.Ant;
-import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
 import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.AbstractGraphInitialization;
-import thiagodnf.jacof.aco.subset.many.AllAnts;
 import thiagodnf.jacof.problem.Problem;
 
 @RunWith(OleasterRunner.class)
@@ -55,7 +51,7 @@ public class ACSLocalUpdatingRuleTest {{
 			when(aco.getNumberOfAnts()).thenReturn(2);
 			when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
 			
-			when(aco.getTrailInitialization()).thenReturn(initialization);
+			when(aco.getGraphInitialization()).thenReturn(initialization);
 			when(initialization.getT0()).thenReturn(2.0);
 			
 			AntGraph graph = new AntGraph(problem);

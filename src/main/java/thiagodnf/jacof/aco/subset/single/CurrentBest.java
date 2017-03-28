@@ -32,4 +32,8 @@ public class CurrentBest extends AbstractSingleAnt {
 
 		return list;
 	}
+	
+	public String toString(){
+		return CurrentBest.class.getSimpleName();
+	}
 }

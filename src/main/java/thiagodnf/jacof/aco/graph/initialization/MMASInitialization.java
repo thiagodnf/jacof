@@ -52,6 +52,6 @@ public class MMASInitialization extends AbstractGraphInitialization {
 
 	@Override
 	public String toString() {
-		return MMASInitialization.class.getSimpleName() + " " + this.rate;
+		return MMASInitialization.class.getSimpleName() + " with rate=" + this.rate;
 	}
 }

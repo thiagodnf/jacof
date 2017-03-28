@@ -21,10 +21,6 @@ public class RankAntTest {{
 	ACO aco = Mockito.mock(ACO.class);
 	Problem p = Mockito.mock(Problem.class);
 	
-//	when(aco.getNumberOfAnts()).thenReturn(4);
-//	when(aco.getProblem()).thenReturn(p);
-//	when(aco.getProblem().getNumberOfNodes()).thenReturn(5);
-	
 	describe("When create an instance of this class", () -> {
 		
 		it("should throw an exception when null problem is passed", () -> {
@@ -66,10 +62,10 @@ public class RankAntTest {{
 			
 			it("should return a list with half size ", () -> {
 				
-				Ant a1 = new Ant(aco);
-				Ant a2 = new Ant(aco);
-				Ant a3 = new Ant(aco);
-				Ant a4 = new Ant(aco);
+				Ant a1 = new Ant(aco, 1);
+				Ant a2 = new Ant(aco, 2);
+				Ant a3 = new Ant(aco, 3);
+				Ant a4 = new Ant(aco, 4);
 				
 				a1.setTourLength(30);
 				a2.setTourLength(10);
@@ -78,6 +74,9 @@ public class RankAntTest {{
 				
 				when(aco.getAnts()).thenReturn(new Ant[]{a1, a2, a3, a4});
 				when(aco.getNumberOfAnts()).thenReturn(4);
+				when(p.better(10, 30)).thenReturn(true);
+				when(p.better(10, 20)).thenReturn(true);
+				when(p.better(20, 30)).thenReturn(true);
 				
 				AbstractManyAnts manyAnts = new RankAnt(aco);				
 				
@@ -87,14 +86,14 @@ public class RankAntTest {{
 			});
 		});
 		
-		describe("ant rank is equals to 3", () -> {
+		describe("and the rank is equals to 3", () -> {
 		
 			it("should return the correct ants", () -> {
 				
-				Ant a1 = new Ant(aco);
-				Ant a2 = new Ant(aco);
-				Ant a3 = new Ant(aco);
-				Ant a4 = new Ant(aco);
+				Ant a1 = new Ant(aco, 1);
+				Ant a2 = new Ant(aco, 2);
+				Ant a3 = new Ant(aco, 3);
+				Ant a4 = new Ant(aco, 4);
 				
 				a1.setTourLength(30);
 				a2.setTourLength(10);
@@ -103,7 +102,10 @@ public class RankAntTest {{
 				
 				AbstractManyAnts manyAnts = new RankAnt(aco, 3);
 				
-				when(aco.getAnts()).thenReturn(new Ant[]{a1, a2, a3, a4});
+				when(aco.getAnts()).thenReturn(new Ant[]{a1, a2, a3, a4});				
+				when(p.better(10, 30)).thenReturn(true);
+				when(p.better(10, 20)).thenReturn(true);
+				when(p.better(20, 30)).thenReturn(true);
 				
 				expect(manyAnts.getSubSet().size()).toEqual(3);
 				expect(manyAnts.getSubSet().get(0).getTourLength()).toEqual(10);
@@ -113,10 +115,10 @@ public class RankAntTest {{
 			
 			it("should return cloned ants", () -> {
 				
-				Ant a1 = new Ant(aco);
-				Ant a2 = new Ant(aco);
-				Ant a3 = new Ant(aco);
-				Ant a4 = new Ant(aco);
+				Ant a1 = new Ant(aco, 1);
+				Ant a2 = new Ant(aco, 2);
+				Ant a3 = new Ant(aco, 3);
+				Ant a4 = new Ant(aco, 4);
 				
 				a1.setTourLength(30);
 				a2.setTourLength(10);

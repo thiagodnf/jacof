@@ -21,9 +21,13 @@ public class ACSLocalUpdatingRule extends AbstractAntLocalUpdate {
 	public void update(int i, int j) {
 		
 		double evaporation = (1.0 - rate) * aco.getGraph().getTau(i, j);
-		double deposition = rate * aco.getTrailInitialization().getT0();
+		double deposition = rate * aco.getGraphInitialization().getT0();
 		
 		aco.getGraph().setTau(i, j, evaporation + deposition);
 		aco.getGraph().setTau(j, i, evaporation + deposition);
+	}
+	
+	public String toString(){
+		return ACSLocalUpdatingRule.class.getSimpleName();
 	}
 }

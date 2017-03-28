@@ -1,50 +1,74 @@
 package thiagodnf.jacof.aco.ant;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
 
+/**
+ * This class represents an ant and its process of building a solution
+ * for a given addressed problem.
+ * 
+ * @author Thiago N. Ferreira
+ * @version 1.0.0
+ */
 public class Ant extends Observable implements Runnable{
 
-	public static int ANT_ID = 0;
-	
 	/** Identifier */
 	protected int id;
 	
+	/** The ant colony optimization */
 	public ACO aco;
 		
 	/** The Current Node */
 	public int currentNode;
 	
+	/** The path traveled*/
 	public int[][] path;
 	
+	/** The tour built */
 	public List<Integer> tour;
 	
+	/** The list with the nodes to visit */
 	public List<Integer> nodesToVisit;
 
+	/** The tour length traveled*/
 	protected double tourLength;
 	
+	/** The ant initialization */
 	protected AbstractAntInitialization antInitialization;
 	
-	public Ant(ACO aco) {
+	/**
+	 * Constructor
+	 * 
+	 * @param aco The ant colony optimization
+	 * @param id The ant's id
+	 */
+	public Ant(ACO aco, int id) {
+		
+		checkArgument(id >= 0, "The id should be > 0. Passed: %s", id);
+		
 		this.aco = aco;
-		this.id = ANT_ID++;		
+		this.id = id;		
 		this.nodesToVisit = new ArrayList<>();
 		this.tour = new ArrayList<>();
 		this.path = new int[aco.getProblem().getNumberOfNodes()][aco.getProblem().getNumberOfNodes()];
 	}
 	
+	/**
+	 * Restart all information before starting the search process
+	 */
 	public void reset(){
 		this.currentNode = antInitialization.getPosition(id);
 		this.tourLength = 0.0;
 		this.tour.clear();
-		this.tour.add(new Integer(currentNode));
-		this.path = new int[aco.getProblem().getNumberOfNodes()][aco.getProblem().getNumberOfNodes()];
 		this.nodesToVisit = aco.getProblem().initNodesToVisit(this.currentNode);
+		this.tour.add(new Integer(currentNode));
+		this.path = new int[aco.getProblem().getNumberOfNodes()][aco.getProblem().getNumberOfNodes()];		
 	}
 	
 	@Override
@@ -55,26 +79,36 @@ public class Ant extends Observable implements Runnable{
 		notifyObservers(this);
 	}
 	
+	/**
+	 * Construct the ant's solution
+	 */
 	public void explore() {
 
+		// The search ends when the list of nodes to visit is empty
 		while (!nodesToVisit.isEmpty()) {
 
+			// Get the next node given the current node
 			int nextNode = aco.getAntExploration().getNextNode(this, currentNode);
 
+			// Remove the next node from the list of nodes to visit
 			nodesToVisit.remove(new Integer(nextNode));
 
+			// Perform the local update rule if this is available
 			if (aco.getAntLocalUpdate() != null) {
 				aco.getAntLocalUpdate().update(currentNode, nextNode);
 			}
 			
-			// Save next node
+			// Save the next node in the tour
 			tour.add(new Integer(nextNode));
 
+			// Mark as visited the arc(i,j)
 			path[currentNode][nextNode] = 1;
 			path[nextNode][currentNode] = 1;
 
+			// update the list of the nodes to visit
 			nodesToVisit = aco.getProblem().updateNodesToVisit(tour, nodesToVisit);
 
+			// Define the next node as current node
 			currentNode = nextNode;
 		}
 	}
@@ -88,8 +122,11 @@ public class Ant extends Observable implements Runnable{
 		return tour.stream().mapToInt(i -> i).toArray();
 	}
 	
+	/**
+	 * Clone an ant
+	 */
 	public Ant clone() {
-		Ant ant = new Ant(aco);
+		Ant ant = new Ant(aco, id);
 		
 		ant.id = id;
 		ant.currentNode = currentNode;
@@ -134,25 +171,11 @@ public class Ant extends Observable implements Runnable{
 		this.antInitialization = antInitialization;
 	}
 
+	/**
+	 * Returns a string representation of the object. 
+	 */
 	@Override
 	public String toString() {
-		return "Ant " + id + " " + tour+" "+tourLength;
+		return "Ant_" + id + " " + tourLength + " " + tour;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((aco == null) ? 0 : aco.hashCode());
-		result = prime * result + ((antInitialization == null) ? 0 : antInitialization.hashCode());
-		result = prime * result + currentNode;
-		result = prime * result + id;
-		result = prime * result + ((nodesToVisit == null) ? 0 : nodesToVisit.hashCode());
-		result = prime * result + Arrays.deepHashCode(path);
-		result = prime * result + ((tour == null) ? 0 : tour.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(tourLength);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
-	}	
 }

@@ -16,4 +16,6 @@ public abstract class AbstractDaemonActions {
 	}
 	
 	public abstract void doAction();
+	
+	public abstract String toString();
 }

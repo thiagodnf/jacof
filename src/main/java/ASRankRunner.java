@@ -1,27 +1,26 @@
 import java.io.IOException;
 import java.util.Arrays;
 
-import thiagodnf.jacof.aco.AntColonySystem;
+import thiagodnf.jacof.aco.RankBasedAntSystem;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
 
-public class ACSRunner {
-	
-	public static void main(String[] args) throws IOException{
+public class ASRankRunner {
+
+	public static void main(String[] args) throws IOException {
 		
 		String instance = "src/main/resources/problems/nrp/delsagrado20.nrp";
 
 		Problem problem = new NextReleaseProblem(instance);
 
-		AntColonySystem aco = new AntColonySystem(problem);
+		RankBasedAntSystem aco = new RankBasedAntSystem(problem);
 
 		aco.setNumberOfAnts(10);
 		aco.setNumberOfIterations(50);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
-		aco.setOmega(0.1);
-		aco.setQ0(0.9);
+		aco.setWeight(6);
 		
 		int[] bestSolution = aco.solve();
 

@@ -53,8 +53,8 @@ public class GlobalOrCurrentBestTest {{
 		
 		it("should return an array with size = 1", () -> {
 			
-			Ant gAnt = new Ant(aco);
-			Ant cAnt = new Ant(aco);
+			Ant gAnt = new Ant(aco, 1);
+			Ant cAnt = new Ant(aco, 2);
 			
 			when(aco.getCurrentBest()).thenReturn(gAnt);
 			when(aco.getGlobalBest()).thenReturn(cAnt);
@@ -66,8 +66,8 @@ public class GlobalOrCurrentBestTest {{
 		it("should return the the global best ant", () -> {
 			JMetalRandom.getInstance().setRandomGenerator(new JavaRandomGenerator(112323));
 			
-			Ant gAnt = new Ant(aco);
-			Ant cAnt = new Ant(aco);
+			Ant gAnt = new Ant(aco, 1);
+			Ant cAnt = new Ant(aco, 2);
 			
 			gAnt.setTourLength(10);
 			
@@ -81,8 +81,8 @@ public class GlobalOrCurrentBestTest {{
 		it("should return the the current best ant", () -> {
 			JMetalRandom.getInstance().setRandomGenerator(new JavaRandomGenerator(1));
 			
-			Ant gAnt = new Ant(aco);
-			Ant cAnt = new Ant(aco);
+			Ant gAnt = new Ant(aco, 1);
+			Ant cAnt = new Ant(aco, 2);
 			
 			cAnt.setTourLength(20);
 			
@@ -95,8 +95,8 @@ public class GlobalOrCurrentBestTest {{
 		
 		it("should return a cloned ant", () -> {
 			
-			Ant gAnt = new Ant(aco);
-			Ant cAnt = new Ant(aco);
+			Ant gAnt = new Ant(aco, 1);
+			Ant cAnt = new Ant(aco, 2);
 			
 			when(aco.getCurrentBest()).thenReturn(gAnt);
 			when(aco.getGlobalBest()).thenReturn(cAnt);

@@ -31,18 +31,18 @@ public class ASExplorationTest {{
 			
 			it("should throw an exception when a null aco is passed", () -> {
 				expect(() -> {
-					new ASExploration(null);
+					new PseudoRandomProportionalRule(null);
 				}).toThrow(NullPointerException.class);
 			});
 			
 			it("should throw an exception when a null ant selection is passed", () -> {
 				expect(() -> {
-					new ASExploration(aco, null);
+					new PseudoRandomProportionalRule(aco, null);
 				}).toThrow(NullPointerException.class);
 			});
 			
 			it("should return the default ant selection", () -> {
-				expect(new ASExploration(aco).getAntSelection()).toBeNotNull();
+				expect(new PseudoRandomProportionalRule(aco).getAntSelection()).toBeNotNull();
 			});
 		});		
 
@@ -63,7 +63,7 @@ public class ASExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(2.0);
 				
 				expect(() -> {
-					new ASExploration(aco).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -73,7 +73,7 @@ public class ASExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(0.0);
 				
 				expect(() -> {
-					new ASExploration(aco).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -88,7 +88,7 @@ public class ASExplorationTest {{
 				when(p.getNij(1, 3)).thenReturn(1.0);
 				
 				expect(() -> {
-					new ASExploration(aco, antSelection).getNextNode(ant, 1);
+					new PseudoRandomProportionalRule(aco, antSelection).getNextNode(ant, 1);
 				}).toThrow(IllegalStateException.class);
 			});
 			
@@ -103,7 +103,7 @@ public class ASExplorationTest {{
 				when(p.getNij(1, 2)).thenReturn(1.0);
 				when(p.getNij(1, 3)).thenReturn(1.0);
 				
-				expect(new ASExploration(aco, antSelection).getNextNode(ant, 1)).toEqual(2);
+				expect(new PseudoRandomProportionalRule(aco, antSelection).getNextNode(ant, 1)).toEqual(2);
 			});
 		});
 	}

@@ -10,4 +10,6 @@ public abstract class AbstractDeposit extends AbstractGlobalRule{
 	}
 
 	public abstract double getTheNewValue(int i, int j);
+	
+	public abstract String toString();
 }

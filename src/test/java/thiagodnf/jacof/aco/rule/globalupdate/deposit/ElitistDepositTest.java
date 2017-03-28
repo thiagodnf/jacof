@@ -47,9 +47,9 @@ public class ElitistDepositTest {{
 			when(aco.getGraph()).thenReturn(graph);
 			when(aco.getGraph().getTau(0, 1)).thenReturn(1.0);
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
-			Ant gb = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
+			Ant gb = new Ant(aco, 3);
 			
 			gb.setTourLength(10);
 			

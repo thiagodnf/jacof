@@ -35,6 +35,8 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 	@Override
 	public void doAction() {
 		
+		LOGGER.debug("Executing " + this);
+		
 		if (bestSoFar == null) {
 			bestSoFar = aco.getGlobalBest().clone();
 			updateMinAndMaxValues();
@@ -64,5 +66,10 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 		tMin = tMax / 2.0;
 
 		LOGGER.info("The bound was updated for tMin="+tMin+" and tMax=" + tMax);
+	}
+	
+	@Override
+	public String toString() {
+		return UpdatePheromoneLimits.class.getSimpleName();
 	}
 }

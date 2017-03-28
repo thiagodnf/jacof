@@ -1,6 +1,6 @@
 package thiagodnf.jacof.aco;
 
-import thiagodnf.jacof.aco.ant.exploration.ASExploration;
+import thiagodnf.jacof.aco.ant.exploration.PseudoRandomProportionalRule;
 import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
 import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.aco.daemonactions.RestartCheck;
@@ -11,28 +11,18 @@ import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.aco.subset.single.GlobalBest;
 import thiagodnf.jacof.problem.Problem;
 
-public class MaxMinAntSystem extends ACO {
-
-	protected double rho;
+public class MaxMinAntSystem extends AntSystem {
 
 	public MaxMinAntSystem(Problem problem) {
 		super(problem);
 	}
-
-	public double getRho() {
-		return rho;
-	}
-
-	public void setRho(double rho) {
-		this.rho = rho;
-	}
-
+	
 	@Override
 	public void build() {
-		setTrailInitialization(new MMASInitialization(this));
+		setGraphInitialization(new MMASInitialization(this));
 		setAntInitialization(new AnAntAtEachVertex(this));
 
-		setAntExploration(new ASExploration(this, new RouletteWheel()));
+		setAntExploration(new PseudoRandomProportionalRule(this, new RouletteWheel()));
 
 		// Global Update Pheromone Rule
 		getEvaporations().add(new FullEvaporation(this, rho));
@@ -41,5 +31,10 @@ public class MaxMinAntSystem extends ACO {
 		// Daemon Actions
 		getDaemonActions().add(new UpdatePheromoneLimits(this, rho, 0.0, 1.0));
 		getDaemonActions().add(new RestartCheck(this));
+	}
+
+	@Override
+	public String toString() {
+		return MaxMinAntSystem.class.getSimpleName();
 	}
 }

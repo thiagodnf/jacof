@@ -39,8 +39,8 @@ public class RandomAntTest {{
 		
 		it("should return an array with size = 1", () -> {	
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
 			
 			when(aco.getAnts()).thenReturn(new Ant[]{a1, a2});
 			
@@ -50,8 +50,8 @@ public class RandomAntTest {{
 		
 		it("should return a cloned ant", () -> {	
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
 			
 			when(aco.getAnts()).thenReturn(new Ant[]{a1, a2});
 			

@@ -38,4 +38,7 @@ public class AllAnts extends AbstractManyAnts {
 		return list;
 	}
 
+	public String toString(){
+		return AllAnts.class.getSimpleName();
+	}
 }

@@ -16,16 +16,16 @@ import thiagodnf.jacof.aco.ant.Ant;
  */
 public class RestartCheck extends AbstractDaemonActions {
 
-	protected double stagnation;
+	protected int stagnation;
 	
-	protected double stagnationCounter = 0;
+	protected int stagnationCounter = 0;
 	
 	protected Ant bestAnt;
 	
 	/** The class logger*/
 	final static Logger LOGGER = Logger.getLogger(RestartCheck.class);
 	
-	public RestartCheck(ACO aco, double stagnation) {
+	public RestartCheck(ACO aco, int stagnation) {
 		super(aco);
 
 		this.stagnation = stagnation;		
@@ -37,6 +37,8 @@ public class RestartCheck extends AbstractDaemonActions {
 
 	@Override
 	public void doAction() {
+		
+		LOGGER.debug("Executing " + this);
 
 		if (bestAnt == null) {
 			bestAnt = aco.getGlobalBest().clone();
@@ -53,9 +55,13 @@ public class RestartCheck extends AbstractDaemonActions {
 			
 			LOGGER.debug("The stagnation was reached. The pheromone matrix will be restarted");
 			
-			aco.getGraph().initialize(aco.getTrailInitialization());
+			aco.getGraph().initialize(aco.getGraphInitialization());
 			stagnationCounter = 0;
 		}
-	}	
+	}
 
+	@Override
+	public String toString() {
+		return RestartCheck.class.getSimpleName() + " after " + stagnation + " iterations";
+	}
 }

@@ -60,5 +60,7 @@ public abstract class AbstractAntExploration {
 	 * @param currentNode the current node
 	 * @return the next node
 	 */
-	public abstract int getNextNode(Ant ant, int currentNode);	
+	public abstract int getNextNode(Ant ant, int currentNode);
+	
+	public abstract String toString();
 }

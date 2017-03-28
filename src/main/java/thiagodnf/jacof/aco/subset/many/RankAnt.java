@@ -59,10 +59,10 @@ public class RankAnt extends AbstractManyAnts {
 
 			@Override
 			public int compare(Ant ant1, Ant ant2) {
-				if (ant1.getTourLength() > ant2.getTourLength()) {
-					return 1;
-				} else if (ant1.getTourLength() < ant2.getTourLength()) {
+				if (aco.getProblem().better(ant1.getTourLength(), ant2.getTourLength())) {
 					return -1;
+				} else if (aco.getProblem().better(ant2.getTourLength(), ant1.getTourLength())) {
+					return 1;
 				} else {
 					return 0;
 				}
@@ -78,4 +78,7 @@ public class RankAnt extends AbstractManyAnts {
 		return list;
 	}
 
+	public String toString(){
+		return RankAnt.class.getSimpleName();
+	}
 }

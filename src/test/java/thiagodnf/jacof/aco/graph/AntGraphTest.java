@@ -76,11 +76,11 @@ public class AntGraphTest {{
 					
 					double[][] matrix = graph.getTau();
 					
-					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[0])).toBeTrue();
-					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[1])).toBeTrue();
-					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[2])).toBeTrue();
-					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[3])).toBeTrue();
-					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 1.0 }, matrix[4])).toBeTrue();
+					expect(Arrays.equals(new double[] { 0.0, 1.0, 1.0, 1.0, 1.0 }, matrix[0])).toBeTrue();
+					expect(Arrays.equals(new double[] { 1.0, 0.0, 1.0, 1.0, 1.0 }, matrix[1])).toBeTrue();
+					expect(Arrays.equals(new double[] { 1.0, 1.0, 0.0, 1.0, 1.0 }, matrix[2])).toBeTrue();
+					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 0.0, 1.0 }, matrix[3])).toBeTrue();
+					expect(Arrays.equals(new double[] { 1.0, 1.0, 1.0, 1.0, 0.0 }, matrix[4])).toBeTrue();
 				});
 			});
 		});
@@ -114,7 +114,7 @@ public class AntGraphTest {{
 				AntGraph graph = new AntGraph(problem);
 				graph.initialize(trailInitialization);
 				
-				String expected = "[1.0, 1.0, 1.0][1.0, 1.0, 1.0][1.0, 1.0, 1.0]";
+				String expected = "[0.0, 1.0, 1.0][1.0, 0.0, 1.0][1.0, 1.0, 0.0]";
 				expect(graph.toString().replaceAll("\n", "")).toEqual(expected);
 			});
 		});

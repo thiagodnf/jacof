@@ -51,5 +51,9 @@ public class GlobalOrCurrentBest extends AbstractSingleAnt {
 			return new CurrentBest(aco).getSubSet();
 		}
 	}
+	
+	public String toString(){
+		return GlobalOrCurrentBest.class.getSimpleName();
+	}
 
 }

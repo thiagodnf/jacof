@@ -37,4 +37,8 @@ public class RandomAnt extends AbstractSingleAnt {
 
 		return list;
 	}
+	
+	public String toString(){
+		return RandomAnt.class.getSimpleName();
+	}
 }

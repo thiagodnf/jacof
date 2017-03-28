@@ -19,6 +19,8 @@ public abstract class Problem {
 	public abstract double getDeltaTau(double tourLength, int i, int j);
 
 	public abstract double getNij(int i, int j);
+	
+	public abstract String toString();
 
 	public abstract List<Integer> initNodesToVisit(int startingNode);
 

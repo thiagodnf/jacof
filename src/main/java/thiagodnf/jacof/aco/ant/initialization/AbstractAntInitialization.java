@@ -34,4 +34,6 @@ public abstract class AbstractAntInitialization{
 	 * @return the ant position
 	 */
 	public abstract int getPosition(int antId);
+	
+	public abstract String toString();
 }

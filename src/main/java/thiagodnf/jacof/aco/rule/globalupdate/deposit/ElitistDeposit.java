@@ -3,6 +3,7 @@ package thiagodnf.jacof.aco.rule.globalupdate.deposit;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import thiagodnf.jacof.aco.ACO;
+import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.subset.many.AllAnts;
 
 public class ElitistDeposit extends PartialDeposit {
@@ -33,10 +34,17 @@ public class ElitistDeposit extends PartialDeposit {
 	
 	public double getDeltaTauGlobalBest(int i, int j) {
 
-		if (aco.getGlobalBest().path[i][j] == 1) {
-			return aco.getProblem().getDeltaTau(aco.getGlobalBest().getTourLength(), i, j);
+		Ant globalBest = aco.getGlobalBest();
+		
+		if (globalBest.path[i][j] == 1) {
+			return aco.getProblem().getDeltaTau(globalBest.getTourLength(), i, j);
 		}
 
 		return 0.0;
+	}
+	
+	@Override
+	public String toString() {
+		return ElitistDeposit.class.getSimpleName() + " with weight=" + weight;
 	}
 }

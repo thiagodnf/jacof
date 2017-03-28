@@ -55,6 +55,6 @@ public class EASInitialization extends AbstractGraphInitialization {
 	
 	@Override
 	public String toString() {
-		return EASInitialization.class.getSimpleName() + " " + this.rate;
+		return EASInitialization.class.getSimpleName() + " with rate=" + this.rate;
 	}
 }

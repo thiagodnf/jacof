@@ -33,4 +33,8 @@ public class GlobalBest extends AbstractSingleAnt {
 
 		return list;
 	}
+	
+	public String toString(){
+		return GlobalBest.class.getSimpleName();
+	}
 }

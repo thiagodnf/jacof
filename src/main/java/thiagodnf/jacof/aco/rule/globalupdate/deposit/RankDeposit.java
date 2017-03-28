@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import thiagodnf.jacof.aco.ACO;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.subset.many.AbstractManyAnts;
+import thiagodnf.jacof.aco.subset.many.RankAnt;
 
 public class RankDeposit extends ElitistDeposit {
 
@@ -16,6 +17,10 @@ public class RankDeposit extends ElitistDeposit {
 		checkNotNull(manyAnts, "The manyAnts cannot be null");
 
 		this.manyAnts = manyAnts;
+	}
+	
+	public RankDeposit(ACO aco) {
+		this(aco, 6, new RankAnt(aco));
 	}
 
 	@Override
@@ -37,5 +42,10 @@ public class RankDeposit extends ElitistDeposit {
 		}
 
 		return deltaTau;
+	}
+	
+	@Override
+	public String toString() {
+		return RankDeposit.class.getSimpleName() + " with weight=" + weight;
 	}
 }

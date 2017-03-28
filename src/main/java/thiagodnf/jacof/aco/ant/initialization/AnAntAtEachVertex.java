@@ -41,4 +41,9 @@ public class AnAntAtEachVertex extends AbstractAntInitialization {
 		
 		return this.positions[antId];
 	}
+	
+	@Override
+	public String toString() {
+		return AnAntAtEachVertex.class.getSimpleName();
+	}
 }

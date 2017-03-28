@@ -51,21 +51,19 @@ public class AntGraph {
 
 		checkNotNull(trailInitialization, "The trail initialization should not be null");
 
-		LOGGER.info("The trail initilization is " + trailInitialization);
-
 		int numberOfNodes = problem.getNumberOfNodes();
 		
-		LOGGER.info("Creating a graph with " + numberOfNodes + " nodes");
-
 		this.tau = new double[numberOfNodes][numberOfNodes];
 
 		for (int i = 0; i < numberOfNodes; i++) {
-			for (int j = 0; j < numberOfNodes; j++) {
-				this.tau[i][j] = trailInitialization.getT0();
+			for (int j = i; j < numberOfNodes; j++) {
+				if (i != j) {
+					this.tau[i][j] = this.tau[j][i] = trailInitialization.getT0();
+				}
 			}
 		}
 
-		LOGGER.info("It was defined T0=" + trailInitialization.getT0());
+		LOGGER.debug("Creating a graph with " + numberOfNodes + " nodes and T0=" + trailInitialization.getT0());
 	}
 
 	/**

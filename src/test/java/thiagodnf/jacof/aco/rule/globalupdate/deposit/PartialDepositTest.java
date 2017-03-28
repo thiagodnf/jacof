@@ -60,8 +60,8 @@ public class PartialDepositTest {{
 			when(aco.getGraph()).thenReturn(graph);
 			when(aco.getGraph().getTau(0, 1)).thenReturn(1.0);
 			
-			Ant a1 = new Ant(aco);
-			Ant a2 = new Ant(aco);
+			Ant a1 = new Ant(aco, 1);
+			Ant a2 = new Ant(aco, 2);
 			
 			when(aco.getAnts()).thenReturn(new Ant[]{a1, a2});
 		});
