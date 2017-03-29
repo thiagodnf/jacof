@@ -45,19 +45,19 @@ ACO aco = new AntSystem(p, ants, interations);
 ```java
 Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
 
-AntColonySystem aco = new AntColonySystem(problem);
+AntSystem aco = new AntSystem(problem);
 
 aco.setNumberOfAnts(10);
 aco.setNumberOfIterations(50);
 aco.setAlpha(1.0);
 aco.setBeta(2.0);
 aco.setRho(0.1);
-	
+
 int[] bestSolution = aco.solve();
 
 double value = problem.evaluate(bestSolution);
 
-System.out.println(Arrays.toString(bestSolution) + " : " + value);
+System.out.println(Arrays.toString(bestSolution) + " : " + value)
 ```
 
 ### Ant Colony System
@@ -82,27 +82,74 @@ double value = problem.evaluate(bestSolution);
 System.out.println(Arrays.toString(bestSolution) + " : " + value);
 ```
 
+### Elitist Ant System
+
+
+```java
+Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+
+ElitistAntSystem aco = new ElitistAntSystem(problem);
+
+aco.setNumberOfAnts(10);
+aco.setNumberOfIterations(50);
+aco.setAlpha(1.0);
+aco.setBeta(2.0);
+aco.setRho(0.1);
+aco.setWeight(6);
+
+int[] bestSolution = aco.solve();
+
+double value = problem.evaluate(bestSolution);
+
+System.out.println(Arrays.toString(bestSolution) + " : " + value);
+
+```
+
+### Rank-based Ant System
+
+```java
+Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+
+RankBasedAntSystem aco = new RankBasedAntSystem(problem);
+
+aco.setNumberOfAnts(10);
+aco.setNumberOfIterations(50);
+aco.setAlpha(1.0);
+aco.setBeta(2.0);
+aco.setRho(0.1);
+aco.setWeight(6);
+
+int[] bestSolution = aco.solve();
+
+double value = problem.evaluate(bestSolution);
+
+System.out.println(Arrays.toString(bestSolution) + " : " + value);
+
+```
+
+### Max-Min Ant System
+
+```java
+Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+
+MaxMinAntSystem aco = new MaxMinAntSystem(problem);
+
+aco.setNumberOfAnts(10);
+aco.setNumberOfIterations(50);
+aco.setAlpha(1.0);
+aco.setBeta(2.0);
+aco.setRho(0.1);
+aco.setStagnation(10);
+
+int[] bestSolution = aco.solve();
+
+double value = problem.evaluate(bestSolution);
+
+System.out.println(Arrays.toString(bestSolution) + " : " + value);
+
+```
+
 Version
 ----
 1.0
-
-Ant System
-
-jacof -p NRP -in src/main/resources/problems/nrp/delsagrado20.nrp -aco AS -n 10 -it 100 -a 2 -b 3 -rho 0.1
-
-Ant Colony System
-
-jacof -p NRP -in src/main/resources/problems/nrp/delsagrado20.nrp -aco ACS -n 10 -it 100 -a 2 -b 3 -rho 0.1 -q0 0.9 -o 0.2
-
-Elitist Ant System
-
-jacof -p NRP -in src/main/resources/problems/nrp/delsagrado20.nrp -aco EAS -n 10 -it 100 -a 2 -b 3 -rho 0.1 -w 6
-
-Rank-based Ant System
-
-jacof -p NRP -in src/main/resources/problems/nrp/delsagrado20.nrp -aco ASRANK -n 10 -it 100 -a 2 -b 3 -rho 0.1 -w 6
-
-Max-Min Ant System
-
-jacof -p NRP -in src/main/resources/problems/nrp/delsagrado20.nrp -aco MMAS -n 10 -it 100 -a 2 -b 3 -rho 0.1
 
