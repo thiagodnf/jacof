@@ -42,7 +42,7 @@ public class RestartCheck extends AbstractDaemonActions {
 	@Override
 	public void doAction() {
 		
-		LOGGER.debug("Verifing if the pheromone values should be restarted");
+		LOGGER.debug("Verifing if the pheromone matrix should be restarted");
 
 		if (bestAnt == null) {
 			bestAnt = aco.getGlobalBest().clone();
