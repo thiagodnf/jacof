@@ -25,9 +25,24 @@ The Problems Developed
 
 This framework addresses the following problems:
 
-* Next Release Problem
-* Traveling Salesperson Problem
+* Next Release Problem (NRP)
+* Traveling Salesperson Problem (TSP)
 
+How To Use
+-------
+This is a example for the Next Release Problem
+
+```java
+int numberOfAnts = 10;
+int numberOfInterations = 100;
+
+Problem p = new NextReleaseProblem("in/delsagrado20.nrp");
+ACO aco = new AntSystem(p, ants, interations);
+```
+
+Version
+----
+1.0
 
 Ant System
 
