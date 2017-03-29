@@ -12,13 +12,13 @@ The ACOs Developed
 
 This framework implements the following ACO's variations:
 
-| Algorithm                  | Authors | Year |
-|---------------------------|----------------------|----------------------|
-Ant System | Dorigo, Maniezzo and Colomi | 1992 |
-Elitist Ant System | Dorigo | 1992 |
-Ant Colony System | Dorigo and Gambardella | 1997 |
-Rank-based Ant System | Bullnheimer, Hartl and Strauss | 1997 |
-MaxMin Ant System | Stützle and Hoos | 2000 |
+| Algorithm                  | Authors | Year | How to use |
+|---------------------------|----------------------|----------------------|----|
+Ant System | Dorigo, Maniezzo and Colomi | 1992 | [Click here](#ant-system)
+Elitist Ant System | Dorigo | 1992 | [Click here](#elitist-ant-system) |
+Ant Colony System | Dorigo and Gambardella | 1997 | [Click here](#ant-colony-system) |
+Rank-based Ant System | Bullnheimer, Hartl and Strauss | 1997 | [Click here](#rank-based-ant-system ) |
+Max-Min Ant System | Stützle and Hoos | 2000 | [Click here](#max-min-ant-system) |
 
 The Problems Developed
 -------
