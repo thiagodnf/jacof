@@ -40,6 +40,48 @@ Problem p = new NextReleaseProblem("in/delsagrado20.nrp");
 ACO aco = new AntSystem(p, ants, interations);
 ```
 
+### Ant System
+
+```java
+Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+
+AntColonySystem aco = new AntColonySystem(problem);
+
+aco.setNumberOfAnts(10);
+aco.setNumberOfIterations(50);
+aco.setAlpha(1.0);
+aco.setBeta(2.0);
+aco.setRho(0.1);
+	
+int[] bestSolution = aco.solve();
+
+double value = problem.evaluate(bestSolution);
+
+System.out.println(Arrays.toString(bestSolution) + " : " + value);
+```
+
+### Ant Colony System
+
+```java
+Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+
+AntColonySystem aco = new AntColonySystem(problem);
+
+aco.setNumberOfAnts(10);
+aco.setNumberOfIterations(50);
+aco.setAlpha(1.0);
+aco.setBeta(2.0);
+aco.setRho(0.1);
+aco.setOmega(0.1);
+aco.setQ0(0.9);
+	
+int[] bestSolution = aco.solve();
+
+double value = problem.evaluate(bestSolution);
+
+System.out.println(Arrays.toString(bestSolution) + " : " + value);
+```
+
 Version
 ----
 1.0
