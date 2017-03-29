@@ -27,7 +27,7 @@ public abstract class AbstractGraphInitialization{
 		
 		this.aco = aco;
 	}
-
+		
 	/**
 	 * Get the initial pheromone value. This value depends
 	 * on the trail initialization chosen

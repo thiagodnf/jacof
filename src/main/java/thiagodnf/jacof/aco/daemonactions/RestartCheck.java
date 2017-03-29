@@ -1,5 +1,7 @@
 package thiagodnf.jacof.aco.daemonactions;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import org.apache.log4j.Logger;
 
 import thiagodnf.jacof.aco.ACO;
@@ -28,6 +30,8 @@ public class RestartCheck extends AbstractDaemonActions {
 	public RestartCheck(ACO aco, int stagnation) {
 		super(aco);
 
+		checkArgument(stagnation >= 1, "The stagnation should be greater or equal than 0");
+		
 		this.stagnation = stagnation;		
 	}
 
@@ -38,7 +42,7 @@ public class RestartCheck extends AbstractDaemonActions {
 	@Override
 	public void doAction() {
 		
-		//LOGGER.debug("Executing " + this);
+		LOGGER.debug("Verifing if the pheromone values should be restarted");
 
 		if (bestAnt == null) {
 			bestAnt = aco.getGlobalBest().clone();
@@ -55,7 +59,7 @@ public class RestartCheck extends AbstractDaemonActions {
 			
 			LOGGER.debug("The stagnation was reached. The pheromone matrix will be restarted");
 			
-			aco.getGraph().initialize(aco.getGraphInitialization());
+			aco.getGraph().initialize(aco.getTMax());
 			stagnationCounter = 0;
 		}
 	}

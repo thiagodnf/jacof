@@ -10,12 +10,11 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import thiagodnf.jacof.aco.ACO;
-import thiagodnf.jacof.factory.ACOFactory;
 import thiagodnf.jacof.factory.ProblemFactory;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.util.Parameters;
 
-public class ACORunner {
+public class GenericRunner {
 
 	protected static Options options;
 	
@@ -29,23 +28,23 @@ public class ACORunner {
 		// Initialize the problem and the ACO
 		Problem problem = ProblemFactory.getProblem(parameters.getString("p"), parameters.getString("in"));
 
-		ACO aco = ACOFactory.getACO(parameters.getString("aco"), problem, parameters);
+//		ACO aco = ACOFactory.getACO(parameters.getString("aco"), problem, parameters);
 		
 		// Define the default parameters used in all aco's
-		aco.setNumberOfAnts(parameters.getInt("n", 10));
-		aco.setNumberOfIterations(parameters.getInt("it", 50));
-		aco.setAlpha(parameters.getDouble("a", 1.0));
-		aco.setBeta(parameters.getDouble("b", 2.0));
-		aco.setRho(parameters.getDouble("rho", 0.1));	
+//		aco.setNumberOfAnts(parameters.getInt("n", 10));
+//		aco.setNumberOfIterations(parameters.getInt("it", 50));
+//		aco.setAlpha(parameters.getDouble("a", 1.0));
+//		aco.setBeta(parameters.getDouble("b", 2.0));
+//		aco.setRho(parameters.getDouble("rho", 0.1));	
 		
-		// Execute the algorithm
-		int[] bestSolution = aco.solve();
-
-		// Evaluate the solution
-		double value = problem.evaluate(bestSolution);
-
-		// Show the best solution
-		System.out.println(Arrays.toString(bestSolution) + " : " + value);
+//		// Execute the algorithm
+//		int[] bestSolution = aco.solve();
+//
+//		// Evaluate the solution
+//		double value = problem.evaluate(bestSolution);
+//
+//		// Show the best solution
+//		System.out.println(Arrays.toString(bestSolution) + " : " + value);
 	}
 
 	public static Parameters parse(String[] args) throws ParseException {

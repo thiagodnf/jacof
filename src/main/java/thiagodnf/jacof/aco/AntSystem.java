@@ -7,16 +7,11 @@ import thiagodnf.jacof.aco.graph.initialization.ASInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.FullDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.util.Parameters;
 
 public class AntSystem extends ACO {
 
-	protected Parameters parameters;
-
-	public AntSystem(Problem problem, Parameters parameters) {
+	public AntSystem(Problem problem) {
 		super(problem);
-		
-		this.parameters = parameters;
 	}
 
 	@Override
@@ -27,7 +22,7 @@ public class AntSystem extends ACO {
 		setAntExploration(new PseudoRandomProportionalRule(this, new RouletteWheel()));
 
 		// Global Update Pheromone Rule
-		getEvaporations().add(new FullEvaporation(this, rho));
+		getEvaporations().add(new FullEvaporation(this, getRho()));
 		getDeposits().add(new FullDeposit(this));
 	}
 	

@@ -43,6 +43,10 @@ public abstract class ACO implements Observer {
 	/** The number of iterations */
 	protected int numberOfIterations;
 	
+	protected double tMin = 0.0;
+	
+	protected double tMax = 1.0;
+	
 	/** Ants **/
 	protected Ant[] ants;
 	
@@ -407,6 +411,22 @@ public abstract class ACO implements Observer {
 
 	public void setRho(double rho) {
 		this.rho = rho;
+	}
+	
+	public double getTMin() {
+		return tMin;
+	}
+
+	public void setTMin(double tMin) {
+		this.tMin = tMin;
+	}
+
+	public double getTMax() {
+		return tMax;
+	}
+
+	public void setTMax(double tMax) {
+		this.tMax = tMax;
 	}
 	
 	/**

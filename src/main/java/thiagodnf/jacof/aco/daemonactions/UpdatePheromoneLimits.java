@@ -13,10 +13,6 @@ import thiagodnf.jacof.aco.ant.Ant;
  */
 public class UpdatePheromoneLimits extends AbstractDaemonActions {
 
-	protected double tMin;
-
-	protected double tMax;
-	
 	protected double rate;
 	
 	protected Ant bestSoFar;
@@ -28,14 +24,15 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 		super(aco);
 
 		this.rate = rate;
-		this.tMin = tMin;
-		this.tMax = tMax;
+
+		aco.setTMin(tMin);
+		aco.setTMax(tMax);
 	}	
 
 	@Override
 	public void doAction() {
 		
-		//LOGGER.debug("Executing " + this);
+		LOGGER.debug("Updating the pheromone limits");
 		
 		if (bestSoFar == null) {
 			bestSoFar = aco.getGlobalBest().clone();
@@ -44,28 +41,18 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 		
 		if (bestSoFar.getTourLength() != aco.getGlobalBest().getTourLength()) {
 			bestSoFar = aco.getGlobalBest().clone();
-			updateMinAndMaxValues();			
-		}
-		
-		for (int i = 0; i < aco.getProblem().getNumberOfNodes(); i++) {
-
-			for (int j = i; j < aco.getProblem().getNumberOfNodes(); j++) {
-
-				if (i != j) {
-					aco.getGraph().setTau(i, j, Math.min(aco.getGraph().getTau(i, j), tMax));
-					aco.getGraph().setTau(i, j, Math.max(aco.getGraph().getTau(i, j), tMin));
-					aco.getGraph().setTau(j, i, aco.getGraph().getTau(i, j));
-				}
-			}
-		}
+			updateMinAndMaxValues();
+		}		
 	}
 	
 	protected void updateMinAndMaxValues() {
 
-		tMax = 1.0 / (rate * bestSoFar.getTourLength());
-		tMin = tMax / 2.0;
+		LOGGER.info("Updating tMin and tMax values");
 
-		LOGGER.info("The bound was updated for tMin="+tMin+" and tMax=" + tMax);
+		aco.setTMax(1.0 / (rate * bestSoFar.getTourLength()));
+		aco.setTMin(aco.getTMax() / 4.0);
+
+		LOGGER.info("Now tMin=" + aco.getTMin() + " and tMax=" + aco.getTMax());
 	}
 	
 	@Override

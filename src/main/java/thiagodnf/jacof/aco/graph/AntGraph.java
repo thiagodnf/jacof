@@ -101,7 +101,7 @@ public class AntGraph {
 	public double[][] getTau(){
 		return this.tau;
 	}
-
+	
 	/**
 	 * Returns a string representation of the object. 
 	 */	
