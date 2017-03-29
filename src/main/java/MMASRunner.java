@@ -5,24 +5,24 @@ import org.apache.commons.cli.ParseException;
 
 import thiagodnf.jacof.aco.MaxMinAntSystem;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
+import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
 
 public class MMASRunner {
 
 	public static void main(String[] args) throws ParseException, IOException {
 
-		String instance = "src/main/resources/problems/nrp/delsagrado20.nrp";
+		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
 
-		Problem problem = new NextReleaseProblem(instance);
+		Problem problem = new TravellingSalesmanProblem(instance);
 
 		MaxMinAntSystem aco = new MaxMinAntSystem(problem);
 
-		aco.setNumberOfAnts(10);
-		aco.setNumberOfIterations(50);
+		aco.setNumberOfAnts(30);
+		aco.setNumberOfIterations(5000);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
-		aco.setStagnation(10);
+		aco.setStagnation(100);
 
 		int[] bestSolution = aco.solve();
 

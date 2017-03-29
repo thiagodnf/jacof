@@ -5,22 +5,22 @@ import org.apache.commons.cli.ParseException;
 
 import thiagodnf.jacof.aco.AntSystem;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.nrp.NextReleaseProblem;
+import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
 
 public class ASRunner {
 
 	public static void main(String[] args) throws ParseException, IOException {
 
-		String instance = "src/main/resources/problems/nrp/delsagrado20.nrp";
+		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
 
-		Problem problem = new NextReleaseProblem(instance);
+		Problem problem = new TravellingSalesmanProblem(instance);
 
 		AntSystem aco = new AntSystem(problem);
 
-		aco.setNumberOfAnts(10);
-		aco.setNumberOfIterations(50);
+		aco.setNumberOfAnts(30);
+		aco.setNumberOfIterations(5000);
 		aco.setAlpha(1.0);
-		aco.setBeta(2.0);
+		aco.setBeta(5.0);
 		aco.setRho(0.1);
 		
 		int[] bestSolution = aco.solve();
