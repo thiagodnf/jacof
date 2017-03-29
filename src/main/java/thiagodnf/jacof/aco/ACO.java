@@ -88,6 +88,8 @@ public abstract class ACO implements Observer {
 	/** The class logger*/
 	static final Logger LOGGER = Logger.getLogger(ACO.class);
 	
+	/** The evaporation rate */
+	protected double rho;
 	/**
 	 * Constructor
 	 * 
@@ -97,7 +99,7 @@ public abstract class ACO implements Observer {
 		
 		checkNotNull(problem, "The problem cannot be null");
 		
-		this.problem = problem;
+		this.problem = problem;		
 	}
 	
 	/**
@@ -397,6 +399,14 @@ public abstract class ACO implements Observer {
 
 	public void setDaemonActions(List<AbstractDaemonActions> daemonActions) {
 		this.daemonActions = daemonActions;
+	}
+	
+	public double getRho() {
+		return rho;
+	}
+
+	public void setRho(double rho) {
+		this.rho = rho;
 	}
 	
 	/**

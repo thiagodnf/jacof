@@ -7,21 +7,12 @@ import thiagodnf.jacof.aco.graph.initialization.EASInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.ElitistDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.Parameters;
 
 public class ElitistAntSystem extends AntSystem {
 
-	protected int weight;
-	
-	public ElitistAntSystem(Problem problem) {
-		super(problem);
-	}
-	
-	public int getWeight() {
-		return weight;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
+	public ElitistAntSystem(Problem problem, Parameters parameters) {
+		super(problem, parameters);
 	}
 
 	@Override
@@ -30,12 +21,12 @@ public class ElitistAntSystem extends AntSystem {
 		setAntInitialization(new AnAntAtEachVertex(this));
 
 		setAntExploration(new PseudoRandomProportionalRule(this, new RouletteWheel()));
-		
+
 		// Global Update Pheromone Rule
 		getEvaporations().add(new FullEvaporation(this, rho));
-		getDeposits().add(new ElitistDeposit(this, weight));
+		getDeposits().add(new ElitistDeposit(this, parameters.getInt("w", 5)));
 	}
-	
+
 	@Override
 	public String toString() {
 		return ElitistAntSystem.class.getSimpleName();

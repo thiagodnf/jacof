@@ -28,7 +28,7 @@ public class ACSLocalUpdatingRule extends AbstractLocalUpdateRule {
 	}
 	
 	@Override
-	public String toString(){
-		return ACSLocalUpdatingRule.class.getSimpleName();
+	public String toString() {
+		return ACSLocalUpdatingRule.class.getSimpleName() + " with rate=" + rate;
 	}
 }

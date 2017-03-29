@@ -35,7 +35,7 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 	@Override
 	public void doAction() {
 		
-		LOGGER.debug("Executing " + this);
+		//LOGGER.debug("Executing " + this);
 		
 		if (bestSoFar == null) {
 			bestSoFar = aco.getGlobalBest().clone();

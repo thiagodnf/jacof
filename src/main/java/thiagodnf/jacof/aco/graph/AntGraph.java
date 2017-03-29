@@ -47,9 +47,7 @@ public class AntGraph {
 	 * 
 	 * @param trailInitialization The method used to initialize the arc(i,j)
 	 */
-	public void initialize(AbstractGraphInitialization trailInitialization) {
-
-		checkNotNull(trailInitialization, "The trail initialization should not be null");
+	public void initialize(double t0) {
 
 		int numberOfNodes = problem.getNumberOfNodes();
 		
@@ -58,12 +56,19 @@ public class AntGraph {
 		for (int i = 0; i < numberOfNodes; i++) {
 			for (int j = i; j < numberOfNodes; j++) {
 				if (i != j) {
-					this.tau[i][j] = this.tau[j][i] = trailInitialization.getT0();
+					this.tau[i][j] = this.tau[j][i] = t0;
 				}
 			}
 		}
 
-		LOGGER.debug("Creating a graph with " + numberOfNodes + " nodes and T0=" + trailInitialization.getT0());
+		LOGGER.debug("Creating a graph with " + numberOfNodes + " nodes and T0=" + t0);
+	}
+	
+	public void initialize(AbstractGraphInitialization trailInitialization) {
+
+		checkNotNull(trailInitialization, "The trail initialization should not be null");
+
+		this.initialize(trailInitialization.getT0());
 	}
 
 	/**

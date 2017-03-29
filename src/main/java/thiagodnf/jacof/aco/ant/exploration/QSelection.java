@@ -80,6 +80,6 @@ public class QSelection extends PseudoRandomProportionalRule {
 	
 	@Override
 	public String toString() {
-		return QSelection.class.getSimpleName();
+		return QSelection.class.getSimpleName() + " with " + antSelection + " and q0=" + q0;
 	}
 }

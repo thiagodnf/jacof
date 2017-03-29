@@ -38,7 +38,7 @@ public class RestartCheck extends AbstractDaemonActions {
 	@Override
 	public void doAction() {
 		
-		LOGGER.debug("Executing " + this);
+		//LOGGER.debug("Executing " + this);
 
 		if (bestAnt == null) {
 			bestAnt = aco.getGlobalBest().clone();

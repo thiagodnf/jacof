@@ -7,21 +7,16 @@ import thiagodnf.jacof.aco.graph.initialization.ASInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.FullDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.Parameters;
 
 public class AntSystem extends ACO {
 
-	protected double rho;
+	protected Parameters parameters;
 
-	public AntSystem(Problem problem) {
+	public AntSystem(Problem problem, Parameters parameters) {
 		super(problem);
-	}
-
-	public double getRho() {
-		return rho;
-	}
-
-	public void setRho(double rho) {
-		this.rho = rho;
+		
+		this.parameters = parameters;
 	}
 
 	@Override

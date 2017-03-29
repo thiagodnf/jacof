@@ -9,31 +9,12 @@ import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.ACSLocalUpdatingRule;
 import thiagodnf.jacof.aco.subset.single.GlobalBest;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.Parameters;
 
 public class AntColonySystem extends AntSystem {
 
-	protected double q0;
-	
-	protected double omega;
-
-	public AntColonySystem(Problem problem) {
-		super(problem);
-	}
-
-	public double getQ0() {
-		return q0;
-	}
-
-	public void setQ0(double q0) {
-		this.q0 = q0;
-	}
-	
-	public double getOmega() {
-		return omega;
-	}
-
-	public void setOmega(double omega) {
-		this.omega = omega;
+	public AntColonySystem(Problem problem, Parameters parameters) {
+		super(problem, parameters);
 	}
 
 	@Override
@@ -41,9 +22,9 @@ public class AntColonySystem extends AntSystem {
 		setGraphInitialization(new ACSInitialization(this));
 		setAntInitialization(new AnAntAtEachVertex(this));
 
-		setAntExploration(new QSelection(this, new RouletteWheel(), q0));
+		setAntExploration(new QSelection(this, new RouletteWheel(), parameters.getDouble("q0", 0.95)));
 
-		setAntLocalUpdate(new ACSLocalUpdatingRule(this, omega));
+		setAntLocalUpdate(new ACSLocalUpdatingRule(this, parameters.getDouble("o", 0.1)));
 
 		// Global Update Pheromone Rule
 		getEvaporations().add(new FullEvaporation(this, rho));

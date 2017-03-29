@@ -10,11 +10,12 @@ import thiagodnf.jacof.aco.rule.globalupdate.deposit.PartialDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.aco.subset.single.GlobalBest;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.Parameters;
 
 public class MaxMinAntSystem extends AntSystem {
 
-	public MaxMinAntSystem(Problem problem) {
-		super(problem);
+	public MaxMinAntSystem(Problem problem, Parameters parameters) {
+		super(problem, parameters);
 	}
 	
 	@Override

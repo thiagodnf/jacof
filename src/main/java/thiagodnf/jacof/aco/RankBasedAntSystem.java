@@ -8,11 +8,12 @@ import thiagodnf.jacof.aco.rule.globalupdate.deposit.RankDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.FullEvaporation;
 import thiagodnf.jacof.aco.subset.many.RankAnt;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.util.Parameters;
 
 public class RankBasedAntSystem extends ElitistAntSystem {
 
-	public RankBasedAntSystem(Problem problem) {
-		super(problem);
+	public RankBasedAntSystem(Problem problem, Parameters parameters) {
+		super(problem, parameters);
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class RankBasedAntSystem extends ElitistAntSystem {
 		
 		// Global Update Pheromone Rule
 		getEvaporations().add(new FullEvaporation(this, rho));
-		getDeposits().add(new RankDeposit(this, weight, new RankAnt(this, getNumberOfAnts())));
+		getDeposits().add(new RankDeposit(this, parameters.getInt("w", 5), new RankAnt(this, getNumberOfAnts())));
 	}
 	
 	@Override
