@@ -26,7 +26,7 @@ public abstract class AbstractSubSet {
 	protected JMetalRandom rand = JMetalRandom.getInstance();
 	
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger(AbstractSubSet.class);
+	static final Logger LOGGER = Logger.getLogger(AbstractSubSet.class);
 	
 	/**
 	 * Constructor
@@ -48,5 +48,6 @@ public abstract class AbstractSubSet {
 	 */
 	public abstract List<Ant> getSubSet();
 	
+	@Override
 	public abstract String toString();
 }

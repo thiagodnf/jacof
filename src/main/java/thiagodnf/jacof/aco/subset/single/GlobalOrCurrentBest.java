@@ -52,6 +52,7 @@ public class GlobalOrCurrentBest extends AbstractSingleAnt {
 		}
 	}
 	
+	@Override
 	public String toString(){
 		return GlobalOrCurrentBest.class.getSimpleName();
 	}

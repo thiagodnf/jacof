@@ -39,5 +39,6 @@ public abstract class AbstractGraphInitialization{
 	/**
 	 * Returns a string representation of the object. 
 	 */
+	@Override
 	public abstract String toString();
 }

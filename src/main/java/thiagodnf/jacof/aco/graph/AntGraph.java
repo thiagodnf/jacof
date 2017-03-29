@@ -27,7 +27,7 @@ public class AntGraph {
 	protected Problem problem;
 
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger(AntGraph.class);
+	static final Logger LOGGER = Logger.getLogger(AntGraph.class);
 
 	/**
 	 * Constructor

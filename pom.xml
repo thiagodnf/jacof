@@ -10,7 +10,9 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.test.exclusions>**/test/*</sonar.test.exclusions>
+		<sonar.test.exclusions>
+			src/test/**
+		</sonar.test.exclusions>
 	</properties>
 	<developers>
 		<developer>
@@ -185,6 +187,19 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>fully.qualified.MainClass</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

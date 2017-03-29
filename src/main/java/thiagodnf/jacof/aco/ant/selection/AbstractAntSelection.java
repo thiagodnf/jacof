@@ -8,5 +8,6 @@ public abstract class AbstractAntSelection {
 
 	public abstract int select(double[] probability, double sumProbability);
 	
+	@Override
 	public abstract String toString();
 }

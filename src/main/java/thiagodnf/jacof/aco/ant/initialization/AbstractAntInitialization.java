@@ -35,5 +35,6 @@ public abstract class AbstractAntInitialization{
 	 */
 	public abstract int getPosition(int antId);
 	
+	@Override
 	public abstract String toString();
 }

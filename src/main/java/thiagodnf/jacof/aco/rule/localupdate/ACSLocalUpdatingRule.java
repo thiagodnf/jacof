@@ -27,6 +27,7 @@ public class ACSLocalUpdatingRule extends AbstractLocalUpdateRule {
 		aco.getGraph().setTau(j, i, evaporation + deposition);
 	}
 	
+	@Override
 	public String toString(){
 		return ACSLocalUpdatingRule.class.getSimpleName();
 	}

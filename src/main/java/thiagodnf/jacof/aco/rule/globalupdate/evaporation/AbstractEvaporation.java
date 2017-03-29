@@ -11,5 +11,6 @@ public abstract class AbstractEvaporation extends AbstractGlobalUpdateRule {
 
 	public abstract double getTheNewValue(int i, int j);
 	
+	@Override
 	public abstract String toString();
 }

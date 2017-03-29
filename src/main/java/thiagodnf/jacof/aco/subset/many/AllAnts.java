@@ -29,7 +29,7 @@ public class AllAnts extends AbstractManyAnts {
 
 		Ant[] ants = aco.getAnts();
 
-		List<Ant> list = new ArrayList<Ant>();
+		List<Ant> list = new ArrayList<>();
 
 		for (int i = 0; i < ants.length; i++) {
 			list.add(ants[i].clone());
@@ -38,6 +38,7 @@ public class AllAnts extends AbstractManyAnts {
 		return list;
 	}
 
+	@Override
 	public String toString(){
 		return AllAnts.class.getSimpleName();
 	}

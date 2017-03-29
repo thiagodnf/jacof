@@ -20,6 +20,7 @@ public abstract class Problem {
 
 	public abstract double getNij(int i, int j);
 	
+	@Override
 	public abstract String toString();
 
 	public abstract List<Integer> initNodesToVisit(int startingNode);

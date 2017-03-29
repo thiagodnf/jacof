@@ -31,13 +31,14 @@ public class RandomAnt extends AbstractSingleAnt {
 
 		int index = rand.nextInt(0, ants.length - 1);
 
-		List<Ant> list = new ArrayList<Ant>();
+		List<Ant> list = new ArrayList<>();
 
 		list.add(ants[index].clone());
 
 		return list;
 	}
 	
+	@Override
 	public String toString(){
 		return RandomAnt.class.getSimpleName();
 	}

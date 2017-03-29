@@ -86,7 +86,7 @@ public abstract class ACO implements Observer {
 	protected List<AbstractDeposit> deposits = new ArrayList<>();
 	
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger(ACO.class);
+	static final Logger LOGGER = Logger.getLogger(ACO.class);
 	
 	/**
 	 * Constructor
@@ -238,6 +238,7 @@ public abstract class ACO implements Observer {
 	 * When an ant has finished its search process, this method is called to
 	 * update the current and global best solutions.
 	 */
+	@Override
 	public synchronized void update(Observable obj, Object arg) {
 		
 		Ant ant = (Ant) obj;

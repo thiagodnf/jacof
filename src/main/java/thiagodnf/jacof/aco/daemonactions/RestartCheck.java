@@ -23,7 +23,7 @@ public class RestartCheck extends AbstractDaemonActions {
 	protected Ant bestAnt;
 	
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger(RestartCheck.class);
+	static final Logger LOGGER = Logger.getLogger(RestartCheck.class);
 	
 	public RestartCheck(ACO aco, int stagnation) {
 		super(aco);

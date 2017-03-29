@@ -28,6 +28,7 @@ public class RankDeposit extends ElitistDeposit {
 		return aco.getGraph().getTau(i, j) + getDeltaTau(i, j) + weight * super.getDeltaTauGlobalBest(i, j);
 	}
 
+	@Override
 	public double getDeltaTau(int i, int j) {
 
 		double deltaTau = 0.0;

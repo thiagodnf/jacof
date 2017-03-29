@@ -17,5 +17,6 @@ public abstract class AbstractDaemonActions {
 	
 	public abstract void doAction();
 	
+	@Override
 	public abstract String toString();
 }

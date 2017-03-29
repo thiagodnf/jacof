@@ -69,6 +69,7 @@ public class NextReleaseProblem extends Problem {
 		this.costR = Arrays.stream(requirementsCosts).reduce(Double::sum).getAsDouble();
 	}
 
+	@Override
 	public double evaluate(int[] solution) {
 
 		Preconditions.checkNotNull(solution, "The solution cannot be null");
@@ -170,16 +171,15 @@ public class NextReleaseProblem extends Problem {
 		List<Integer> nodesToVisit = new ArrayList<>();
 
 		for (int i = 0; i < getNumberOfNodes(); i++) {
-			if (i != startingNode) {
-				if (requirementsCosts[i] <= budget) {
-					nodesToVisit.add(new Integer(i));
-				}
+			if (i != startingNode && requirementsCosts[i] <= budget) {
+				nodesToVisit.add(new Integer(i));
 			}
 		}
 
 		return nodesToVisit;
 	}
 	
+	@Override
 	public List<Integer> updateNodesToVisit(List<Integer> tour, List<Integer> nodesToVisit) {
 
 		List<Integer> nodesToRemove = new ArrayList<Integer>();

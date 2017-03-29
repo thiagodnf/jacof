@@ -22,7 +22,7 @@ public class UpdatePheromoneLimits extends AbstractDaemonActions {
 	protected Ant bestSoFar;
 	
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger(UpdatePheromoneLimits.class);
+	static final Logger LOGGER = Logger.getLogger(UpdatePheromoneLimits.class);
 
 	public UpdatePheromoneLimits(ACO aco, double rate, double tMin, double tMax) {
 		super(aco);

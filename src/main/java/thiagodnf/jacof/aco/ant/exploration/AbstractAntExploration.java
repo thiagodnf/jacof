@@ -31,7 +31,7 @@ public abstract class AbstractAntExploration {
 	protected AbstractAntSelection antSelection;
 	
 	/** The class logger*/
-	final static Logger LOGGER = Logger.getLogger("ANT");
+	static final Logger LOGGER = Logger.getLogger("ANT");
 	
 	/**
 	 * Constructor
@@ -66,6 +66,7 @@ public abstract class AbstractAntExploration {
 	 * @return the next node
 	 */
 	public abstract int getNextNode(Ant ant, int currentNode);
-	
+
+	@Override
 	public abstract String toString();
 }

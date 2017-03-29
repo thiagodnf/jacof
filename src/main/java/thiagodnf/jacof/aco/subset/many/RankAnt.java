@@ -4,7 +4,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import thiagodnf.jacof.aco.ACO;
@@ -54,22 +53,18 @@ public class RankAnt extends AbstractManyAnts {
 		Ant[] ants = aco.getAnts();
 		
 		Ant[] copy = Arrays.copyOf(ants, ants.length);
-
-		Arrays.sort(copy, new Comparator<Ant>() {
-
-			@Override
-			public int compare(Ant ant1, Ant ant2) {
-				if (aco.getProblem().better(ant1.getTourLength(), ant2.getTourLength())) {
-					return -1;
-				} else if (aco.getProblem().better(ant2.getTourLength(), ant1.getTourLength())) {
-					return 1;
-				} else {
-					return 0;
-				}
+		
+		Arrays.sort(copy, (Ant ant1, Ant ant2) -> {
+			if (aco.getProblem().better(ant1.getTourLength(), ant2.getTourLength())) {
+				return -1;
+			} else if (aco.getProblem().better(ant2.getTourLength(), ant1.getTourLength())) {
+				return 1;
+			} else {
+				return 0;
 			}
 		});
 		
-		List<Ant> list = new ArrayList<Ant>();
+		List<Ant> list = new ArrayList<>();
 		
 		for (int i = 0; i < rank; i++) {
 			list.add(copy[i].clone());
@@ -78,6 +73,7 @@ public class RankAnt extends AbstractManyAnts {
 		return list;
 	}
 
+	@Override
 	public String toString(){
 		return RankAnt.class.getSimpleName();
 	}

@@ -26,13 +26,14 @@ public class CurrentBest extends AbstractSingleAnt {
 
 	@Override
 	public List<Ant> getSubSet() {
-		List<Ant> list = new ArrayList<Ant>();
+		List<Ant> list = new ArrayList<>();
 
 		list.add(aco.getCurrentBest().clone());
 
 		return list;
 	}
 	
+	@Override
 	public String toString(){
 		return CurrentBest.class.getSimpleName();
 	}
