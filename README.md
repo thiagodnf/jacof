@@ -30,15 +30,7 @@ This framework addresses the following problems:
 
 How To Use
 -------
-This is a example for the Next Release Problem
-
-```java
-int numberOfAnts = 10;
-int numberOfInterations = 100;
-
-Problem p = new NextReleaseProblem("in/delsagrado20.nrp");
-ACO aco = new AntSystem(p, ants, interations);
-```
+At the following, it is pointed out how to use each ACO's variations
 
 ### Ant System
 
