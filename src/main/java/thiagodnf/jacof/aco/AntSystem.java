@@ -22,7 +22,7 @@ public class AntSystem extends ACO {
 		setAntExploration(new PseudoRandomProportionalRule(this, new RouletteWheel()));
 
 		// Global Update Pheromone Rule
-		getEvaporations().add(new FullEvaporation(this, getRho()));
+		getEvaporations().add(new FullEvaporation(this, rho));
 		getDeposits().add(new FullDeposit(this));
 	}
 	

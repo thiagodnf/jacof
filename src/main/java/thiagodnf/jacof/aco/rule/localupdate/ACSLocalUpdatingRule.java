@@ -24,7 +24,7 @@ public class ACSLocalUpdatingRule extends AbstractLocalUpdateRule {
 		double deposition = rate * aco.getGraphInitialization().getT0();
 		
 		aco.getGraph().setTau(i, j, evaporation + deposition);
-		aco.getGraph().setTau(j, i, evaporation + deposition);
+		//aco.getGraph().setTau(j, i, evaporation + deposition);
 	}
 	
 	@Override

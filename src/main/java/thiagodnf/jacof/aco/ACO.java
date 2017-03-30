@@ -182,6 +182,8 @@ public abstract class ACO implements Observer {
 		for (int i = 0; i < problem.getNumberOfNodes(); i++) {
 
 			for (int j = i; j < problem.getNumberOfNodes(); j++) {
+			
+//			for (int j = 0; j < problem.getNumberOfNodes(); j++) {
 
 				if (i != j) {
 					// Do Evaporation
@@ -253,12 +255,12 @@ public abstract class ACO implements Observer {
 		ant.setTourLength(problem.evaluate(ant.getSolution()));
 
 		// Update the current best solution
-		if (currentBest == null || problem.better(ant.getSolution(), currentBest.getSolution())) {
+		if (currentBest == null || problem.better(ant.getTourLength(), currentBest.getTourLength())) {
 			currentBest = ant.clone();
 		}
 		
 		// Update the global best solution
-		if (globalBest == null || problem.better(ant.getSolution(), globalBest.getSolution())) {
+		if (globalBest == null || problem.better(ant.getTourLength(), globalBest.getTourLength())) {
 			globalBest = ant.clone();
 		}
 		
