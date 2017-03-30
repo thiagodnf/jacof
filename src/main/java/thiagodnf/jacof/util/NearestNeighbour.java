@@ -54,7 +54,7 @@ public class NearestNeighbour {
 		}
 		
 		//Add the start city in the solution
-		//solution.add(solution.get(0));
+		solution.add(solution.get(0));
 
 		return solution.stream().mapToInt(x -> x).toArray();
 	}

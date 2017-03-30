@@ -105,7 +105,7 @@ public class Ant extends Observable implements Runnable{
 
 			// Mark as visited the arc(i,j)
 			path[currentNode][nextNode] = 1;
-			//path[nextNode][currentNode] = 1;
+			path[nextNode][currentNode] = 1;
 
 			// update the list of the nodes to visit
 			nodesToVisit = aco.getProblem().updateNodesToVisit(tour, nodesToVisit);

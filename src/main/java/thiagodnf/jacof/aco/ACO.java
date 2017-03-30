@@ -183,8 +183,6 @@ public abstract class ACO implements Observer {
 
 			for (int j = i; j < problem.getNumberOfNodes(); j++) {
 			
-//			for (int j = 0; j < problem.getNumberOfNodes(); j++) {
-
 				if (i != j) {
 					// Do Evaporation
 					for (AbstractEvaporation evaporation : evaporations) {

@@ -3,6 +3,7 @@ package thiagodnf.jacof.problem.tsp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import thiagodnf.jacof.problem.Problem;
@@ -45,10 +46,9 @@ public class TravellingSalesmanProblem extends Problem {
 		NearestNeighbour nn = new NearestNeighbour();		
 		
 		this.cnn = evaluate(nn.solve(this));
-		
-		//int[] best = new int[]{0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,23,25,26,27,28,29,1};
-		
-		//System.out.println(evaluate(best));
+
+		System.out.println("Best Solution: " + Arrays.toString(getTheBestSolution()));
+		System.out.println("Best Value: " + evaluate(getTheBestSolution()));
 	}
 	
 	@Override
@@ -63,6 +63,10 @@ public class TravellingSalesmanProblem extends Problem {
 	
 	public double getDistance(int i, int j) {
 		return this.distance[i][j];
+	}
+	
+	public int[] getTheBestSolution(){
+		return new int[]{0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,23,25,26,27,28,29,1};
 	}
 	
 	@Override
@@ -125,6 +129,13 @@ public class TravellingSalesmanProblem extends Problem {
 
 	@Override
 	public List<Integer> updateNodesToVisit(List<Integer> tour, List<Integer> nodesToVisit) {
+		
+		if (nodesToVisit.isEmpty()) {
+			if (!tour.get(0).equals(tour.get(tour.size() - 1))) {
+				nodesToVisit.add(tour.get(0));
+			}
+		}
+		
 		return nodesToVisit;
 	}	
 }
