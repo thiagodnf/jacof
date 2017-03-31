@@ -4,7 +4,7 @@ import thiagodnf.jacof.aco.ant.exploration.PseudoRandomProportionalRule;
 import thiagodnf.jacof.aco.ant.initialization.AnAntAtEachVertex;
 import thiagodnf.jacof.aco.ant.selection.RouletteWheel;
 import thiagodnf.jacof.aco.daemonactions.RestartCheck;
-import thiagodnf.jacof.aco.daemonactions.UpdatePheromoneLimitsBasedOnTheBestSolution;
+import thiagodnf.jacof.aco.daemonactions.UpdateTMinAndTMaxValues;
 import thiagodnf.jacof.aco.daemonactions.UpdatePheromoneMatrix;
 import thiagodnf.jacof.aco.graph.initialization.MMASInitialization;
 import thiagodnf.jacof.aco.rule.globalupdate.deposit.PartialDeposit;
@@ -31,18 +31,18 @@ public class MaxMinAntSystem extends AntSystem {
 	@Override
 	public void build() {
 		// Initialization
-		setGraphInitialization(new MMASInitialization(this));
+		setGraphInitialization(new MMASInitialization(this, rho));
 		setAntInitialization(new AnAntAtEachVertex(this));
 
 		// Exploration
 		setAntExploration(new PseudoRandomProportionalRule(this, new RouletteWheel()));
 
 		// Global Update Pheromone Rule
-		getEvaporations().add(new FullEvaporation(this, getRho()));
+		getEvaporations().add(new FullEvaporation(this, rho));
 		getDeposits().add(new PartialDeposit(this, 1.0, new GlobalBest(this)));
 
 		// Daemon Actions
-		getDaemonActions().add(new UpdatePheromoneLimitsBasedOnTheBestSolution(this, rho));
+		getDaemonActions().add(new UpdateTMinAndTMaxValues(this, rho));
 		getDaemonActions().add(new UpdatePheromoneMatrix(this));
 		getDaemonActions().add(new RestartCheck(this, stagnation));
 	}

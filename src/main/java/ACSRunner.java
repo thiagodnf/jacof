@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.apache.commons.cli.ParseException;
+import org.apache.log4j.Logger;
 
 import thiagodnf.jacof.aco.AntColonySystem;
 import thiagodnf.jacof.problem.Problem;
@@ -9,6 +10,9 @@ import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
 
 public class ACSRunner {
 
+	/** The class logger*/
+	static final Logger LOGGER = Logger.getLogger(ACSRunner.class);
+	
 	public static void main(String[] args) throws ParseException, IOException {
 
 		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
@@ -25,12 +29,15 @@ public class ACSRunner {
 		aco.setOmega(0.1);
 		aco.setQ0(0.9);
 
+		long initTime = System.currentTimeMillis();
 		int[] bestSolution = aco.solve();
-
-		double value = problem.evaluate(bestSolution);
-
-		System.out.println(Arrays.toString(bestSolution) + " : " + value);
-
+		long executionTime = System.currentTimeMillis() - initTime ;
+		
+		LOGGER.info("==================================================");
+		LOGGER.info("Execution Time: " + executionTime);
+		LOGGER.info("Best Value: " + problem.evaluate(bestSolution));
+		LOGGER.info("Best Solution: " + Arrays.toString(bestSolution));
+		LOGGER.info("==================================================");
 	}
 
 }

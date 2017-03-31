@@ -59,7 +59,7 @@ public class RestartCheck extends AbstractDaemonActions {
 			
 			LOGGER.debug("The stagnation was reached. The pheromone matrix will be restarted");
 			
-			aco.getGraph().initialize(aco.getTMax());
+			aco.getGraph().initialize(aco.getGraph().getTMax());
 			stagnationCounter = 0;
 		}
 	}

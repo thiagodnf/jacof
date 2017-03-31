@@ -43,10 +43,6 @@ public abstract class ACO implements Observer {
 	/** The number of iterations */
 	protected int numberOfIterations;
 	
-	protected double tMin = 0.0;
-	
-	protected double tMax = 1.0;
-	
 	/** Ants **/
 	protected Ant[] ants;
 	
@@ -103,7 +99,8 @@ public abstract class ACO implements Observer {
 		
 		checkNotNull(problem, "The problem cannot be null");
 		
-		this.problem = problem;		
+		this.problem = problem;
+		this.graph = new AntGraph(problem);
 	}
 	
 	/**
@@ -113,7 +110,7 @@ public abstract class ACO implements Observer {
 	 */
 	public int[] solve() {
 		
-		LOGGER.debug("Starting ACO");
+		LOGGER.info("Starting ACO");
 		
 		build();
 		
@@ -128,7 +125,7 @@ public abstract class ACO implements Observer {
 			daemonActions(); // optional
 		}
 		
-		LOGGER.debug("Done");
+		LOGGER.info("Done");
 
 		return globalBest.getSolution();
 	}
@@ -139,9 +136,8 @@ public abstract class ACO implements Observer {
 	 */
 	protected void initializePheromones() {
 		
-		LOGGER.debug("Initializing the pheromones");
+		LOGGER.info("Initializing the pheromones");
 		
-		this.graph = new AntGraph(problem);
 		this.graph.initialize(graphInitialization);
 	}
 	
@@ -269,8 +265,8 @@ public abstract class ACO implements Observer {
 			// Restart the counter to build the solutions again
 			finishedAnts = 0;
 			
-			LOGGER.debug("The current best solution is " + currentBest);
-			LOGGER.debug("The global best solution is " + globalBest);			
+			LOGGER.debug("Current-best: " + currentBest);
+			LOGGER.info("Global-best: " + globalBest);			
 			
 			// Continue all execution
 			notify();
@@ -413,41 +409,25 @@ public abstract class ACO implements Observer {
 		this.rho = rho;
 	}
 	
-	public double getTMin() {
-		return tMin;
-	}
-
-	public void setTMin(double tMin) {
-		this.tMin = tMin;
-	}
-
-	public double getTMax() {
-		return tMax;
-	}
-
-	public void setTMax(double tMax) {
-		this.tMax = tMax;
-	}
-	
 	/**
 	 * Print the parameters
 	 */
 	protected void printParameters(){
-		LOGGER.debug("=================== Parameters ===================");
-		LOGGER.debug("Derivation: " + this.toString());
-		LOGGER.debug("Problem: " + this.problem);
-		LOGGER.debug("Number of Ants: " + this.numberOfAnts);
-		LOGGER.debug("Number of Iterations: " + this.numberOfIterations);
-		LOGGER.debug("Alpha: " + this.alpha);
-		LOGGER.debug("Beta: " + this.beta);		
-		LOGGER.debug("Graph Initialization: " + this.graphInitialization);
-		LOGGER.debug("Ant Initialization: " + this.antInitialization);
-		LOGGER.debug("Ant Exploration: " + this.antExploration);
-		LOGGER.debug("Ant Local Update Rule: " + this.antLocalUpdate);
-		LOGGER.debug("Evaporations: " + this.evaporations);
-		LOGGER.debug("Deposits: " + this.deposits);
-		LOGGER.debug("Daemon Actions: " + this.daemonActions);
-		LOGGER.debug("==================================================");
+		LOGGER.info("=================== Parameters ===================");
+		LOGGER.info("Derivation: " + this.toString());
+		LOGGER.info("Problem: " + this.problem);
+		LOGGER.info("Number of Ants: " + this.numberOfAnts);
+		LOGGER.info("Number of Iterations: " + this.numberOfIterations);
+		LOGGER.info("Alpha: " + this.alpha);
+		LOGGER.info("Beta: " + this.beta);		
+		LOGGER.info("Graph Initialization: " + this.graphInitialization);
+		LOGGER.info("Ant Initialization: " + this.antInitialization);
+		LOGGER.info("Ant Exploration: " + this.antExploration);
+		LOGGER.info("Ant Local Update Rule: " + this.antLocalUpdate);
+		LOGGER.info("Evaporations: " + this.evaporations);
+		LOGGER.info("Deposits: " + this.deposits);
+		LOGGER.info("Daemon Actions: " + this.daemonActions);
+		LOGGER.info("==================================================");
 	}
 
 	/**

@@ -29,28 +29,46 @@ public class AntGraph {
 	/** The class logger*/
 	static final Logger LOGGER = Logger.getLogger(AntGraph.class);
 
+	protected double tMin;
+	
+	protected double tMax;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param problem The addressed problem
+	 * @param tMin the minimum pheromone value
+	 * @param tMax the maximum pheromone value
+	 */
+	public AntGraph(Problem problem, double tMin, double tMax) {
+
+		checkNotNull(problem, "The problem cannot be null");
+		checkArgument(problem.getNumberOfNodes() > 0, "The number of nodes should be > 0. Passed: %s", problem.getNumberOfNodes());
+		checkArgument(tMin <= tMax, "The tMin value should be less or equal than tMax one");
+				
+		this.tMin = tMin;
+		this.tMax = tMax;
+		this.problem = problem;		
+	}
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param problem The addressed problem
 	 */
 	public AntGraph(Problem problem) {
-
-		checkNotNull(problem, "The problem cannot be null");
-		checkArgument(problem.getNumberOfNodes() > 0, "The number of nodes should be > 0. Passed: %s", problem.getNumberOfNodes());
-
-		this.problem = problem;
+		this(problem, 0.0001, 1.0);
 	}
 
 	/**
 	 * Initialize all edges with the T0 values. 
 	 * 
-	 * @param trailInitialization The method used to initialize the arc(i,j)
+	 * @param t0 The initial pheromone value
 	 */
 	public void initialize(double t0) {
 
 		int numberOfNodes = problem.getNumberOfNodes();
-		
+
 		this.tau = new double[numberOfNodes][numberOfNodes];
 
 		for (int i = 0; i < numberOfNodes; i++) {
@@ -62,13 +80,19 @@ public class AntGraph {
 		}
 
 		LOGGER.debug("Creating a graph with " + numberOfNodes + " nodes and T0=" + t0);
+		LOGGER.debug("tMin=" + tMin + " and tMax" + tMax);
 	}
 	
-	public void initialize(AbstractGraphInitialization trailInitialization) {
+	/**
+	 * Initialize all arc by using a specific graph initialization 
+	 * 
+	 * @param trailInitialization The method used to initialize the arc(i,j)
+	 */
+	public void initialize(AbstractGraphInitialization graphInitialization) {
 
-		checkNotNull(trailInitialization, "The trail initialization should not be null");
+		checkNotNull(graphInitialization, "The graph initialization should not be null");
 
-		this.initialize(trailInitialization.getT0());
+		this.initialize(graphInitialization.getT0());
 	}
 
 	/**
@@ -100,6 +124,22 @@ public class AntGraph {
 	 */
 	public double[][] getTau(){
 		return this.tau;
+	}
+	
+	public double getTMin() {
+		return tMin;
+	}
+
+	public void setTMin(double tMin) {
+		this.tMin = tMin;
+	}
+
+	public double getTMax() {
+		return tMax;
+	}
+
+	public void setTMax(double tMax) {
+		this.tMax = tMax;
 	}
 	
 	/**

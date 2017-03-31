@@ -25,7 +25,7 @@ public class MMASInitializationTest {{
 
 		it("should throw an exception when null aco is passed", () -> {
 			expect(() -> {
-				new MMASInitialization(null);
+				new MMASInitialization(null, 0.2);
 			}).toThrow(NullPointerException.class);
 		});
 		
@@ -50,7 +50,7 @@ public class MMASInitializationTest {{
 		});
 		
 		it("should return 5.0", () -> {
-			expect(new MMASInitialization(aco).getT0()).toEqual(5.0);
+			expect(new MMASInitialization(aco, 0.2).getT0()).toEqual(5.0);
 		});
 	});
 	

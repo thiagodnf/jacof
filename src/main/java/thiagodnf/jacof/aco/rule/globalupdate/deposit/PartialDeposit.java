@@ -37,7 +37,7 @@ public class PartialDeposit extends AbstractDeposit {
 	}
 	
 	@Override
-	public String toString(){
-		return PartialDeposit.class.getSimpleName()+" with "+subSet+" and rate="+rate;
+	public String toString() {
+		return PartialDeposit.class.getSimpleName() + " with " + subSet + " and rate=" + rate;
 	}
 }

@@ -29,8 +29,8 @@ public class UpdatePheromoneMatrix extends AbstractDaemonActions {
 			for (int j = i; j < aco.getProblem().getNumberOfNodes(); j++) {
 
 				if (i != j) {
-					aco.getGraph().setTau(i, j, Math.min(aco.getGraph().getTau(i, j), aco.getTMax()));
-					aco.getGraph().setTau(i, j, Math.max(aco.getGraph().getTau(i, j), aco.getTMin()));
+					aco.getGraph().setTau(i, j, Math.min(aco.getGraph().getTau(i, j), aco.getGraph().getTMax()));
+					aco.getGraph().setTau(i, j, Math.max(aco.getGraph().getTau(i, j), aco.getGraph().getTMin()));
 					aco.getGraph().setTau(j, i, aco.getGraph().getTau(i, j));
 				}
 			}
