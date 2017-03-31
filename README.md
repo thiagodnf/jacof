@@ -15,13 +15,13 @@ The ACOs Developed
 
 This framework implements the following ACO's variations:
 
-| Algorithm                  | Authors | Year | How to use |
-|---------------------------|----------------------|----------------------|----|
-Ant System | Dorigo, Maniezzo and Colomi | 1992 | [Click here](#ant-system)
-Elitist Ant System | Dorigo | 1992 | [Click here](#elitist-ant-system) |
-Ant Colony System | Dorigo and Gambardella | 1997 | [Click here](#ant-colony-system) |
-Rank-based Ant System | Bullnheimer, Hartl and Strauss | 1997 | [Click here](#rank-based-ant-system ) |
-Max-Min Ant System | Stützle and Hoos | 2000 | [Click here](#max-min-ant-system) |
+| Algorithm                  | Authors | Year | How to use | Reference
+|---------------------------|----------------------|----------------------|----|----|
+Ant System | Dorigo, Maniezzo and Colomi | 1992 | [Click here](#ant-system) | [1] |
+Elitist Ant System | Dorigo | 1992 | [Click here](#elitist-ant-system) | [1,3] |
+Ant Colony System | Dorigo and Gambardella | 1997 | [Click here](#ant-colony-system) | [2] |
+Rank-based Ant System | Bullnheimer, Hartl and Strauss | 1997 | [Click here](#rank-based-ant-system ) | [4] |
+Max-Min Ant System | Stützle and Hoos | 2000 | [Click here](#max-min-ant-system) | [5] |
 
 The Problems Developed
 -------
@@ -148,3 +148,23 @@ Version
 ----
 1.0
 
+
+References
+-------
+[1] M. Dorigo. *Optimization, Learning and Natural Algorithms*. PhD thesis, Politecnico di
+Milano, Italy, 1992. [in Italian].
+
+[2] M. Dorigo and L. M. Gambardella. Ant colony system: A cooperative learning approach
+to the traveling salesman problem. *IEEE Transactions on Evolutionary Computation*,
+1(1):53–66, April 1997.
+
+[3] M. Dorigo, V. Maniezzo, and A. Colorni. Ant system: Optimization by a colony of
+cooperating agents. *IEEE Transactions on Systems, Man, and Cybernetics, Part B:
+Cybernetics*, 26(1):29–41, February 1996.
+
+[4] B. Bullnheimer, R. F. Hartl, and C. Strauss. A new rank based version of the ant system - a
+computational study. *Central European Journal for Operations Research and Economics*,
+7:25–38, 1997.
+
+[5] T. Stützle and H. H. Hoos. MAX-MIN ant system. *Future Generation Computer Systems*,
+16(9):889–914, June 2000.
