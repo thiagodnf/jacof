@@ -12,6 +12,9 @@ Dorigo [1] introduces an ant-based algorithm called Ant Colony Optimization (ACO
 
 The main concepts used in ACO are based on real ants such as an artificial pheromone trail used to communication among the ants, a sequence of local moves to find the shortest path and a stochastic decision policy
 
+The below figure shows an example of an ant building its solution traversing the graph starting from vertex 6 and reaching
+the vertex 4, obtaining as solution the path {6-2-3-4}.
+
 ![alt tag](https://raw.githubusercontent.com/thiagodnf/jacof/master/src/main/resources/path.png)
 
 
