@@ -31,7 +31,9 @@ The Problems Developed
 This framework addresses the following problems:
 
 * Next Release Problem (NRP)
-* Traveling Salesperson Problem (TSP)
+* Symmetric Traveling Salesman Problem (TSP)
+
+Obs.: This framework supports the TSPLIB library (a library of sample instances for the TSP). [http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html](Click here) to access the problem instances.
 
 How To Use
 -------
