@@ -32,6 +32,7 @@ This framework addresses the following problems:
 
 * Next Release Problem (NRP)
 * Symmetric Traveling Salesman Problem (TSP)
+* Quadratic Assignment Problem (QAP)
 
 Obs.: This framework supports the TSPLIB library (a library of sample instances for the TSP). [Click here](http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html) to access the problem instances.
 
