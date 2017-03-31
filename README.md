@@ -43,13 +43,21 @@ Obs.: This framework supports the TSPLIB library (a library of sample instances 
 
 How To Use
 -------
-At the following, it is pointed out how to use each ACO's variations
 
-### Ant System
+To use this framework, it is necessary to define: i) the problem addressed; and ii) the ACO's variation used. After that, the algorithm should be executed. At the following it is shown some examples.
+
+### Defining the Addressed Problem
 
 ```java
-Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
+Problem nrp = new NextReleaseProblem("in/delsagrado20.nrp");
+Problem tsp = new TravellingSalesmanProblem("in/oliver30.tsp");
+```
 
+### Defining the ACO's variation
+
+#### Ant System
+
+```java
 AntSystem aco = new AntSystem(problem);
 
 aco.setNumberOfAnts(10);
@@ -57,19 +65,11 @@ aco.setNumberOfIterations(50);
 aco.setAlpha(1.0);
 aco.setBeta(2.0);
 aco.setRho(0.1);
-
-int[] bestSolution = aco.solve();
-
-double value = problem.evaluate(bestSolution);
-
-System.out.println(Arrays.toString(bestSolution) + " : " + value)
 ```
 
-### Ant Colony System
+#### Ant Colony System
 
 ```java
-Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
-
 AntColonySystem aco = new AntColonySystem(problem);
 
 aco.setNumberOfAnts(10);
@@ -79,20 +79,12 @@ aco.setBeta(2.0);
 aco.setRho(0.1);
 aco.setOmega(0.1);
 aco.setQ0(0.9);
-	
-int[] bestSolution = aco.solve();
-
-double value = problem.evaluate(bestSolution);
-
-System.out.println(Arrays.toString(bestSolution) + " : " + value);
 ```
 
-### Elitist Ant System
+#### Elitist Ant System
 
 
 ```java
-Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
-
 ElitistAntSystem aco = new ElitistAntSystem(problem);
 
 aco.setNumberOfAnts(10);
@@ -101,20 +93,11 @@ aco.setAlpha(1.0);
 aco.setBeta(2.0);
 aco.setRho(0.1);
 aco.setWeight(6);
-
-int[] bestSolution = aco.solve();
-
-double value = problem.evaluate(bestSolution);
-
-System.out.println(Arrays.toString(bestSolution) + " : " + value);
-
 ```
 
-### Rank-based Ant System
+#### Rank-based Ant System
 
 ```java
-Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
-
 RankBasedAntSystem aco = new RankBasedAntSystem(problem);
 
 aco.setNumberOfAnts(10);
@@ -123,20 +106,11 @@ aco.setAlpha(1.0);
 aco.setBeta(2.0);
 aco.setRho(0.1);
 aco.setWeight(6);
-
-int[] bestSolution = aco.solve();
-
-double value = problem.evaluate(bestSolution);
-
-System.out.println(Arrays.toString(bestSolution) + " : " + value);
-
 ```
 
-### Max-Min Ant System
+#### Max-Min Ant System
 
 ```java
-Problem problem = new NextReleaseProblem("in/delsagrado20.nrp");
-
 MaxMinAntSystem aco = new MaxMinAntSystem(problem);
 
 aco.setNumberOfAnts(10);
@@ -145,15 +119,15 @@ aco.setAlpha(1.0);
 aco.setBeta(2.0);
 aco.setRho(0.1);
 aco.setStagnation(10);
-
-int[] bestSolution = aco.solve();
-
-double value = problem.evaluate(bestSolution);
-
-System.out.println(Arrays.toString(bestSolution) + " : " + value);
-
 ```
 
+### Running the algorithm
+
+```java
+ExecutionStats es = ExecutionStats.execute(aco, problem);
+es.printStats();
+```
+		
 Version
 ----
 1.0
