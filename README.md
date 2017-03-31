@@ -1,4 +1,4 @@
-![alt tag](https://raw.githubusercontent.com/thiagodnf/jacof/master/logo.png)
+![alt tag](https://raw.githubusercontent.com/thiagodnf/jacof/master/src/main/resources/logo.png)
 
 
 Java Ant Colony Optimization Framework
@@ -11,6 +11,9 @@ What is the ACO?
 Dorigo [1] introduces an ant-based algorithm called Ant Colony Optimization (ACO). The algorithm tries to reproduce the behavior of the ants in the search process of solutions from the choice of the path to be followed until the process of updating the pheromone trail.
 
 The main concepts used in ACO are based on real ants such as an artificial pheromone trail used to communication among the ants, a sequence of local moves to find the shortest path and a stochastic decision policy
+
+![alt tag](https://raw.githubusercontent.com/thiagodnf/jacof/master/src/main/resources/path.png)
+
 
 The ACOs Developed
 -------
