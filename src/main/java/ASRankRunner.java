@@ -22,7 +22,7 @@ public class ASRankRunner {
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
-		aco.setWeight(6);
+		aco.setWeight(30);
 		
 		int[] bestSolution = aco.solve();
 

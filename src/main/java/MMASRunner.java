@@ -22,7 +22,7 @@ public class MMASRunner {
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
-		aco.setStagnation(100);
+		aco.setStagnation(1000);
 
 		int[] bestSolution = aco.solve();
 

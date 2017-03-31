@@ -20,7 +20,7 @@ import thiagodnf.jacof.util.io.TSPLIBReader;
  */
 public class TravellingSalesmanProblem extends Problem {
 
-	public double Q = 100.0;
+	public double Q = 1.0;
 	
 	/** Distance Matrix */
 	protected double[][] distance;
