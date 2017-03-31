@@ -18,7 +18,7 @@ public class ACSRunner {
 		AntColonySystem aco = new AntColonySystem(problem);
 
 		aco.setNumberOfAnts(30);
-		aco.setNumberOfIterations(1000);
+		aco.setNumberOfIterations(5000);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);
