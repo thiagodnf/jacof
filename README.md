@@ -8,7 +8,9 @@ Java Ant Colony Optimization Framework
 What is the ACO?
 -----
 
-Ant Colony Optimization (ACO) studies artificial systems that take inspiration from the behavior of real ant colonies and which are used to solve discrete optimization problems. In 1999, the Ant Colony Optimization metaheuristic was defined by Dorigo, Di Caro and Gambardella.
+Dorigo [1] introduces an ant-based algorithm called Ant Colony Optimization (ACO). The algorithm tries to reproduce the behavior of the ants in the search process of solutions from the choice of the path to be followed until the process of updating the pheromone trail.
+
+The main concepts used in ACO are based on real ants such as an artificial pheromone trail used to communication among the ants, a sequence of local moves to find the shortest path and a stochastic decision policy
 
 The ACOs Developed
 -------
