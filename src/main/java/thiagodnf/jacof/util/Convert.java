@@ -69,6 +69,45 @@ public class Convert {
 	}
 	
 	/**
+	 * Convert from String[] to int[]
+	 * 
+	 * @param array the array that should be converted
+	 * @return an integer array
+	 */
+	public static int[] toIntegerArray(String[] array) {
+		return toIntegerMatrix(new String[][] { array })[0];
+	}
+	
+	/**
+	 * Convert from String[][] to double[][]
+	 * 
+	 * @param matrix the matrix that should be converted
+	 * @return a double matrix
+	 */
+	public static int[][] toIntegerMatrix(String[][] matrix) {
+
+		Preconditions.checkNotNull(matrix, "The matrix cannot be null");
+		
+		int[][] result = new int[matrix.length][];
+
+		for (int i = 0; i < matrix.length; i++) {
+			
+			result[i] = new int[matrix[i].length];
+
+			for (int j = 0; j < matrix[i].length; j++) {				
+
+				if (matrix[i][j] == null || matrix[i][j].isEmpty()) {
+					result[i][j] = 0;
+				} else {
+					result[i][j] = Integer.valueOf(matrix[i][j].trim());
+				}
+			}
+		}
+
+		return result;
+	}
+	
+	/**
 	 * Convert a matrix to dot string to use in Graphviz
 	 * 
 	 * @param matrix Matrix will be converted

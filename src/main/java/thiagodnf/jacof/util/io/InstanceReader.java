@@ -79,6 +79,34 @@ public class InstanceReader {
 	}
 	
 	/**
+	 * Read an integer number
+	 * 
+	 * @return an integer value
+	 */
+	public int readIntegerValue(){
+		return readIntegerArray()[0];
+	}
+	
+	/**
+	 * Read an integer array
+	 * 
+	 * @return an integer array
+	 */
+	public int[] readIntegerArray() {		
+		return readIntegerMatrix(1)[0];
+	}
+	
+	/**
+	 * Read an integer matrix
+	 * 
+	 * @param lines the number of lines that will be read
+	 * @return an integer matrix
+	 */
+	public int[][] readIntegerMatrix(int lines) {
+		return Convert.toIntegerMatrix(readLines(lines));
+	}
+	
+	/**
 	 * Read a double number
 	 * 
 	 * @return a double value
