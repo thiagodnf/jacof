@@ -19,7 +19,7 @@ public class ConvertUtilsTest {{
 		
 		it("should throw an exception when the constructor is called", () -> {
 			expect(() -> {
-				Constructor<ConvertUtils> c = ConvertUtils.class.getDeclaredConstructor();
+				Constructor<Convert> c = Convert.class.getDeclaredConstructor();
 				c.setAccessible(true);
 				c.newInstance();
 			}).toThrow(InvocationTargetException.class);
@@ -30,18 +30,18 @@ public class ConvertUtilsTest {{
 		
 		it("should throw an exception when null is passed", () -> {
 			expect(() -> {
-				ConvertUtils.trim(null);
+				Convert.trim(null);
 			}).toThrow(NullPointerException.class);
 		});
 
 		it("should throw an exception when empty is passed", () -> {
 			expect(() -> {
-				ConvertUtils.trim(new String[]{});
+				Convert.trim(new String[]{});
 			}).toThrow(IllegalArgumentException.class);
 		});
 		
 		it("should remove correctly the spaces", () -> {
-			String[] result = ConvertUtils.trim(new String[]{"A ", " B", " C "});
+			String[] result = Convert.trim(new String[]{"A ", " B", " C "});
 			String[] expected = new String[]{"A", "B", "C"};
 			expect(Arrays.equals(result, expected)).toBeTrue();
 		});
@@ -51,18 +51,18 @@ public class ConvertUtilsTest {{
 		
 		it("should throw an exception when null is passed", () -> {
 			expect(() -> {
-				ConvertUtils.toDoubleArray(null);
+				Convert.toDoubleArray(null);
 			}).toThrow(NullPointerException.class);
 		});
 		
 		it("should convert the array with the same size", () -> {
-			double[] result = ConvertUtils.toDoubleArray(new String[]{"12","123","12"});
+			double[] result = Convert.toDoubleArray(new String[]{"12","123","12"});
 			expect(result.length).toEqual(3);
 		});
 		
 		it("should convert correctly the value ['12.3','123.7','12.9'] to [255]", () -> {
 			
-			double[] result = ConvertUtils.toDoubleArray(new String[]{"12.3","123.7","12.9"});
+			double[] result = Convert.toDoubleArray(new String[]{"12.3","123.7","12.9"});
 			double[] expected = new double[] { 12.3, 123.7, 12.9 };
 			
 			expect(Arrays.equals(expected,result)).toBeTrue();		
@@ -70,7 +70,7 @@ public class ConvertUtilsTest {{
 		
 		it("should return an empty array", () -> {
 
-			double[] result = ConvertUtils.toDoubleArray(new String[] {});
+			double[] result = Convert.toDoubleArray(new String[] {});
 			double[] expected = new double[] {};
 
 			expect(Arrays.equals(expected, result)).toBeTrue();						
@@ -82,7 +82,7 @@ public class ConvertUtilsTest {{
 		
 		it("should throw an exception when null is passed", () -> {
 			expect(() -> {
-				ConvertUtils.toDoubleMatrix(null);
+				Convert.toDoubleMatrix(null);
 			}).toThrow(NullPointerException.class);
 		});
 		
@@ -90,7 +90,7 @@ public class ConvertUtilsTest {{
 			
 			String[][] input = new String[][] { { "1", "2", null }, { "1", "2", "3" } };
 
-			double[][] result = ConvertUtils.toDoubleMatrix(input);
+			double[][] result = Convert.toDoubleMatrix(input);
 			double[][] expected = new double[][] { { 1, 2, 0 }, { 1, 2, 3 } };
 
 			expect(Arrays.deepEquals(result, expected)).toBeTrue();
@@ -100,7 +100,7 @@ public class ConvertUtilsTest {{
 			
 			String[][] input = new String[][] { { "1", "2", "" }, { "1", "2", "3" } };
 
-			double[][] result = ConvertUtils.toDoubleMatrix(input);
+			double[][] result = Convert.toDoubleMatrix(input);
 			double[][] expected = new double[][] { { 1, 2, 0 }, { 1, 2, 3 } };
 
 			expect(Arrays.deepEquals(result, expected)).toBeTrue();

@@ -9,7 +9,7 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.io.Files;
 
-import thiagodnf.jacof.util.ConvertUtils;
+import thiagodnf.jacof.util.Convert;
 
 /**
  * Class created for reading a instance file.
@@ -94,7 +94,7 @@ public class InstanceReader {
 	 * @return a double matrix
 	 */
 	public double[][] readDoubleMatrix(int lines) {
-		return ConvertUtils.toDoubleMatrix(readLines(lines));
+		return Convert.toDoubleMatrix(readLines(lines));
 	}
 	
 	/**

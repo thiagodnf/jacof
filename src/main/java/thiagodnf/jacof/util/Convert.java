@@ -1,13 +1,15 @@
 package thiagodnf.jacof.util;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.stream.Stream;
 
 import com.google.common.base.Preconditions;
 
-public class ConvertUtils {
+public class Convert {
 	
-	private ConvertUtils(){
+	private Convert(){
 		throw new UnsupportedOperationException();
 	}
 				
@@ -64,6 +66,39 @@ public class ConvertUtils {
 		}
 
 		return result;
+	}
+	
+	/**
+	 * Convert a matrix to dot string to use in Graphviz
+	 * 
+	 * @param matrix Matrix will be converted
+	 * @return The string formatted in Dot
+	 */
+	public static String toDot(double[][] matrix) {
+		
+		Preconditions.checkNotNull(matrix, "The matrix cannot be null");
+		Preconditions.checkArgument(matrix.length > 0, "The matrix cannot be zero");
+
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append("graph G {\n");
+		buffer.append("layout=\"circo\";\n");
+
+		Locale.setDefault(new Locale("en", "US"));
+		
+		DecimalFormat df = new DecimalFormat("0.000000000000000");
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = i; j < matrix.length; j++) {
+				if (i != j) {
+					buffer.append(i + " -- " + j + " [penwidth=" + df.format(matrix[i][j]) + "]\n");
+				}
+			}
+		}
+
+		buffer.append("}");
+
+		return buffer.toString();
 	}
 
 }
