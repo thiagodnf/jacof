@@ -5,6 +5,9 @@ Java Ant Colony Optimization Framework
 =========
 **jacof** is an object-oriented Java-based framework for ant colony optimization (ACO). It implements the most used ACO's implementations.
 
+### Status
+[![Build Status](https://travis-ci.org/thiagodnf/jacof.svg?branch=master)](https://travis-ci.org/thiagodnf/jacof)
+
 What is the ACO?
 -----
 
