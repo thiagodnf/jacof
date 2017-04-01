@@ -123,13 +123,13 @@ aco.setStagnation(10);
 
 ### Running the algorithm
 
-To run the algorith, you can use the ExecutionStats class defining as follows:
+To run the algorithm, you can use the ExecutionStats class defining as follows:
 
 ```java
 ExecutionStats es = ExecutionStats.execute(aco, problem);
 es.printStats();
 ```
-The output is:
+The output will be:
 
 ```sh
 2017-03-31 21:01:35 [INFO ] ==================================================
@@ -138,11 +138,6 @@ The output is:
 2017-03-31 21:01:35 [INFO ] Best Solution: [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 0, 1]
 2017-03-31 21:01:35 [INFO ] ==================================================
 ```
-		
-Version
-----
-1.0
-
 
 References
 -------
