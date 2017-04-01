@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import com.mscharhag.oleaster.runner.OleasterRunner;
 
 import thiagodnf.jacof.aco.ACO;
+import thiagodnf.jacof.aco.graph.AntGraph;
 import thiagodnf.jacof.aco.graph.initialization.MMASInitialization;
 import thiagodnf.jacof.problem.Problem;
 
@@ -45,12 +46,14 @@ public class MMASInitializationTest {{
 	describe("When rate=0.02 and Cnn=10", () -> {
 		
 		before(() -> {
+			AntGraph graph = Mockito.mock(AntGraph.class);
+			when(aco.getGraph()).thenReturn(graph);
 			when(aco.getProblem()).thenReturn(problem);
 			when(aco.getProblem().getCnn()).thenReturn(10.0);
 		});
 		
 		it("should return 5.0", () -> {
-			expect(new MMASInitialization(aco, 0.2).getT0()).toEqual(5.0);
+			expect(new MMASInitialization(aco, 0.02).getT0()).toEqual(5.0);
 		});
 	});
 	
