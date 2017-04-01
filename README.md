@@ -123,9 +123,20 @@ aco.setStagnation(10);
 
 ### Running the algorithm
 
+To run the algorith, you can use the ExecutionStats class defining as follows:
+
 ```java
 ExecutionStats es = ExecutionStats.execute(aco, problem);
 es.printStats();
+```
+The output is:
+
+```sh
+2017-03-31 21:01:35 [INFO ] ==================================================
+2017-03-31 21:01:35 [INFO ] Execution Time: 36918.0
+2017-03-31 21:01:35 [INFO ] Best Value: 423.74056313320284
+2017-03-31 21:01:35 [INFO ] Best Solution: [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 0, 1]
+2017-03-31 21:01:35 [INFO ] ==================================================
 ```
 		
 Version
