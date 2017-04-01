@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import thiagodnf.jacof.aco.AntColonySystem;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.problem.kp.KnapsackProblem;
 import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
 import thiagodnf.jacof.util.ExecutionStats;
 
@@ -15,14 +16,14 @@ public class ACSRunner {
 	
 	public static void main(String[] args) throws ParseException, IOException {
 
-		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
+		String instance = "src/main/resources/problems/kp/p06.kp";
 
-		Problem problem = new TravellingSalesmanProblem(instance);
+		Problem problem = new KnapsackProblem(instance);
 
 		AntColonySystem aco = new AntColonySystem(problem);
 
-		aco.setNumberOfAnts(30);
-		aco.setNumberOfIterations(5000);
+		aco.setNumberOfAnts(50);
+		aco.setNumberOfIterations(3000);
 		aco.setAlpha(1.0);
 		aco.setBeta(2.0);
 		aco.setRho(0.1);

@@ -41,8 +41,11 @@ This framework addresses the following problems:
 
 * Next Release Problem (NRP)
 * Symmetric Traveling Salesman Problem (TSP)
+* Knapsack Problem (KP)
 
-Obs.: This framework supports the TSPLIB library (a library of sample instances for the TSP). [Click here](http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html) to access the problem instances.
+Obs. 1: This framework supports the TSPLIB library (a library of sample instances for the TSP). [Click here](http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html) to access the problem instances.
+
+Obs. 2: For Knapsack Problem, access https://people.sc.fsu.edu/~jburkardt/datasets/knapsack_01/knapsack_01.html 
 
 How To Use
 -------
