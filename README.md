@@ -7,6 +7,7 @@ Java Ant Colony Optimization Framework
 
 ### Status
 [![Build Status](https://travis-ci.org/thiagodnf/jacof.svg?branch=master)](https://travis-ci.org/thiagodnf/jacof)
+[![codecov](https://codecov.io/gh/thiagodnf/jacof/branch/master/graph/badge.svg)](https://codecov.io/gh/thiagodnf/jacof)
 
 What is the ACO?
 -----
