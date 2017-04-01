@@ -55,6 +55,8 @@ Problem tsp = new TravellingSalesmanProblem("in/oliver30.tsp");
 
 ### Defining the ACO's variation
 
+Some parameter settings are the same in all ACO's variations such as the number of ants, the number of iterations, alpha, betha and the evaporation rate. However, other algorithms have their own parameter settings. Next it is shown how to instanciate each ACO's variation.
+
 #### Ant System
 
 ```java
@@ -123,7 +125,7 @@ aco.setStagnation(10);
 
 ### Running the algorithm
 
-To run the algorithm, you can use the ExecutionStats class defining as follows:
+To run the algorithm, you can use the ExecutionStats class defined as follows:
 
 ```java
 ExecutionStats es = ExecutionStats.execute(aco, problem);
