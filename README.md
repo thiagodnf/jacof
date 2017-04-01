@@ -58,6 +58,7 @@ To use this framework, it is necessary to define: i) the problem addressed; and 
 ```java
 Problem nrp = new NextReleaseProblem("in/delsagrado20.nrp");
 Problem tsp = new TravellingSalesmanProblem("in/oliver30.tsp");
+Problem kp = new KnapsackProblem("in/p01.tsp");
 ```
 
 ### Defining the ACO's variation
