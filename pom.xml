@@ -68,6 +68,11 @@
 			<artifactId>mockito-core</artifactId>
 			<version>2.7.19</version>
 		</dependency>
+		<dependency>
+			<groupId>org.moeaframework</groupId>
+			<artifactId>moeaframework</artifactId>
+			<version>2.12</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -1,14 +1,6 @@
 package thiagodnf.jacof.aco;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
 import org.apache.log4j.Logger;
-
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.exploration.AbstractAntExploration;
 import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
@@ -19,6 +11,14 @@ import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AbstractLocalUpdateRule;
 import thiagodnf.jacof.problem.Problem;
+import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This is the base class. This one has the main components
@@ -233,6 +233,10 @@ public abstract class ACO implements Observer {
 				
 		for (AbstractDaemonActions daemonAction : daemonActions) {
 			daemonAction.doAction();
+		}
+
+		if(problem instanceof TravellingSalesmanProblem) {
+			((TravellingSalesmanProblem) problem).updateVisualization(it, globalBest, ants);
 		}
 	}
 
