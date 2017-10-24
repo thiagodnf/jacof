@@ -146,7 +146,7 @@ public class TSPExample {
 	public static void main(String[] args) throws IOException {
 		// create the TSP problem instance and display panel
 		TSPInstance instance = new TSPInstance(
-				new File("./data/tsp/pr76.tsp"));
+				new File("src/main/resources/problems/tsp/bays29.tsp"));
 		
 		TSPPanel panel = new TSPPanel(instance);
 		panel.setAutoRepaint(false);
@@ -177,7 +177,8 @@ public class TSPExample {
 		properties.setProperty("swap.rate", "0.7");
 		properties.setProperty("insertion.rate", "0.9");
 		properties.setProperty("pmx.rate", "0.4");
-		
+		properties.setProperty("populationSize", "1000");
+
 		Algorithm algorithm = AlgorithmFactory.getInstance().getAlgorithm(
 				"NSGAII", properties, problem);
 		
@@ -186,8 +187,9 @@ public class TSPExample {
 		// now run the evolutionary algorithm
 		while (frame.isVisible()) {
 			algorithm.step();
+
 			iteration++;
-			
+
 			// clear existing tours in display
 			panel.clearTours();
 
