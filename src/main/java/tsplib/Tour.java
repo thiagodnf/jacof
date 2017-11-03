@@ -20,6 +20,10 @@
  */
 package tsplib;
 
+import org.moeaframework.core.Solution;
+import org.moeaframework.core.variable.EncodingUtils;
+import thiagodnf.jacof.aco.ant.Ant;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
@@ -354,5 +358,41 @@ public class Tour {
 		tour.fromArray(entries);
 		return tour;
 	}
+
+	public static Tour toTour(Solution solution) {
+		int[] permutation = EncodingUtils.getPermutation(
+				solution.getVariable(0));
+
+		// increment values since TSP nodes start at 1
+		for (int i = 0; i < permutation.length; i++) {
+			permutation[i]++;
+		}
+
+		return Tour.createTour(permutation);
+	}
+
+
+	public static void fromTour(Solution solution, Tour tour) {
+		int[] permutation = tour.toArray();
+
+		// decrement values to get permutation
+		for (int i = 0; i < permutation.length; i++) {
+			permutation[i]--;
+		}
+
+		EncodingUtils.setPermutation(solution.getVariable(0), permutation);
+	}
+
+	public static Tour toTour(Ant ant) {
+		int[] permutation = ant.getSolution();
+
+		// increment values since TSP nodes start at 1
+		for (int i = 0; i < permutation.length; i++) {
+			permutation[i]++;
+		}
+
+		return Tour.createTour(permutation);
+	}
+
 
 }

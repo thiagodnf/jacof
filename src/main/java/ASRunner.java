@@ -1,5 +1,6 @@
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
+import runner.Visualization;
 import thiagodnf.jacof.aco.AntSystem;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
@@ -16,7 +17,7 @@ public class ASRunner {
 
 		String instance = "src/main/resources/problems/tsp/bays29.tsp";
 
-		Problem problem = new TravellingSalesmanProblem(instance);
+		Problem problem = new TravellingSalesmanProblem(instance).withVisualization(new Visualization(true));
 
 		AntSystem aco = new AntSystem(problem);
 

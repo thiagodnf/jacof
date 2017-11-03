@@ -236,7 +236,7 @@ public abstract class ACO implements Observer {
 		}
 
 		if(problem instanceof TravellingSalesmanProblem) {
-			((TravellingSalesmanProblem) problem).updateVisualization(it, globalBest, ants);
+			((TravellingSalesmanProblem) problem).getVisualization().updateVisualization(it, globalBest, ants);
 		}
 	}
 
