@@ -1,3 +1,4 @@
+import benchmark.output.CSV;
 import benchmark.runners.ACORunner;
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
@@ -22,7 +23,7 @@ public class ASRunner {
 
 		AntSystem aco = new AntSystem(problem);
 
-		new ACORunner().withACO(aco).withInstance(instance).withIteration(1000).withVisualization(new Visualization(true)).withCSVOutput(true);
+		new ACORunner().withACO(aco).withInstance(instance).withIteration(1000).withVisualization(new Visualization(true)).withOutput(new CSV("testASRunner.csv"));
 
 		aco.setNumberOfAnts(30);
 		aco.setNumberOfIterations(1000);

@@ -16,7 +16,7 @@ public class MMASRunner {
 
 //		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
 
-		String instance = "src/main/resources/problems/tsp/bays29.tsp";
+		String instance = "src/main/resources/problems/tsp/a280.tsp";
 
 		Problem problem = new AcoTSP(instance);
 

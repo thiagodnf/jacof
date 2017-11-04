@@ -15,7 +15,7 @@ public class ElitistAntSystem extends AntSystem {
 	public ElitistAntSystem(Problem problem) {
 		super(problem);
 	}
-	
+
 	public int getWeight() {
 		return weight;
 	}

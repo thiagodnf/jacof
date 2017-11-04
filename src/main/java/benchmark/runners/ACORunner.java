@@ -30,10 +30,8 @@ public class ACORunner {
         return this;
     }
 
-    public ACORunner withCSVOutput(boolean csvOutputEnable) {
-        if (csvOutputEnable) {
-            this.output = new CSV();
-        }
+    public ACORunner withOutput(Output output) {
+        this.output = output;
         return this;
     }
 
@@ -73,7 +71,7 @@ public class ACORunner {
                 .withInstance(instance)
                 .withIteration(1000)
                 .withVisualization(new Visualization(true))
-                .withCSVOutput(true)
+                .withOutput(new CSV("test.csv"))
                 .start();
 
 

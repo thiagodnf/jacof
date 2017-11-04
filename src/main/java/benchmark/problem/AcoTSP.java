@@ -177,4 +177,8 @@ public class AcoTSP extends Problem {
 		visualization.prepareVisualization(tspInstance);
 		return this;
 	}
+
+	public TSPInstance getTspInstance() {
+		return tspInstance;
+	}
 }

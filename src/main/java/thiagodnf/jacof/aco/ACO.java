@@ -328,7 +328,7 @@ public abstract class ACO implements Observer {
 	public void setProblem(Problem problem) {
 		this.problem = problem;
 		this.graph = new AntGraph(problem);
-	}	
+	}
 	
 	public Ant[] getAnts() {
 		return ants;

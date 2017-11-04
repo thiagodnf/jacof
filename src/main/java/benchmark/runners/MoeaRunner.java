@@ -127,8 +127,9 @@ public class MoeaRunner {
                 .withProperties(properties)
                 .withIterationNumber(100)
                 .withVisualization(true)
-                .withOutput(new CSV())
+                .withOutput(new CSV("test.csv"))
                 .start();
+
 
     }
 

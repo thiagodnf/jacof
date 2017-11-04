@@ -19,7 +19,7 @@ public class AntColonySystem extends AntSystem {
 	public AntColonySystem(Problem problem) {
 		super(problem);
 	}
-	
+
 	public double getQ0() {
 		return q0;
 	}
