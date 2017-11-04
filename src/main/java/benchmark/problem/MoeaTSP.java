@@ -1,4 +1,4 @@
-package tsplib.moeatsp;
+package benchmark.problem;
 
 
 import org.moeaframework.core.Solution;
@@ -11,16 +11,16 @@ import tsplib.Tour;
 import static tsplib.Tour.fromTour;
 import static tsplib.Tour.toTour;
 
-public class TSPProblem extends AbstractProblem {
+public class MoeaTSP extends AbstractProblem {
 
     private final TSPInstance instance;
     private final TSP2OptHeuristic heuristic;
 
-    public static TSPProblem getTspProblem(TSPInstance instance){
-        return new TSPProblem(instance);
+    public static MoeaTSP getTspProblem(TSPInstance instance){
+        return new MoeaTSP(instance);
     }
 
-    private TSPProblem(TSPInstance instance) {
+    private MoeaTSP(TSPInstance instance) {
         super(1, 1);
         this.instance = instance;
 

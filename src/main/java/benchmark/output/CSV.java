@@ -1,7 +1,8 @@
-package tsplib.moeatsp.output;
+package benchmark.output;
 
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.EvolutionaryAlgorithm;
+import thiagodnf.jacof.util.ExecutionStats;
 import tsplib.TSPInstance;
 import tsplib.Tour;
 
@@ -18,5 +19,10 @@ public class CSV implements Output{
             Tour tour = toTour(algorithm.getResult().get(0));
             System.out.println(algorithm.getProblem().getName() +" : "+ tour.distance(instance));
         }
+    }
+
+    @Override
+    public void use(ExecutionStats es) {
+        System.out.println(es.getProblem().getClass() +" : "+ es.getBestSolution().toString());
     }
 }

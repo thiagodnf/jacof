@@ -18,23 +18,24 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package tsplib.moeatsp;
+package benchmark.runners;
 
+import benchmark.problem.MoeaTSP;
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.Problem;
 import org.moeaframework.core.spi.AlgorithmFactory;
-import runner.Visualization;
+import benchmark.visualization.Visualization;
 import tsplib.AlgorithmName;
 import tsplib.TSPInstance;
-import tsplib.moeatsp.output.CSV;
-import tsplib.moeatsp.output.Output;
+import benchmark.output.CSV;
+import benchmark.output.Output;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
 
-public class TSPWrapper {
+public class MoeaRunner {
 
     private Visualization visualization;
 
@@ -54,7 +55,7 @@ public class TSPWrapper {
 
     public void start() {
         this.visualization.prepareVisualization(instance);
-        this.problem = TSPProblem.getTspProblem(instance);
+        this.problem = MoeaTSP.getTspProblem(instance);
 
         this.algorithm = AlgorithmFactory.getInstance().getAlgorithm(
                 algorithmName, properties, problem);
@@ -71,33 +72,33 @@ public class TSPWrapper {
 
     }
 
-    public TSPWrapper withVisualization(boolean enabled) {
+    public MoeaRunner withVisualization(boolean enabled) {
         this.visualization = new Visualization(enabled);
         return this;
     }
 
-    public TSPWrapper withAlgorithmName(AlgorithmName algorithmName) {
+    public MoeaRunner withAlgorithmName(AlgorithmName algorithmName) {
         this.algorithmName = algorithmName.name();
         return this;
     }
 
-    public TSPWrapper withTSPInstance(String file) throws IOException {
+    public MoeaRunner withTSPInstance(String file) throws IOException {
         this.instance = new TSPInstance(new File(file));
         return this;
     }
 
 
-    public TSPWrapper withProperties(Properties properties) {
+    public MoeaRunner withProperties(Properties properties) {
         this.properties = properties;
         return this;
     }
 
-    public TSPWrapper withOutput(Output output) {
+    public MoeaRunner withOutput(Output output) {
         this.output = output;
         return this;
     }
 
-    private TSPWrapper withIterationNumber(int iterationNumber) {
+    private MoeaRunner withIterationNumber(int iterationNumber) {
         this.iterationNumber = iterationNumber;
         return this;
     }
@@ -108,7 +109,7 @@ public class TSPWrapper {
         properties.setProperty("swap.rate", "0.7");
         properties.setProperty("insertion.rate", "0.9");
         properties.setProperty("pmx.rate", "0.4");
-        properties.setProperty("populationSize", "1000");
+        properties.setProperty("populationSize", "100");
 //        properties.setProperty("withReplacement", "false");
 //        properties.setProperty("divisionsOuter", "false");
 //        properties.setProperty("divisionsInner", "false");
@@ -117,18 +118,17 @@ public class TSPWrapper {
 //        properties.setProperty("eta", "false");
 //        properties.setProperty("delta", "false");
 //        properties.setProperty("updateUtility", "false");
-//        properties.setProperty("updateUtility", "false");
+//        properties.setProperty("epsilon", "false");
 
 
-        new TSPWrapper()
+        new MoeaRunner()
                 .withTSPInstance("src/main/resources/problems/tsp/bays29.tsp")
                 .withAlgorithmName(AlgorithmName.NSGAII)
                 .withProperties(properties)
-                .withIterationNumber(1000)
-                .withVisualization(false)
+                .withIterationNumber(100)
+                .withVisualization(true)
                 .withOutput(new CSV())
                 .start();
-
 
     }
 

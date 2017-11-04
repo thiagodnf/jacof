@@ -11,7 +11,7 @@ import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AbstractLocalUpdateRule;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+import benchmark.problem.AcoTSP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +90,10 @@ public abstract class ACO implements Observer {
 	
 	/** The evaporation rate */
 	protected double rho;
+
+	public ACO() {
+	}
+
 	/**
 	 * Constructor
 	 * 
@@ -235,8 +239,8 @@ public abstract class ACO implements Observer {
 			daemonAction.doAction();
 		}
 
-		if(problem instanceof TravellingSalesmanProblem) {
-			((TravellingSalesmanProblem) problem).getVisualization().updateVisualization(it, globalBest, ants);
+		if(problem instanceof AcoTSP) {
+			((AcoTSP) problem).getVisualization().updateVisualization(it, globalBest, ants);
 		}
 	}
 
@@ -323,6 +327,7 @@ public abstract class ACO implements Observer {
 
 	public void setProblem(Problem problem) {
 		this.problem = problem;
+		this.graph = new AntGraph(problem);
 	}	
 	
 	public Ant[] getAnts() {

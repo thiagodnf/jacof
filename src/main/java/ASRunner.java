@@ -1,9 +1,10 @@
+import benchmark.runners.ACORunner;
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
-import runner.Visualization;
+import benchmark.visualization.Visualization;
 import thiagodnf.jacof.aco.AntSystem;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+import benchmark.problem.AcoTSP;
 import thiagodnf.jacof.util.ExecutionStats;
 
 import java.io.IOException;
@@ -17,9 +18,11 @@ public class ASRunner {
 
 		String instance = "src/main/resources/problems/tsp/bays29.tsp";
 
-		Problem problem = new TravellingSalesmanProblem(instance).withVisualization(new Visualization(true));
+		Problem problem = new AcoTSP(instance).withVisualization(new Visualization(true));
 
 		AntSystem aco = new AntSystem(problem);
+
+		new ACORunner().withACO(aco).withInstance(instance).withIteration(1000).withVisualization(new Visualization(true)).withCSVOutput(true);
 
 		aco.setNumberOfAnts(30);
 		aco.setNumberOfIterations(1000);

@@ -2,7 +2,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
 import thiagodnf.jacof.aco.RankBasedAntSystem;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+import benchmark.problem.AcoTSP;
 import thiagodnf.jacof.util.ExecutionStats;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class ASRankRunner {
 
 
 
-		Problem problem = new TravellingSalesmanProblem(instance);
+		Problem problem = new AcoTSP(instance);
 
 		RankBasedAntSystem aco = new RankBasedAntSystem(problem);
 

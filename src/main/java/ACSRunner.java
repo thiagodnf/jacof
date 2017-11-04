@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import thiagodnf.jacof.aco.AntColonySystem;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.problem.kp.KnapsackProblem;
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
 import thiagodnf.jacof.util.ExecutionStats;
 
 public class ACSRunner {
@@ -21,6 +20,14 @@ public class ACSRunner {
 		Problem problem = new KnapsackProblem(instance);
 
 		AntColonySystem aco = new AntColonySystem(problem);
+
+
+//		AntColonySystem
+//		RankBasedAntSystem
+//		ElitistAntSystem
+//		AntSystem
+//		MaxMinAntSystem
+//
 
 		aco.setNumberOfAnts(50);
 		aco.setNumberOfIterations(3000);

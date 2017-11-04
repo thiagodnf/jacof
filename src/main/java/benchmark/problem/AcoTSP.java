@@ -1,23 +1,17 @@
-package thiagodnf.jacof.problem.tsp;
+package benchmark.problem;
 
-import runner.Visualization;
+import benchmark.visualization.Visualization;
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.problem.Problem;
 import thiagodnf.jacof.util.NearestNeighbour;
 import tsplib.DistanceTable;
 import tsplib.TSPInstance;
-import tsplib.TSPPanel;
 import tsplib.Tour;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static java.awt.Color.lightGray;
 
 /**
  * The Travelling Salesman Problem Class
@@ -26,7 +20,7 @@ import static java.awt.Color.lightGray;
  * @since 2014-07-27
  * @version 1.0
  */
-public class TravellingSalesmanProblem extends Problem {
+public class AcoTSP extends Problem {
 
 	public double Q = 1.0;
 
@@ -43,11 +37,11 @@ public class TravellingSalesmanProblem extends Problem {
 
 	private Visualization visualization;
 
-	public TravellingSalesmanProblem(String filename) throws IOException {
+	public AcoTSP(String filename) throws IOException {
 		this(filename, false);
 	}
 
-	public TravellingSalesmanProblem(String filename, boolean isTspLibFormmat) throws IOException {
+	public AcoTSP(String filename, boolean isTspLibFormmat) throws IOException {
 
 		tspInstance = new TSPInstance(new File(filename));
 		numberOfCities = tspInstance.getDimension();
@@ -58,8 +52,8 @@ public class TravellingSalesmanProblem extends Problem {
 		this.cnn = evaluate(nn.solve(this));
 
 		//TODO: below lines
-		System.out.println("Best Solution: " + Arrays.toString(getTheBestSolution()));
-		System.out.println("Best Value: " + evaluate(getTheBestSolution()));
+//		System.out.println("Best Solution: " + Arrays.toString(getTheBestSolution()));
+//		System.out.println("Best Value: " + evaluate(getTheBestSolution()));
 	}
 
 	public static Tour toTour(Ant ant) {
@@ -148,7 +142,7 @@ public class TravellingSalesmanProblem extends Problem {
 
 	@Override
 	public String toString() {
-		return TravellingSalesmanProblem.class.getSimpleName();
+		return AcoTSP.class.getSimpleName();
 	}
 
 	@Override

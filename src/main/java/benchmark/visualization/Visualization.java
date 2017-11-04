@@ -1,10 +1,9 @@
-package runner;
+package benchmark.visualization;
 
 import org.moeaframework.core.Algorithm;
 import org.moeaframework.core.EvolutionaryAlgorithm;
 import org.moeaframework.core.Population;
 import org.moeaframework.core.Solution;
-import org.moeaframework.core.variable.EncodingUtils;
 import thiagodnf.jacof.aco.ant.Ant;
 import tsplib.TSPInstance;
 import tsplib.TSPPanel;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.awt.Color.lightGray;
-import static java.awt.Color.pink;
 import static tsplib.Tour.toTour;
 
 /**
