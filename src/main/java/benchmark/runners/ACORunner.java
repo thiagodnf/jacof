@@ -57,7 +57,8 @@ public class ACORunner {
 
     public static void main(String[] args) throws IOException {
 
-        String instance = "src/main/resources/problems/tsp/bays29.tsp";
+//        String instance = "src/main/resources/problems/tsp/bays29.tsp";
+        String instance = "src/main/resources/problems/tsp/oliver30.tsp";
 
         AntSystem aco = new AntSystem();
         aco.setNumberOfAnts(30);

@@ -155,7 +155,7 @@ public class TSPInstance {
 						nodeCoordinateType = edgeWeightType.getNodeCoordType();
 					}
 					
-					distanceTable = new NodeCoordinates(dimension, edgeWeightType);
+					distanceTable = new NodeCoordinates(dimension, edgeWeightType.getNodeCoordType(), new MulticriteriaDistanceFunction());
 					distanceTable.load(reader);
 				} else if (line.equals("EDGE_WEIGHT_SECTION")) {
 					if (DataType.SOP.equals(dataType)) {
