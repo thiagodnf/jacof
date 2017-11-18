@@ -8,6 +8,8 @@ import thiagodnf.jacof.aco.AntSystem;
 import thiagodnf.jacof.problem.Problem;
 import benchmark.problem.AcoTSP;
 import thiagodnf.jacof.util.ExecutionStats;
+import tsplib.DistanceFunction;
+import tsplib.MulticriteriaDistanceFunction;
 
 import java.io.IOException;
 
@@ -19,6 +21,7 @@ public class ACORunner {
     private int iterationNumber;
     private Visualization visualization;
     private Output output;
+    private DistanceFunction distanceFunction;
 
     public ACORunner withACO(ACO aco) {
         this.aco = aco;
@@ -45,8 +48,15 @@ public class ACORunner {
         return this;
     }
 
+    public ACORunner withDistanceFunction(DistanceFunction distanceFunction){
+        this.distanceFunction = distanceFunction;
+        return this;
+    }
+
     public void start() throws IOException {
-        Problem problem = new AcoTSP(instance).withVisualization(this.visualization);
+        Problem problem = new AcoTSP(instance).withDistanceFunction(distanceFunction)
+                                              .withVisualization(this.visualization)
+                                              .build();
 
         aco.setProblem(problem);
         aco.setNumberOfIterations(this.iterationNumber);
@@ -70,11 +80,11 @@ public class ACORunner {
         new ACORunner()
                 .withACO(aco)
                 .withInstance(instance)
-                .withIteration(1000)
+                .withDistanceFunction(new MulticriteriaDistanceFunction())
+                .withIteration(10)
                 .withVisualization(new Visualization(true))
                 .withOutput(new CSV("test.csv"))
                 .start();
-
 
     }
 

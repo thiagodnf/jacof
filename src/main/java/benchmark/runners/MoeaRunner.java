@@ -26,6 +26,8 @@ import org.moeaframework.core.Problem;
 import org.moeaframework.core.spi.AlgorithmFactory;
 import benchmark.visualization.Visualization;
 import tsplib.AlgorithmName;
+import tsplib.DistanceFunction;
+import tsplib.MulticriteriaDistanceFunction;
 import tsplib.TSPInstance;
 import benchmark.output.CSV;
 import benchmark.output.Output;
@@ -39,8 +41,6 @@ public class MoeaRunner {
 
     private Visualization visualization;
 
-    private TSPInstance instance;
-
     private Problem problem;
 
     private String algorithmName;
@@ -53,7 +53,15 @@ public class MoeaRunner {
 
     private int iterationNumber;
 
-    public void start() {
+    private DistanceFunction distanceFunction;
+
+    private String filename;
+
+    private TSPInstance instance;
+
+    public void start() throws IOException {
+
+        this.instance = new TSPInstance(new File(filename), distanceFunction);
         this.visualization.prepareVisualization(instance);
         this.problem = MoeaTSP.getTspProblem(instance);
 
@@ -64,6 +72,7 @@ public class MoeaRunner {
 
         while (iteration < iterationNumber) {
             algorithm.step();
+
             visualization.updateVisualization(iteration, algorithm);
             iteration++;
         }
@@ -82,8 +91,8 @@ public class MoeaRunner {
         return this;
     }
 
-    public MoeaRunner withTSPInstance(String file) throws IOException {
-        this.instance = new TSPInstance(new File(file));
+    public MoeaRunner withTSPInstance(String filename) throws IOException {
+        this.filename = filename;
         return this;
     }
 
@@ -103,13 +112,18 @@ public class MoeaRunner {
         return this;
     }
 
+    public MoeaRunner withDistanceFunction(DistanceFunction distanceFunction) {
+        this.distanceFunction = distanceFunction;
+        return this;
+    }
+
     public static void main(String[] args) throws IOException {
 
         Properties properties = new Properties();
         properties.setProperty("swap.rate", "0.7");
-        properties.setProperty("insertion.rate", "0.9");
-        properties.setProperty("pmx.rate", "0.4");
-        properties.setProperty("populationSize", "100");
+        properties.setProperty("insertion.rate", "0.3");
+        properties.setProperty("pmx.rate", "0.2");
+        properties.setProperty("populationSize", "25");
 //        properties.setProperty("withReplacement", "false");
 //        properties.setProperty("divisionsOuter", "false");
 //        properties.setProperty("divisionsInner", "false");
@@ -122,8 +136,10 @@ public class MoeaRunner {
 
 
         new MoeaRunner()
-                .withTSPInstance("src/main/resources/problems/tsp/bays29.tsp")
+//                .withTSPInstance("src/main/resources/problems/tsp/bays29.tsp")
+                .withTSPInstance("src/main/resources/problems/tsp/oliver30.tsp")
                 .withAlgorithmName(AlgorithmName.NSGAII)
+                .withDistanceFunction(new MulticriteriaDistanceFunction())
                 .withProperties(properties)
                 .withIterationNumber(100)
                 .withVisualization(true)

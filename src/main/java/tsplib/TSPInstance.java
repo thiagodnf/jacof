@@ -31,8 +31,8 @@ import java.util.List;
  * A TSPLIB problem instance.
  */
 public class TSPInstance {
-	
-	/**
+
+    /**
 	 * The name of this problem instance.
 	 */
 	private String name;
@@ -111,7 +111,9 @@ public class TSPInstance {
 	 * if this is not a vehicle routing problem instance.
 	 */
 	private VehicleRoutingTable vehicleRoutingTable;
-	
+
+    private DistanceFunction distanceFunction;
+
 	/**
 	 * Constructs a new, empty TSPLIB problem instance.
 	 */
@@ -132,7 +134,13 @@ public class TSPInstance {
 		this();
 		load(file);
 	}
-	
+
+    public TSPInstance(File file, DistanceFunction distanceFunction) throws IOException {
+        this();
+        this.distanceFunction = distanceFunction;
+        load(file);
+    }
+
 	/**
 	 * Loads a problem instance from the specified TSPLIB file.
 	 * 
@@ -154,8 +162,13 @@ public class TSPInstance {
 					if (nodeCoordinateType == null) {
 						nodeCoordinateType = edgeWeightType.getNodeCoordType();
 					}
-					
-					distanceTable = new NodeCoordinates(dimension, edgeWeightType.getNodeCoordType(), new MulticriteriaDistanceFunction());
+
+					if(distanceFunction != null) {
+						distanceTable = new NodeCoordinates(dimension, edgeWeightType.getNodeCoordType(), distanceFunction);
+                    } else {
+                        distanceTable = new NodeCoordinates(dimension, edgeWeightType);
+                    }
+
 					distanceTable.load(reader);
 				} else if (line.equals("EDGE_WEIGHT_SECTION")) {
 					if (DataType.SOP.equals(dataType)) {
