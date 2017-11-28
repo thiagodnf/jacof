@@ -18,8 +18,8 @@ public class MulticriteriaDistanceFunction extends DistanceFunction {
         GeographicalDistance geographicalDistance = new GeographicalDistance();
         ManhattanDistance manhattanDistance = new ManhattanDistance();
 
-        LOGGER.debug(MulticriteriaDistanceFunction.class.getName() + " "
-                + geographicalDistance.distance(length, position1, position2) + " " + manhattanDistance.distance(length, position1, position2));
+//        LOGGER.debug(MulticriteriaDistanceFunction.class.getName() + " "
+//                + geographicalDistance.distance(length, position1, position2) + " " + manhattanDistance.distance(length, position1, position2));
 
         return a * geographicalDistance.distance(length, position1, position2)
                 + b * manhattanDistance.distance(length, position1, position2);

@@ -13,6 +13,9 @@ public class ResultRecord {
     @CsvBindByPosition(position = 2)
     private String bestResultValue;
 
+    @CsvBindByPosition(position = 3)
+    private String pheromoneRatio;
+
     public String getProblemName() {
         return problemName;
     }
@@ -35,5 +38,13 @@ public class ResultRecord {
 
     public void setBestResultValue(String bestResultValue) {
         this.bestResultValue = bestResultValue;
+    }
+
+    public String getPheromoneRatio() {
+        return pheromoneRatio;
+    }
+
+    public void setPheromoneRatio(String pheromoneRatio) {
+        this.pheromoneRatio = pheromoneRatio;
     }
 }

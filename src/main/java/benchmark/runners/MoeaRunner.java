@@ -137,7 +137,8 @@ public class MoeaRunner {
 
         new MoeaRunner()
 //                .withTSPInstance("src/main/resources/problems/tsp/bays29.tsp")
-                .withTSPInstance("src/main/resources/problems/tsp/oliver30.tsp")
+//                .withTSPInstance("src/main/resources/problems/tsp/oliver30.tsp")
+                .withTSPInstance("src/main/resources/problems/tsp/a280.tsp")
                 .withAlgorithmName(AlgorithmName.NSGAII)
                 .withDistanceFunction(new MulticriteriaDistanceFunction())
                 .withProperties(properties)

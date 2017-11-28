@@ -16,6 +16,9 @@ public class AntColonySystem extends AntSystem {
 	
 	protected double omega;
 
+	public AntColonySystem() {
+	}
+
 	public AntColonySystem(Problem problem) {
 		super(problem);
 	}
