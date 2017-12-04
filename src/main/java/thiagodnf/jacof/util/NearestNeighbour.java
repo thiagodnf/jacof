@@ -3,7 +3,7 @@ package thiagodnf.jacof.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+import benchmark.problem.AcoTSP;
 import thiagodnf.jacof.util.random.JMetalRandom;
 
 /**
@@ -17,7 +17,7 @@ public class NearestNeighbour {
 	
 	protected JMetalRandom rand = JMetalRandom.getInstance();
 	
-	public int[] solve(TravellingSalesmanProblem p) {
+	public int[] solve(AcoTSP p) {
 		
 		List<Integer> citiesToVisit = new ArrayList<Integer>();
 		List<Integer> solution = new ArrayList<Integer>();

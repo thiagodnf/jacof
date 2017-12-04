@@ -24,6 +24,9 @@ public class MaxMinAntSystem extends AntSystem {
 		return stagnation;
 	}
 
+	public MaxMinAntSystem() {
+	}
+
 	public void setStagnation(int stagnation) {
 		this.stagnation = stagnation;
 	}

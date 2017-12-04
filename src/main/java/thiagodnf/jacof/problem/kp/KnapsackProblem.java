@@ -37,7 +37,7 @@ public class KnapsackProblem extends Problem {
 	public KnapsackProblem(String filename) throws IOException{
 		
 		InstanceReader reader = new InstanceReader(new File(filename));
-		
+
 		this.numberOfItems = reader.readIntegerValue();
 		this.weights = reader.readDoubleArray();
 		this.profits = reader.readDoubleArray();

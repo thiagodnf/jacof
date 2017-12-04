@@ -1,14 +1,7 @@
 package thiagodnf.jacof.aco;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
+import benchmark.stats.Diversity;
 import org.apache.log4j.Logger;
-
 import thiagodnf.jacof.aco.ant.Ant;
 import thiagodnf.jacof.aco.ant.exploration.AbstractAntExploration;
 import thiagodnf.jacof.aco.ant.initialization.AbstractAntInitialization;
@@ -19,6 +12,14 @@ import thiagodnf.jacof.aco.rule.globalupdate.deposit.AbstractDeposit;
 import thiagodnf.jacof.aco.rule.globalupdate.evaporation.AbstractEvaporation;
 import thiagodnf.jacof.aco.rule.localupdate.AbstractLocalUpdateRule;
 import thiagodnf.jacof.problem.Problem;
+import benchmark.problem.AcoTSP;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This is the base class. This one has the main components
@@ -90,6 +91,12 @@ public abstract class ACO implements Observer {
 	
 	/** The evaporation rate */
 	protected double rho;
+
+	protected Diversity diversity;
+
+	public ACO() {
+	}
+
 	/**
 	 * Constructor
 	 * 
@@ -118,6 +125,7 @@ public abstract class ACO implements Observer {
 
 		initializePheromones();
 		initializeAnts();
+		initializeOther();
 
 		while (!terminationCondition()) {
 			constructAntsSolutions();
@@ -156,6 +164,13 @@ public abstract class ACO implements Observer {
 			ants[k].setAntInitialization(getAntInitialization());
 			ants[k].addObserver(this);
 		}
+	}
+
+	protected void initializeOther() {
+
+		LOGGER.debug("Initializing other attributes");
+
+		diversity = new Diversity(this);
 	}
 	
 	/**
@@ -233,6 +248,12 @@ public abstract class ACO implements Observer {
 				
 		for (AbstractDaemonActions daemonAction : daemonActions) {
 			daemonAction.doAction();
+		}
+
+		diversity.update();
+
+		if(problem instanceof AcoTSP) {
+			((AcoTSP) problem).getVisualization().updateVisualization(it, globalBest, ants);
 		}
 	}
 
@@ -319,7 +340,8 @@ public abstract class ACO implements Observer {
 
 	public void setProblem(Problem problem) {
 		this.problem = problem;
-	}	
+		this.graph = new AntGraph(problem);
+	}
 	
 	public Ant[] getAnts() {
 		return ants;
@@ -408,7 +430,15 @@ public abstract class ACO implements Observer {
 	public void setRho(double rho) {
 		this.rho = rho;
 	}
-	
+
+	public Diversity getDiversity() {
+		return diversity;
+	}
+
+	public void setDiversity(Diversity diversity) {
+		this.diversity = diversity;
+	}
+
 	/**
 	 * Print the parameters
 	 */

@@ -49,8 +49,8 @@ public class TSPLIBReader {
 
 		String line = reader.readLine();
 		int i = 0;
-		while (line != null) {
-			String[] split = line.split(" ");
+		while (line != null && !line.contains("EOF")) {
+			String[] split = line.split("\\s+");
 
 			coord[i][0] = Double.valueOf(split[0].trim());
 			coord[i][1] = Double.valueOf(split[1].trim());

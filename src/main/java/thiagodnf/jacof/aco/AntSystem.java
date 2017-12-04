@@ -10,6 +10,9 @@ import thiagodnf.jacof.problem.Problem;
 
 public class AntSystem extends ACO {
 
+	public AntSystem() {
+	}
+
 	public AntSystem(Problem problem) {
 		super(problem);
 	}

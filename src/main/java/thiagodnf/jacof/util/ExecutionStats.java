@@ -50,4 +50,20 @@ public class ExecutionStats {
 	public void printDotFormat() {
 		System.out.println(Convert.toDot(aco.getGraph().getTau()));
 	}
+
+	public double getExecutionTime() {
+		return executionTime;
+	}
+
+	public ACO getAco() {
+		return aco;
+	}
+
+	public Problem getProblem() {
+		return problem;
+	}
+
+	public int[] getBestSolution() {
+		return bestSolution;
+	}
 }

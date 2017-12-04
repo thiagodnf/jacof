@@ -1,12 +1,11 @@
-import java.io.IOException;
-
 import org.apache.commons.cli.ParseException;
 import org.apache.log4j.Logger;
-
 import thiagodnf.jacof.aco.RankBasedAntSystem;
 import thiagodnf.jacof.problem.Problem;
-import thiagodnf.jacof.problem.tsp.TravellingSalesmanProblem;
+import benchmark.problem.AcoTSP;
 import thiagodnf.jacof.util.ExecutionStats;
+
+import java.io.IOException;
 
 public class ASRankRunner {
 
@@ -15,9 +14,11 @@ public class ASRankRunner {
 	
 	public static void main(String[] args) throws ParseException, IOException {
 
-		String instance = "src/main/resources/problems/tsp/oliver30.tsp";
+		String instance = "src/main/resources/problems/tsp/bays29.tsp";
 
-		Problem problem = new TravellingSalesmanProblem(instance);
+
+
+		Problem problem = new AcoTSP(instance);
 
 		RankBasedAntSystem aco = new RankBasedAntSystem(problem);
 
