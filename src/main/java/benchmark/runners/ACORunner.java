@@ -68,12 +68,12 @@ public class ACORunner {
 
     public static void main(String[] args) throws IOException {
 
-//        String instance = "src/main/resources/problems/tsp/bays29.tsp";
+        String instance = "src/main/resources/problems/tsp/bays29.tsp";
 //        String instance = "src/main/resources/problems/tsp/oliver30.tsp";
 
 //        String instance = "src/main/resources/problems/tsp/a280.tsp";
 //        String instance = "src/main/resources/problems/tsp/berlin52.tsp";
-        String instance = "src/main/resources/problems/tsp/rat195.tsp";
+//        String instance = "src/main/resources/problems/tsp/rat195.tsp";
 
         AntSystem aco = new AntSystem();
         aco.setNumberOfAnts(100);
