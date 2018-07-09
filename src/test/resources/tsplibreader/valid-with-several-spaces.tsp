@@ -1,0 +1,10 @@
+NAME: several-spaces
+COMMENT : 4 locations
+TYPE: TSP
+DIMENSION: 4
+EDGE_WEIGHT_TYPE: EUC_2D
+NODE_COORD_SECTION
+1    -2   2
+2      -2        -2
+3   2    2
+4          2	-2

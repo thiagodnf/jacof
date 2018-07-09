@@ -1,5 +1,7 @@
 package thiagodnf.jacof.util.io;
 
+import com.google.common.base.Preconditions;
+
 /**
  *  Instance Reader in TSPLIB format
  * 
@@ -17,6 +19,9 @@ public class TSPLIBReader {
 	private double[][] distance;
 
 	public TSPLIBReader(InstanceReader reader) {
+		
+		Preconditions.checkNotNull(reader, "The reader should not null");
+		
 		this.reader = reader;
 
 		readHeader();
@@ -50,7 +55,7 @@ public class TSPLIBReader {
 		String line = reader.readLine();
 		int i = 0;
 		while (line != null) {
-			String[] split = line.split(" ");
+			String[] split = line.split("\\s+");
 
 			coord[i][0] = Double.valueOf(split[0].trim());
 			coord[i][1] = Double.valueOf(split[1].trim());
